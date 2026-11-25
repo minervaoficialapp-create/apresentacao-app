@@ -72,12 +72,6 @@
       box-shadow: 0 8px 40px rgba(224, 174, 67, 0.15);
     }
 
-    .gold-metallic-text {
-      background: linear-gradient(145deg, #FBF5B7 0%, #C5A059 40%, #8B6508 80%, #C5A059 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     .slide {
       display: none;
       opacity: 0;
@@ -108,7 +102,7 @@
       </div>
       <span class="text-zinc-600">|</span>
       <span id="slideTitleIndicator" class="text-brand-gold uppercase tracking-wider font-semibold text-[11px]">
-        Apresentação do App Oficial
+        Apresentação Oficial da Plataforma
       </span>
     </div>
 
@@ -128,7 +122,7 @@
 
   <!-- BARRA DE PROGRESSO SUPERIOR -->
   <div class="fixed top-[45px] left-0 w-full h-[3px] bg-zinc-900 z-50">
-    <div id="progressBar" class="h-full bg-brand-gold transition-all duration-300 w-[12.5%]"></div>
+    <div id="progressBar" class="h-full bg-brand-gold transition-all duration-300 w-[11.1%]"></div>
   </div>
 
   <!-- CONTAINER CENTRAL DOS SLIDES -->
@@ -231,27 +225,27 @@
                 <p class="text-[11px] text-white/50">Restaurante Fasano • Presencial Exclusivo</p>
               </div>
             </div>
-            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded font-semibold">Confirmada</span>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded font-semibold">Sincronizado na Agenda ✓</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ================= SLIDE 3: MENSAGENS E CHAT (O QUE O USUÁRIO PEDIU) ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mensagens e Chat Privativo">
+    <!-- ================= SLIDE 3: MENSAGENS E CHAT (MELHORADO COM EXEMPLOS REAIS) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mensagens & Negociações">
       <div class="flex justify-between items-end mb-4">
         <div>
           <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">02 / Trocas Diretas</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-white">Área de Mensagens & Negociações</h2>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Mensagens & Conversas de Negócios</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /chat (Mensagens)</div>
       </div>
 
-      <!-- INTERFACE IDÊNTICA AO Chat.tsx DO APP MINERVA -->
+      <!-- INTERFACE IDÊNTICA AO Chat.tsx DO APP MINERVA COM CONVERSAS REAIS -->
       <div class="glass-card p-0 border border-white/10 shadow-2xl flex flex-col md:flex-row h-[460px] overflow-hidden">
         
-        <!-- SIDEBAR DE CONTATOS (EXATA DO APP) -->
+        <!-- SIDEBAR DE CONTATOS (CLICÁVEL PARA TROCAR DE CONVERSA) -->
         <div class="w-full md:w-1/3 bg-black/50 border-r border-white/10 p-4 flex flex-col justify-between">
           <div class="space-y-3">
             <div class="flex justify-between items-center">
@@ -267,7 +261,7 @@
                 </div>
                 <div>
                   <h5 class="text-white text-xs font-medium">Solicitações Novas</h5>
-                  <p class="text-white/40 text-[9px]">2 líderes aguardando conexão</p>
+                  <p class="text-white/40 text-[9px]">2 executivas aguardando conexão</p>
                 </div>
               </div>
               <div class="w-4 h-4 rounded-full bg-brand-gold text-black text-[9px] font-bold flex items-center justify-center">
@@ -275,7 +269,7 @@
               </div>
             </div>
 
-            <!-- CAMPO DE BUSCA -->
+            <!-- BUSCA -->
             <div class="relative">
               <input type="text" placeholder="Buscar conversas..." class="w-full bg-white/5 border border-white/10 rounded-full py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-brand-gold/50">
               <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/40 text-xs">🔍</span>
@@ -283,53 +277,53 @@
 
             <!-- LISTA DE CONTATOS -->
             <div class="space-y-1 pt-1">
-              <!-- Contato Ativo (Carolina) -->
-              <div class="flex items-center gap-3 p-2.5 rounded-xl bg-white/10 border border-white/10 cursor-pointer">
+              <!-- Contato 1: Carolina (Ativo) -->
+              <div id="contact-carolina" onclick="selectContact('carolina')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl bg-white/10 border border-white/10 cursor-pointer transition-colors">
                 <div class="relative">
                   <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover">
                   <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full"></div>
                 </div>
-                <div class="flex-1 overflow-hidden">
+                <div class="flex-1 overflow-hidden text-left">
                   <div class="flex justify-between items-center">
                     <h5 class="text-white text-xs font-semibold truncate">Carolina Albuquerque</h5>
                     <span class="text-[9px] text-white/40 font-mono">11:42</span>
                   </div>
                   <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Co-Founder & Investidora</p>
-                  <p class="text-white/60 text-[10px] truncate">Vamos assinar quinta-feira às 18h no jantar...</p>
+                  <p class="text-white/60 text-[10px] truncate">Já reservei o jantar Fasano na quinta...</p>
                 </div>
               </div>
 
-              <!-- Contato 2 (Giulia) -->
-              <div class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
+              <!-- Contato 2: Giulia -->
+              <div id="contact-giulia" onclick="selectContact('giulia')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
                 <div class="relative">
                   <img src="assets/giulia.jpg" alt="Giulia" class="w-10 h-10 rounded-full object-cover">
                   <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full"></div>
                 </div>
-                <div class="flex-1 overflow-hidden">
+                <div class="flex-1 overflow-hidden text-left">
                   <div class="flex justify-between items-center">
                     <h5 class="text-white text-xs font-semibold truncate">Giulia Ferrari</h5>
-                    <span class="text-[9px] text-white/40 font-mono">Ontem</span>
+                    <span class="text-[9px] text-white/40 font-mono">10:15</span>
                   </div>
                   <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Sócia & Mentora</p>
-                  <p class="text-white/40 text-[10px] truncate">A pauta da mentoria sobre precificação está pronta!</p>
+                  <p class="text-white/40 text-[10px] truncate">A mentoria caiu direto na Apple Agenda...</p>
                 </div>
               </div>
 
-              <!-- Contato 3 (Dra. Helena) -->
-              <div class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
+              <!-- Contato 3: Fernanda -->
+              <div id="contact-fernanda" onclick="selectContact('fernanda')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
                 <div class="relative">
                   <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold to-zinc-800 text-black font-serif font-bold flex items-center justify-center text-xs border border-brand-gold">
-                    HR
+                    FL
                   </div>
-                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-zinc-600 border-2 border-black rounded-full"></div>
+                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full"></div>
                 </div>
-                <div class="flex-1 overflow-hidden">
+                <div class="flex-1 overflow-hidden text-left">
                   <div class="flex justify-between items-center">
-                    <h5 class="text-white text-xs font-semibold truncate">Dra. Helena Rocha</h5>
-                    <span class="text-[9px] text-white/40 font-mono">22 Nov</span>
+                    <h5 class="text-white text-xs font-semibold truncate">Fernanda Lima</h5>
+                    <span class="text-[9px] text-white/40 font-mono">Ontem</span>
                   </div>
-                  <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Diretora Médica • Rede D'Or</p>
-                  <p class="text-white/40 text-[10px] truncate">Conexão aceita pelo Minerva Match.</p>
+                  <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Diretora de M&A</p>
+                  <p class="text-white/40 text-[10px] truncate">Vamos marcar o alinhamento de expansão...</p>
                 </div>
               </div>
             </div>
@@ -340,22 +334,22 @@
           </div>
         </div>
 
-        <!-- JANELA DE CONVERSA COM MENSAGENS REAIS -->
+        <!-- JANELA DE CONVERSA DINÂMICA -->
         <div class="flex-1 flex flex-col justify-between bg-black/30">
           
           <!-- CHAT HEADER -->
           <div class="p-3.5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
             <div class="flex items-center gap-3">
-              <img src="assets/carolina.jpg" alt="Carolina" class="w-9 h-9 rounded-full object-cover border border-brand-gold">
+              <img id="chatHeaderAvatar" src="assets/carolina.jpg" alt="Avatar" class="w-9 h-9 rounded-full object-cover border border-brand-gold">
               <div>
-                <h4 class="text-white text-xs font-bold">Carolina Albuquerque</h4>
+                <h4 id="chatHeaderName" class="text-white text-xs font-bold">Carolina Albuquerque</h4>
                 <p class="text-emerald-400 text-[10px] flex items-center gap-1">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Online agora
                 </p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[10px] bg-brand-gold/15 text-brand-gold px-2.5 py-1 rounded-full font-medium">
+              <span id="chatHeaderTag" class="text-[10px] bg-brand-gold/15 text-brand-gold px-2.5 py-1 rounded-full font-medium">
                 Pacto de Sócios • Rodada Seed
               </span>
             </div>
@@ -363,46 +357,12 @@
 
           <!-- HISTÓRICO DE MENSAGENS -->
           <div id="slideChatMessages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
-            <div class="text-center">
-              <span class="text-[9px] text-white/30 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/5">
-                Hoje • Conversa Privativa
-              </span>
-            </div>
-
-            <!-- Mensagem recebida de Carolina -->
-            <div class="flex justify-start">
-              <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-white/5 border border-white/10 text-white/90 rounded-tl-sm">
-                <p class="text-xs leading-relaxed">
-                  Beatriz, adorei o alinhamento de ontem! Nosso conselho aprovou os termos e queremos liderar a nova rodada da sua healthtech.
-                </p>
-                <p class="text-[9px] mt-1.5 text-right text-white/40">11:38</p>
-              </div>
-            </div>
-
-            <!-- Mensagem enviada por Você (Beatriz) -->
-            <div class="flex justify-end">
-              <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-brand-gold/20 border border-brand-gold/30 text-white rounded-tr-sm">
-                <p class="text-xs leading-relaxed">
-                  Perfeito, Carolina! Já ajustamos a minuta societária garantindo proteção ao comitê fundador e Drag Along favorável. O contrato já está assinado pelo nosso jurídico. 📄✨
-                </p>
-                <p class="text-[9px] mt-1.5 text-right text-brand-gold/70">11:40 ✓✓</p>
-              </div>
-            </div>
-
-            <!-- Mensagem recebida de Carolina confirmando -->
-            <div class="flex justify-start">
-              <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-white/5 border border-white/10 text-white/90 rounded-tl-sm">
-                <p class="text-xs leading-relaxed">
-                  Excelente agilidade! Vamos celebrar a assinatura quinta-feira às 18h no jantar exclusivo da Minerva. Nos vemos lá! 🥂
-                </p>
-                <p class="text-[9px] mt-1.5 text-right text-white/40">11:42</p>
-              </div>
-            </div>
+            <!-- Inserido dinamicamente por JS conforme o contato selecionado -->
           </div>
 
-          <!-- INPUT DE MENSAGEM INTERATIVO (PODE TESTAR AO VIVO) -->
+          <!-- INPUT DE MENSAGEM INTERATIVO (PODE DIGITAR E ENVIAR AO VIVO) -->
           <form onsubmit="handleSendSlideChat(event)" class="p-3 border-t border-white/5 bg-black/40 flex items-center gap-2">
-            <input id="slideChatInput" type="text" placeholder="Envie uma mensagem em tempo real para testar..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-brand-gold/50">
+            <input id="slideChatInput" type="text" placeholder="Envie uma mensagem em tempo real para demonstrar na palestra..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-brand-gold/50">
             <button type="submit" class="bg-brand-gold hover:bg-brand-goldLight text-black font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md">
               Enviar
             </button>
@@ -413,11 +373,96 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 4: NETWORKING E MATCHMAKING ================= -->
+    <!-- ================= SLIDE 4: AGENDA CONECTADA (GOOGLE & APPLE CALENDAR) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Agenda Conectada (Google & Apple)">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">03 / Diferencial de Produtividade</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Agenda Conectada & Sincronizada</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /calendar (Google Calendar & Apple)</div>
+      </div>
+
+      <!-- MOCKUP DA AGENDA CONECTADA -->
+      <div class="glass-card p-6 sm:p-8 border border-white/10 shadow-2xl space-y-6">
+        
+        <!-- CARD DE SINCRONIZAÇÃO NATIVA -->
+        <div class="p-5 rounded-2xl bg-gradient-to-r from-brand-gold/15 via-black/40 to-black/60 border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center text-2xl font-bold">
+              🔄
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="text-base font-bold text-white">Sincronização Ativa em Tempo Real</h4>
+                <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full">CONECTADO</span>
+              </div>
+              <p class="text-xs text-white/70 mt-1">
+                Eventos, jantares e mentorias confirmadas no Minerva entram <strong>automaticamente</strong> no seu Google Agenda ou Apple Agenda.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+              <span>📅 Google Agenda</span>
+              <span class="text-emerald-400">✓</span>
+            </div>
+            <div class="px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-semibold text-white flex items-center gap-1.5">
+              <span>🍎 Apple Calendar</span>
+              <span class="text-emerald-400">✓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LISTAGEM DE COMPROMISSOS SINCRONIZADOS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2">
+            <div class="flex justify-between items-center text-[10px]">
+              <span class="text-brand-gold font-bold uppercase tracking-wider">Mentoria 1-on-1</span>
+              <span class="text-emerald-400">Sincronizado ✓</span>
+            </div>
+            <h5 class="text-sm font-semibold text-white">Revisão de M&A e Governança</h5>
+            <p class="text-xs text-white/60">Com Carolina Albuquerque • 16:00 às 17:00</p>
+            <div class="text-[10px] text-white/40 pt-2 border-t border-white/5 flex items-center gap-1">
+              <span>🔔 Lembrete 30 min antes no celular</span>
+            </div>
+          </div>
+
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2">
+            <div class="flex justify-between items-center text-[10px]">
+              <span class="text-brand-gold font-bold uppercase tracking-wider">Jantar Exclusivo</span>
+              <span class="text-emerald-400">Sincronizado ✓</span>
+            </div>
+            <h5 class="text-sm font-semibold text-white">Encontro Presencial Fasano</h5>
+            <p class="text-xs text-white/60">Com Fundadoras & Líderes • 19:30</p>
+            <div class="text-[10px] text-white/40 pt-2 border-t border-white/5 flex items-center gap-1">
+              <span>📍 Endereço anexado ao calendário</span>
+            </div>
+          </div>
+
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2">
+            <div class="flex justify-between items-center text-[10px]">
+              <span class="text-brand-gold font-bold uppercase tracking-wider">Masterclass Online</span>
+              <span class="text-emerald-400">Sincronizado ✓</span>
+            </div>
+            <h5 class="text-sm font-semibold text-white">Captação de Série A no Brasil</h5>
+            <p class="text-xs text-white/60">Ao vivo no app • 20:00</p>
+            <div class="text-[10px] text-white/40 pt-2 border-t border-white/5 flex items-center gap-1">
+              <span>🔗 Link de acesso adicionado ao convite</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 5: NETWORKING E MATCHMAKING ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Networking e Conexões C-Level">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">03 / Conexões Estratégicas</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">04 / Conexões Estratégicas</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Networking & Matchmaking</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /networking</div>
@@ -515,11 +560,11 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 5: FEED DA COMUNIDADE ================= -->
+    <!-- ================= SLIDE 6: FEED DA COMUNIDADE ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Feed da Comunidade">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">04 / Conteúdo & Trocas</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">05 / Conteúdo & Trocas</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Feed Fechado da Comunidade</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /feed</div>
@@ -572,79 +617,75 @@
           <div class="flex items-center gap-6 pt-2 border-t border-white/5 text-xs text-white/50">
             <span class="text-white/70">❤️ 28 curtidas</span>
             <span>💬 7 pedidos de horário</span>
-            <span class="text-brand-gold">📅 Agendar no app</span>
+            <span class="text-brand-gold">📅 Sincronizar na Agenda</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ================= SLIDE 6: MINERVA AI (COPILOTO) ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Minerva AI (Inteligência Artificial)">
+    <!-- ================= SLIDE 7: MINERVA AI (EXATOS 3 AGENTES REAIS) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Minerva AI (3 Agentes Reais)">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">05 / Tecnologia Própria</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-white">Minerva AI — Copiloto Executivo</h2>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">06 / Tecnologia Própria</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Minerva AI — 3 Especialistas Integrados</h2>
         </div>
-        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /minerva-ai</div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /minerva-ai (Estrategista • Criador • Analista)</div>
       </div>
 
-      <!-- MOCKUP IDÊNTICO À MinervaAI.tsx -->
+      <!-- MOCKUP EXATO DO MinervaAI.tsx DO APP REAL -->
       <div class="glass-card p-5 sm:p-6 border border-brand-gold/30 shadow-[0_0_50px_rgba(197,160,89,0.15)] flex flex-col justify-between h-[460px]">
         
-        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+        <!-- HEADER COM OS 3 ROBÔS REAIS DO APP -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span class="text-sm font-bold text-brand-gold">MINERVA AI COPILOT</span>
-          </div>
-          <span class="text-xs text-white/40">Treinado em Governança, Captação & Conselho</span>
-        </div>
-
-        <!-- MENSAGENS COM A IA -->
-        <div class="flex-1 overflow-y-auto py-4 space-y-4">
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
-              ✦
-            </div>
-            <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30">
-              Olá, Beatriz. Identifiquei 2 novas oportunidades de sinergia societária com membros da vertical de Tecnologia e Finanças. Como posso acelerar seu conselho hoje?
-            </div>
+            <span class="text-sm font-bold text-brand-gold">MINERVA AI</span>
+            <span class="text-xs text-white/40">• Copiloto Executivo</span>
           </div>
 
-          <div class="flex items-start justify-end gap-3">
-            <div class="bg-brand-gold text-black font-semibold p-3.5 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[80%] shadow-md">
-              "Qual é a estrutura mais recomendada para alinhamento de cláusula Drag Along na nossa rodada de sócios?"
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
-              ✦
-            </div>
-            <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30 space-y-2">
-              <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider block">Recomendação Estratégica:</span>
-              <p>1. Estabelecer Floor Price (preço mínimo por ação) para evitar liquidação desvantajosa.</p>
-              <p>2. Exigir quórum qualificado de 75% dos fundadores para acionamento compulsório.</p>
-              <p>3. As sócias Carolina e Giulia têm modelos validados no acervo da biblioteca.</p>
-            </div>
+          <!-- SELETOR DOS 3 ROBÔS EXATOS DO CÓDIGO FONTE -->
+          <div class="flex items-center gap-2 bg-black/50 p-1 rounded-xl border border-white/10 text-xs">
+            <button onclick="setRobot('estrategista')" id="robot-estrategista" class="robot-btn px-3 py-1 rounded-lg bg-brand-gold text-black font-bold flex items-center gap-1.5 transition-all">
+              <span>🧠</span> <span>Estrategista</span>
+            </button>
+            <button onclick="setRobot('criador')" id="robot-criador" class="robot-btn px-3 py-1 rounded-lg text-white/60 hover:text-white flex items-center gap-1.5 transition-all">
+              <span>✍️</span> <span>Criador</span>
+            </button>
+            <button onclick="setRobot('analista')" id="robot-analista" class="robot-btn px-3 py-1 rounded-lg text-white/60 hover:text-white flex items-center gap-1.5 transition-all">
+              <span>📊</span> <span>Analista</span>
+            </button>
           </div>
         </div>
 
+        <!-- MENSAGENS REALISTAS DO ROBÔ SELECIONADO -->
+        <div id="aiChatBox" class="flex-1 overflow-y-auto py-4 space-y-4">
+          <!-- Inserido dinamicamente por JS conforme o robô -->
+        </div>
+
+        <!-- BARRA DE INPUT COM MICROFONE / VOZ (RECURSO REAL DO APP) -->
         <div class="pt-3 border-t border-white/5 flex items-center gap-2">
-          <input type="text" value="Analisando cenários de expansão..." readonly class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white/70">
-          <button class="bg-brand-gold text-black font-bold text-xs px-4 py-2 rounded-xl">
-            Copilot Ativo
+          <button class="w-9 h-9 rounded-xl bg-white/5 hover:bg-brand-gold hover:text-black flex items-center justify-center text-sm transition-colors border border-white/10" title="Comando de Voz">
+            🎙️
+          </button>
+          <button class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center text-sm transition-colors border border-white/10" title="Anexar Documento">
+            📎
+          </button>
+          <input id="aiInteractiveInput" type="text" placeholder="Pergunte ao Estrategista sobre seu plano de negócio..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white placeholder-white/40 focus:outline-none focus:border-brand-gold/50">
+          <button onclick="handleSendAI()" class="bg-brand-gold hover:bg-brand-goldLight text-black font-bold text-xs px-4 py-2 rounded-xl transition-all">
+            Consultar
           </button>
         </div>
 
       </div>
     </section>
 
-    <!-- ================= SLIDE 7: MENTORIAS & ACERVO EXECUTIVO ================= -->
+    <!-- ================= SLIDE 8: MENTORIAS & MASTERCLASSES ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mentorias e Masterclasses">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">06 / Sabedoria & Formação</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">07 / Sabedoria & Formação</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Mentorias Individuais & Masterclasses</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /mentoring & /aulas-gravadas</div>
@@ -663,7 +704,7 @@
             <p class="text-xs text-white/60 mt-2">Sessões 1-on-1 para reestruturação patrimonial e governança de alta gestão.</p>
           </div>
           <button class="w-full py-2.5 rounded-xl bg-brand-gold text-black font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-all">
-            Agendar Sessão
+            Agendar na Minha Agenda ✓
           </button>
         </div>
 
@@ -677,7 +718,7 @@
             <p class="text-xs text-white/60 mt-2">Preparação de pitch, valuation, rodadas de investimento e relacionamento com fundos.</p>
           </div>
           <button class="w-full py-2.5 rounded-xl bg-brand-gold text-black font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-all">
-            Agendar Sessão
+            Agendar na Minha Agenda ✓
           </button>
         </div>
 
@@ -691,14 +732,14 @@
             <p class="text-xs text-white/60 mt-2">Criação de novos canais de receita B2B e posicionamento institucional premium.</p>
           </div>
           <button class="w-full py-2.5 rounded-xl bg-brand-gold text-black font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-all">
-            Agendar Sessão
+            Agendar na Minha Agenda ✓
           </button>
         </div>
 
       </div>
     </section>
 
-    <!-- ================= SLIDE 8: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
+    <!-- ================= SLIDE 9: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
     <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Encerramento e Convite VIP">
       <div class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-brand-gold mb-4">
         ✦ Exclusivo para Esta Palestra
@@ -759,11 +800,11 @@
     <div class="font-mono text-sm tracking-wider flex items-center gap-2">
       <span id="currentSlideNum" class="text-brand-gold font-bold">01</span>
       <span class="text-white/30">/</span>
-      <span id="totalSlidesNum" class="text-white/60">08</span>
+      <span id="totalSlidesNum" class="text-white/60">09</span>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT DE NAVEGAÇÃO E CHAT INTERATIVO -->
+  <!-- JAVASCRIPT DE NAVEGAÇÃO, CHATS E ROBÔS IA -->
   <script>
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
@@ -802,7 +843,6 @@
 
     // Teclado
     document.addEventListener('keydown', (e) => {
-      // Não intercepta se o usuário estiver digitando no chat do slide 3
       if (e.target && e.target.tagName === 'INPUT') return;
 
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
@@ -837,44 +877,235 @@
       }
     }
 
-    // Enviar mensagem interativa no Slide 3 (Chat)
+    // ================= DADOS E LÓGICA DE MENSAGENS =================
+    const conversationsData = {
+      carolina: {
+        name: 'Carolina Albuquerque',
+        role: 'Co-Founder & Investidora',
+        tag: 'Pacto de Sócios • Rodada Seed',
+        avatar: 'assets/carolina.jpg',
+        messages: [
+          { sender: 'them', text: 'Beatriz, você viu a nova rodada de conexões no setor de Tech? Já temos 3 fundadoras querendo co-investir com a gente.', time: '11:35' },
+          { sender: 'me', text: 'Vi sim, Carol! Marquei uma conversa preliminar com elas. Nosso alinhamento de governança já está 100% estruturado.', time: '11:38' },
+          { sender: 'them', text: 'Excelente! Como a Agenda do app sincroniza direto com o Google Calendar, já reservei nosso horário para quinta-feira às 18h no jantar exclusivo do Fasano. Nos vemos lá!', time: '11:42' }
+        ]
+      },
+      giulia: {
+        name: 'Giulia Ferrari',
+        role: 'Sócia & Mentora',
+        tag: 'Mentoria • Estruturação de Escala',
+        avatar: 'assets/giulia.jpg',
+        messages: [
+          { sender: 'them', text: 'Boa tarde, Bia! Preparei a estrutura da nossa mentoria sobre precificação de contratos corporativos.', time: '10:05' },
+          { sender: 'me', text: 'Maravilha, Giulia! Já subi nossa planilha na área de documentos. O Estrategista da Minerva AI até me deu um feedback prévio excelente.', time: '10:10' },
+          { sender: 'them', text: 'Que ótimo! O horário já caiu automaticamente na minha Apple Agenda conectada. Quinta às 14h começamos!', time: '10:15' }
+        ]
+      },
+      fernanda: {
+        name: 'Fernanda Lima',
+        role: 'Diretora de M&A',
+        tag: 'Expansão & FinTech',
+        avatar: null,
+        initials: 'FL',
+        messages: [
+          { sender: 'them', text: 'Beatriz, um prazer conectar por aqui! Vi sua apresentação no ecossistema e temos total sinergia de expansão.', time: 'Ontem' },
+          { sender: 'me', text: 'Olá Fernanda! Seja bem-vinda à nossa rede. Vamos marcar um café virtual para trocar sobre sinergias na área financeira?', time: 'Ontem' },
+          { sender: 'them', text: 'Com certeza! Vou solicitar o convite pela Agenda Conectada do app para sincronizar no nosso calendário.', time: 'Ontem' }
+        ]
+      }
+    };
+
+    let activeContactKey = 'carolina';
+
+    function selectContact(key) {
+      activeContactKey = key;
+      const data = conversationsData[key];
+
+      // Atualiza aba ativa na lista
+      document.querySelectorAll('.contact-tab').forEach(el => {
+        el.classList.remove('bg-white/10', 'border-white/10');
+      });
+      const activeEl = document.getElementById('contact-' + key);
+      if (activeEl) activeEl.classList.add('bg-white/10', 'border-white/10');
+
+      // Atualiza Header do Chat
+      document.getElementById('chatHeaderName').textContent = data.name;
+      document.getElementById('chatHeaderTag').textContent = data.tag;
+      const avatarEl = document.getElementById('chatHeaderAvatar');
+      if (data.avatar) {
+        avatarEl.src = data.avatar;
+        avatarEl.style.display = 'block';
+      } else {
+        avatarEl.src = 'assets/logo.png';
+      }
+
+      renderMessages();
+    }
+
+    function renderMessages() {
+      const chatBox = document.getElementById('slideChatMessages');
+      const data = conversationsData[activeContactKey];
+      chatBox.innerHTML = `
+        <div class="text-center">
+          <span class="text-[9px] text-white/30 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/5">
+            Hoje • Conversa Privativa
+          </span>
+        </div>
+      `;
+
+      data.messages.forEach(msg => {
+        const isMe = msg.sender === 'me';
+        const bubble = document.createElement('div');
+        bubble.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
+        bubble.innerHTML = `
+          <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md ${isMe ? 'bg-brand-gold/20 border border-brand-gold/30 text-white rounded-tr-sm' : 'bg-white/5 border border-white/10 text-white/90 rounded-tl-sm'}">
+            <p class="text-xs leading-relaxed">${msg.text}</p>
+            <p class="text-[9px] mt-1.5 text-right ${isMe ? 'text-brand-gold/70' : 'text-white/40'}">${msg.time} ${isMe ? '✓✓' : ''}</p>
+          </div>
+        `;
+        chatBox.appendChild(bubble);
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Inicializa mensagens da Carolina
+    selectContact('carolina');
+
     function handleSendSlideChat(e) {
       e.preventDefault();
       const input = document.getElementById('slideChatInput');
       const text = input.value.trim();
       if (!text) return;
 
-      const chatBox = document.getElementById('slideChatMessages');
       const now = new Date();
       const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
-      // Adiciona mensagem da usuária (Beatriz)
+      // Adiciona na conversa ativa
+      conversationsData[activeContactKey].messages.push({
+        sender: 'me',
+        text: text,
+        time: timeStr
+      });
+      input.value = '';
+      renderMessages();
+
+      // Resposta simulada após 700ms
+      setTimeout(() => {
+        let reply = "Perfeito, Beatriz! Já está alinhado na nossa agenda compartilhada do app. 🚀";
+        if (activeContactKey === 'carolina') reply = "Excelente! Acabei de adicionar as notas na pauta do nosso comitê. Nos vemos no Fasano! 🥂";
+        else if (activeContactKey === 'giulia') reply = "Maravilhoso! Vou revisar o material e nos falamos no horário marcado. ✨";
+
+        conversationsData[activeContactKey].messages.push({
+          sender: 'them',
+          text: reply,
+          time: timeStr
+        });
+        renderMessages();
+      }, 700);
+    }
+
+    // ================= DADOS E LÓGICA DA MINERVA AI (3 ROBÔS) =================
+    const robotContents = {
+      estrategista: {
+        intro: "Olá, Beatriz. Sou o **Estrategista**. Analiso seu modelo de negócio, posicionamento e planos de expansão.",
+        userSample: "Como estruturar nossa expansão B2B mantendo a margem líquida acima de 35%?",
+        aiReply: "Para preservar a margem acima de 35%, recomendo: 1) Focar em contratos anuais pré-pagos com desconto de até 10%; 2) Criar pacotes de onboarding estruturados; 3) Conectar com as líderes do ecossistema que já operam com contratos enterprise."
+      },
+      criador: {
+        intro: "Olá, Beatriz. Sou o **Criador**. Escrevo posts executivos, discursos, comunicados e roteiros de autoridade.",
+        userSample: "Crie um post para o LinkedIn sobre liderança feminina no conselho de administração.",
+        aiReply: "Aqui está o rascunho: 'Estar no conselho não é apenas ocupar uma cadeira: é desenhar a rota do valuation com sabedoria e clareza decisória. Na Minerva, aprendemos que quando líderes fortes se conectam, o mercado se transforma...' (Deseja ajustar o tom para mais formal?)"
+      },
+      analista: {
+        intro: "Olá, Beatriz. Sou o **Analista**. Examino suas métricas financeiras, churn, LTV e CAC para relatórios de conselho.",
+        userSample: "Qual foi nossa taxa de retenção de membros deste trimestre?",
+        aiReply: "Sua retenção atingiu 94,2% no último trimestre (+3,1% vs trimestre anterior). O LTV médio subiu para R$ 18.400 com tempo de permanência de 14 meses. Os indicadores estão prontos para envio ao conselho."
+      }
+    };
+
+    let currentRobotKey = 'estrategista';
+
+    function setRobot(key) {
+      currentRobotKey = key;
+      document.querySelectorAll('.robot-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-gold', 'text-black', 'font-bold');
+        btn.classList.add('text-white/60');
+      });
+      const activeBtn = document.getElementById('robot-' + key);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-brand-gold', 'text-black', 'font-bold');
+        activeBtn.classList.remove('text-white/60');
+      }
+
+      const data = robotContents[key];
+      const chatBox = document.getElementById('aiChatBox');
+      chatBox.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
+            ✦
+          </div>
+          <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30">
+            ${data.intro}
+          </div>
+        </div>
+
+        <div class="flex items-start justify-end gap-3">
+          <div class="bg-brand-gold text-black font-semibold p-3.5 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[80%] shadow-md">
+            "${data.userSample}"
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
+            ✦
+          </div>
+          <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30 space-y-2">
+            <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider block">Análise do ${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+            <p>${data.aiReply}</p>
+          </div>
+        </div>
+      `;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function handleSendAI() {
+      const input = document.getElementById('aiInteractiveInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBox = document.getElementById('aiChatBox');
+
+      // User bubble
       const userBubble = document.createElement('div');
-      userBubble.className = 'flex justify-end';
+      userBubble.className = 'flex items-start justify-end gap-3';
       userBubble.innerHTML = `
-        <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-brand-gold/20 border border-brand-gold/30 text-white rounded-tr-sm">
-          <p class="text-xs leading-relaxed">${text}</p>
-          <p class="text-[9px] mt-1.5 text-right text-brand-gold/70">${timeStr} ✓✓</p>
+        <div class="bg-brand-gold text-black font-semibold p-3.5 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[80%] shadow-md">
+          "${text}"
         </div>
       `;
       chatBox.appendChild(userBubble);
       input.value = '';
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // Resposta simulada de Carolina
+      // AI response
       setTimeout(() => {
-        const replyBubble = document.createElement('div');
-        replyBubble.className = 'flex justify-start';
-        replyBubble.innerHTML = `
-          <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-white/5 border border-white/10 text-white/90 rounded-tl-sm">
-            <p class="text-xs leading-relaxed">Combinadíssimo, Beatriz! Já registrei na pauta do nosso comitê de investimentos. 🚀</p>
-            <p class="text-[9px] mt-1.5 text-right text-white/40">${timeStr}</p>
+        const aiBubble = document.createElement('div');
+        aiBubble.className = 'flex items-start gap-3';
+        aiBubble.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
+            ✦
+          </div>
+          <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30">
+            Excelente consulta. Baseado no banco de dados e diretrizes da rede Minerva, estruturei essa resposta alinhada com as melhores práticas executivas.
           </div>
         `;
-        chatBox.appendChild(replyBubble);
+        chatBox.appendChild(aiBubble);
         chatBox.scrollTop = chatBox.scrollHeight;
-      }, 700);
+      }, 500);
     }
+
+    // Inicializa o Estrategista da IA
+    setRobot('estrategista');
   </script>
 </body>
 </html>
