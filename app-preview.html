@@ -71,6 +71,65 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+    /* ================= TEMA CLARO DO SIMULADOR ================= */
+    html.theme-light body {
+      background-color: #F0F2F5 !important;
+      color: #111827 !important;
+    }
+    html.theme-light header {
+      background: rgba(255, 255, 255, 0.9) !important;
+      border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+      color: #111827 !important;
+    }
+    html.theme-light .phone-container {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15), 0 0 30px rgba(184, 134, 11, 0.2) !important;
+    }
+    html.theme-light .phone-notch {
+      background: #E2E8F0 !important;
+    }
+    html.theme-light #statusBar {
+      color: #6B7280 !important;
+    }
+    html.theme-light #statusBar span.text-white {
+      color: #111827 !important;
+    }
+    html.theme-light #desktopSidebar {
+      background: #F8F9FA !important;
+      border-right-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html.theme-light #mobileBottomNav {
+      background: #FFFFFF !important;
+      border-top-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html.theme-light .glass-card {
+      background: #F8F9FA !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+      color: #111827 !important;
+    }
+    html.theme-light .glass-gold {
+      background: rgba(184, 134, 11, 0.08) !important;
+      border-color: rgba(184, 134, 11, 0.3) !important;
+    }
+    html.theme-light .text-white {
+      color: #111827 !important;
+    }
+    html.theme-light .text-zinc-300, html.theme-light .text-zinc-400 {
+      color: #4B5563 !important;
+    }
+    html.theme-light .bg-black\/40, html.theme-light .bg-black\/30 {
+      background: #F1F5F9 !important;
+    }
+    html.theme-light .bg-\[\#16171d\], html.theme-light .bg-\[\#121318\], html.theme-light .bg-\[\#0a0a0a\] {
+      background: #F8F9FA !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html.theme-light .bg-\[\#141414\] {
+      background: #FFFFFF !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-[#08090b]">
@@ -87,13 +146,19 @@
       </div>
     </div>
 
-    <!-- SELETOR DE MODO (CELULAR vs DESKTOP) -->
-    <div class="flex items-center gap-2 bg-[#18191f] p-1 rounded-xl border border-white/10">
-      <button id="btnModeMobile" onclick="setViewMode('mobile')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#D4AF37] text-black shadow-sm flex items-center gap-1.5">
-        <span>📱</span> <span>Modo Smartphone</span>
-      </button>
-      <button id="btnModeDesktop" onclick="setViewMode('desktop')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-zinc-400 hover:text-white flex items-center gap-1.5">
-        <span>💻</span> <span>Modo Desktop Full</span>
+    <!-- SELETOR DE MODO (CELULAR vs DESKTOP) & TEMA -->
+    <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 bg-[#18191f] p-1 rounded-xl border border-white/10">
+        <button id="btnModeMobile" onclick="setViewMode('mobile')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#D4AF37] text-black shadow-sm flex items-center gap-1.5">
+          <span>📱</span> <span>Modo Smartphone</span>
+        </button>
+        <button id="btnModeDesktop" onclick="setViewMode('desktop')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-zinc-400 hover:text-white flex items-center gap-1.5">
+          <span>💻</span> <span>Modo Desktop Full</span>
+        </button>
+      </div>
+
+      <button id="themeToggleBtnApp" onclick="toggleAppTheme()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-[#D4AF37] text-black flex items-center gap-1.5 shadow-sm">
+        <span id="appThemeIcon">☀️</span> <span id="appThemeLabel">Tema Claro</span>
       </button>
     </div>
 
@@ -686,6 +751,29 @@
         chatBox.appendChild(aiBubble);
         chatBox.scrollTop = chatBox.scrollHeight;
       }, 500);
+    }
+
+    // Toggle Tema Claro / Escuro no App Preview
+    let currentAppTheme = 'dark';
+    function toggleAppTheme() {
+      const html = document.documentElement;
+      const btn = document.getElementById('themeToggleBtnApp');
+      const icon = document.getElementById('appThemeIcon');
+      const label = document.getElementById('appThemeLabel');
+
+      if (currentAppTheme === 'dark') {
+        currentAppTheme = 'light';
+        html.classList.add('theme-light');
+        icon.textContent = '🌙';
+        label.textContent = 'Tema Escuro';
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-zinc-800 text-white flex items-center gap-1.5 shadow-sm border border-zinc-700';
+      } else {
+        currentAppTheme = 'dark';
+        html.classList.remove('theme-light');
+        icon.textContent = '☀️';
+        label.textContent = 'Tema Claro';
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-[#D4AF37] text-black flex items-center gap-1.5 shadow-sm';
+      }
     }
   </script>
 </body>
