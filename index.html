@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação App Minerva — Escolha o Modelo</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --bg: #070707;
+    }
+    body {
+      background-color: var(--bg);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-serif-luxury {
+      font-family: 'Playfair Display', serif;
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F4E295 40%, #D4AF37 75%, #A78225 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-6 sm:p-12">
+
+  <!-- HEADER -->
+  <header class="max-w-5xl mx-auto w-full flex justify-between items-center mb-12">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="Minerva Logo" class="w-10 h-10 object-contain rounded-full border border-[#D4AF37]/50 p-0.5">
+      <span class="font-serif-luxury font-bold text-2xl tracking-[0.2em] text-white">MINERVA</span>
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold px-3 py-1 rounded-full bg-[#181818] border border-[#D4AF37]/30">
+      Hub de Apresentação
+    </span>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL: OS 2 MODELOS -->
+  <main class="max-w-5xl mx-auto w-full my-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="font-serif-luxury text-3xl sm:text-5xl font-bold mb-4">
+        Escolha o Formato da sua <span class="text-gold-gradient">Palestra</span>
+      </h1>
+      <p class="text-zinc-400 text-sm sm:text-base">
+        Criamos dois formatos sob medida baseados na identidade oficial da Minerva. Teste os dois e veja qual encaixa melhor com seu estilo:
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- CARD MODELO 1 -->
+      <a href="landing-page.html" class="group relative rounded-3xl p-8 bg-[#111] border border-white/10 hover:border-[#D4AF37] transition-all duration-300 hover:shadow-[0_0_50px_rgba(212,175,55,0.25)] flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-[#D4AF37] bg-[#D4AF37]/10 px-3 py-1 rounded-full border border-[#D4AF37]/20">
+              Modelo 1
+            </span>
+            <span class="text-xs text-zinc-500">Scroll Contínuo</span>
+          </div>
+
+          <h2 class="font-serif-luxury text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-[#D4AF37] transition-colors">
+            Landing Page de Alta Conversão
+          </h2>
+
+          <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+            Estrutura clássica de produto/SaaS moderna com scroll suave. Excelente se você gosta de descer a página navegando com o mouse ou trackpad enquanto explica cada detalhe do app e suas funcionalidades.
+          </p>
+
+          <ul class="text-xs text-zinc-300 space-y-2 mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> Hero imponente com mockup do app
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> Módulos: IA, Networking, Mentorias & Marketplace
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> Seção com fotos das Sócias Fundadoras
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> CTA de encerramento com botão VIP
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-full py-3.5 px-6 rounded-full bg-[#1c1c1c] group-hover:bg-[#D4AF37] group-hover:text-black text-white text-xs font-bold uppercase tracking-widest text-center transition-all">
+          Abrir Modelo 1 (Landing Page) →
+        </div>
+      </a>
+
+      <!-- CARD MODELO 2 -->
+      <a href="slides.html" class="group relative rounded-3xl p-8 bg-[#111] border border-[#D4AF37]/40 hover:border-[#D4AF37] transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.15)] hover:shadow-[0_0_60px_rgba(212,175,55,0.35)] flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-black bg-[#D4AF37] px-3 py-1 rounded-full font-extrabold">
+              Modelo 2 • Recomendado para Palco
+            </span>
+            <span class="text-xs text-[#D4AF37]">Pitch Deck Web</span>
+          </div>
+
+          <h2 class="font-serif-luxury text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-[#D4AF37] transition-colors">
+            Apresentação de Palco (Slides)
+          </h2>
+
+          <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+            Formato 16:9 widescreen feito para projetores e telões. Controle com as setas do teclado (⬅️ / ➡️), barra de espaço e tecla F para tela cheia. Menos texto, tipografia gigante e impacto visual máximo na platéia.
+          </p>
+
+          <ul class="text-xs text-zinc-300 space-y-2 mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> Modo Tela Cheia instantâneo (Tecla F)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> 8 Slides estratégicos de narrativa (Problema → Solução → Produto → IA → Métricas → CTA)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> QR Code gigante no último slide para a platéia escanear
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#D4AF37]">✓</span> Navegação rápida com teclado ou touch
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-full py-3.5 px-6 rounded-full bg-[#D4AF37] text-black text-xs font-extrabold uppercase tracking-widest text-center transition-all group-hover:bg-[#F7E7A9]">
+          Abrir Modelo 2 (Slides de Palco) →
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-5xl mx-auto w-full text-center text-xs text-zinc-600 mt-12">
+    MINERVA Official Presentation Hub • Desenvolvido para exibição local e online.
+  </footer>
+
+</body>
+</html>
