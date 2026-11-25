@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINERVA — Apresentação do App em Slides</title>
+  <title>MINERVA — Apresentação Completa do App em Slides</title>
   <link rel="icon" type="image/png" href="assets/logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,10 +109,10 @@
     <!-- CONTROLES DE PALESTRA -->
     <div class="flex items-center gap-4">
       <span class="hidden md:inline text-zinc-400 text-[11px]">
-        Navegue com <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">➡️</kbd> ou <kbd class="px-2 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">Espaço</kbd>
+        <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">➡️</kbd> Navegar • <kbd class="px-2 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">F</kbd> Tela Cheia
       </span>
       <button onclick="toggleFullScreen()" class="bg-white/5 hover:bg-brand-gold hover:text-black text-white px-3 py-1 rounded-full text-xs font-semibold border border-white/10 transition-all flex items-center gap-1">
-        <span>⛶</span> <span class="hidden sm:inline">Tela Cheia [F]</span>
+        <span>⛶</span> <span class="hidden sm:inline">Tela Cheia</span>
       </button>
       <a href="index.html" class="text-zinc-400 hover:text-brand-gold text-xs transition-colors hidden sm:inline">
         Menu Principal
@@ -122,7 +122,7 @@
 
   <!-- BARRA DE PROGRESSO SUPERIOR -->
   <div class="fixed top-[45px] left-0 w-full h-[3px] bg-zinc-900 z-50">
-    <div id="progressBar" class="h-full bg-brand-gold transition-all duration-300 w-[11.1%]"></div>
+    <div id="progressBar" class="h-full bg-brand-gold transition-all duration-300 w-[7.7%]"></div>
   </div>
 
   <!-- CONTAINER CENTRAL DOS SLIDES -->
@@ -143,7 +143,7 @@
         Conheça por dentro o ecossistema fechado de aceleração, mentoria e liderança executiva feminina.
       </p>
       <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full glass text-xs tracking-widest text-brand-gold uppercase">
-        <span>✦ Demonstração ao Vivo das Telas do App</span>
+        <span>✦ Demonstração Completa de Todos os Módulos do App</span>
       </div>
     </section>
 
@@ -157,10 +157,8 @@
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: / (Home)</div>
       </div>
 
-      <!-- MOCKUP IDÊNTICO À HOME DO APP MINERVA -->
       <div class="glass-card p-5 sm:p-7 border border-white/10 shadow-2xl space-y-6">
         
-        <!-- HEADER DO USUÁRIO NO APP -->
         <div class="glass p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-5">
             <div class="relative">
@@ -184,7 +182,6 @@
           </div>
         </div>
 
-        <!-- 4 CARDS DE MÉTRICAS EXATAS DO MINERVA -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="glass p-4 rounded-xl flex flex-col justify-between">
             <span class="text-xs text-brand-gold">📈 Networking</span>
@@ -208,7 +205,6 @@
           </div>
         </div>
 
-        <!-- PRÓXIMOS EVENTOS -->
         <div class="glass p-4 rounded-xl space-y-3">
           <div class="flex justify-between items-center text-xs">
             <span class="font-serif text-lg text-white">Próximos Eventos Exclusivos</span>
@@ -232,7 +228,7 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 3: MENSAGENS E CHAT (MELHORADO COM EXEMPLOS REAIS) ================= -->
+    <!-- ================= SLIDE 3: MENSAGENS E CHAT (CONVERSAS REAIS) ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mensagens & Negociações">
       <div class="flex justify-between items-end mb-4">
         <div>
@@ -242,10 +238,9 @@
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /chat (Mensagens)</div>
       </div>
 
-      <!-- INTERFACE IDÊNTICA AO Chat.tsx DO APP MINERVA COM CONVERSAS REAIS -->
       <div class="glass-card p-0 border border-white/10 shadow-2xl flex flex-col md:flex-row h-[460px] overflow-hidden">
         
-        <!-- SIDEBAR DE CONTATOS (CLICÁVEL PARA TROCAR DE CONVERSA) -->
+        <!-- SIDEBAR DE CONTATOS -->
         <div class="w-full md:w-1/3 bg-black/50 border-r border-white/10 p-4 flex flex-col justify-between">
           <div class="space-y-3">
             <div class="flex justify-between items-center">
@@ -253,7 +248,6 @@
               <span class="text-[10px] bg-brand-gold/20 text-brand-gold px-2 py-0.5 rounded font-mono font-bold">Direto</span>
             </div>
 
-            <!-- SOLICITAÇÕES NOVAS -->
             <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 flex items-center justify-between">
               <div class="flex items-center gap-2.5">
                 <div class="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs">
@@ -269,15 +263,12 @@
               </div>
             </div>
 
-            <!-- BUSCA -->
             <div class="relative">
               <input type="text" placeholder="Buscar conversas..." class="w-full bg-white/5 border border-white/10 rounded-full py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-brand-gold/50">
               <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/40 text-xs">🔍</span>
             </div>
 
-            <!-- LISTA DE CONTATOS -->
             <div class="space-y-1 pt-1">
-              <!-- Contato 1: Carolina (Ativo) -->
               <div id="contact-carolina" onclick="selectContact('carolina')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl bg-white/10 border border-white/10 cursor-pointer transition-colors">
                 <div class="relative">
                   <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover">
@@ -293,7 +284,6 @@
                 </div>
               </div>
 
-              <!-- Contato 2: Giulia -->
               <div id="contact-giulia" onclick="selectContact('giulia')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
                 <div class="relative">
                   <img src="assets/giulia.jpg" alt="Giulia" class="w-10 h-10 rounded-full object-cover">
@@ -309,7 +299,6 @@
                 </div>
               </div>
 
-              <!-- Contato 3: Fernanda -->
               <div id="contact-fernanda" onclick="selectContact('fernanda')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
                 <div class="relative">
                   <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold to-zinc-800 text-black font-serif font-bold flex items-center justify-center text-xs border border-brand-gold">
@@ -334,10 +323,9 @@
           </div>
         </div>
 
-        <!-- JANELA DE CONVERSA DINÂMICA -->
+        <!-- JANELA DE CONVERSA -->
         <div class="flex-1 flex flex-col justify-between bg-black/30">
           
-          <!-- CHAT HEADER -->
           <div class="p-3.5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
             <div class="flex items-center gap-3">
               <img id="chatHeaderAvatar" src="assets/carolina.jpg" alt="Avatar" class="w-9 h-9 rounded-full object-cover border border-brand-gold">
@@ -355,12 +343,8 @@
             </div>
           </div>
 
-          <!-- HISTÓRICO DE MENSAGENS -->
-          <div id="slideChatMessages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
-            <!-- Inserido dinamicamente por JS conforme o contato selecionado -->
-          </div>
+          <div id="slideChatMessages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4"></div>
 
-          <!-- INPUT DE MENSAGEM INTERATIVO (PODE DIGITAR E ENVIAR AO VIVO) -->
           <form onsubmit="handleSendSlideChat(event)" class="p-3 border-t border-white/5 bg-black/40 flex items-center gap-2">
             <input id="slideChatInput" type="text" placeholder="Envie uma mensagem em tempo real para demonstrar na palestra..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-brand-gold/50">
             <button type="submit" class="bg-brand-gold hover:bg-brand-goldLight text-black font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md">
@@ -373,20 +357,91 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 4: AGENDA CONECTADA (GOOGLE & APPLE CALENDAR) ================= -->
+    <!-- ================= SLIDE 4: COMUNIDADES & GRUPOS TEMÁTICOS (NOVO) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Comunidades & Grupos">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">03 / Conversas em Grupo</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Comunidades & Grupos Temáticos</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /communities (Grupos Exclusivos)</div>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-4">
+        
+        <!-- GRID DE COMUNIDADES TEMÁTICAS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div class="glass p-5 rounded-2xl border border-brand-gold/40 space-y-3 bg-brand-gold/5">
+            <div class="flex justify-between items-center">
+              <span class="text-2xl">⚡</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono">142 membros</span>
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white">Tech, Startups & IA</h4>
+              <p class="text-xs text-white/60 mt-1">Discussões sobre rodadas de investimento, captação Seed/Série A e novos modelos de IA corporativa.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+              <span class="text-brand-gold font-semibold">Mensagem fixada 📌</span>
+              <span class="text-white/40">Ativo agora</span>
+            </div>
+          </div>
+
+          <div class="glass p-5 rounded-2xl border border-white/10 space-y-3 hover:border-brand-gold/30 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-2xl">🏛️</span>
+              <span class="text-[10px] bg-white/10 text-white/70 px-2 py-0.5 rounded font-mono">98 membros</span>
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white">Governança & Conselhos</h4>
+              <p class="text-xs text-white/60 mt-1">Troca entre conselheiras de administração, comitês de auditoria e sucessão familiar patrimonial.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+              <span class="text-brand-gold font-semibold">Grupo Fechado</span>
+              <span class="text-white/40">5 novas msgs</span>
+            </div>
+          </div>
+
+          <div class="glass p-5 rounded-2xl border border-white/10 space-y-3 hover:border-brand-gold/30 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-2xl">💎</span>
+              <span class="text-[10px] bg-white/10 text-white/70 px-2 py-0.5 rounded font-mono">120 membros</span>
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white">Varejo, Luxo & Franquias</h4>
+              <p class="text-xs text-white/60 mt-1">Estratégias de expansão omnicanal, parcerias de alto valor e branding institucional internacional.</p>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+              <span class="text-brand-gold font-semibold">Grupo Fechado</span>
+              <span class="text-white/40">12 novas msgs</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="p-4 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="text-brand-gold">🔒</span>
+            <p class="text-xs text-white/70">Ambiente 100% blindado contra autopromoção invasiva e spam. Só membros verificados pelo conselho.</p>
+          </div>
+          <span class="text-xs text-brand-gold font-semibold">Moderação Ativa</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 5: AGENDA CONECTADA ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Agenda Conectada (Google & Apple)">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">03 / Diferencial de Produtividade</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">04 / Diferencial de Produtividade</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Agenda Conectada & Sincronizada</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /calendar (Google Calendar & Apple)</div>
       </div>
 
-      <!-- MOCKUP DA AGENDA CONECTADA -->
       <div class="glass-card p-6 sm:p-8 border border-white/10 shadow-2xl space-y-6">
         
-        <!-- CARD DE SINCRONIZAÇÃO NATIVA -->
         <div class="p-5 rounded-2xl bg-gradient-to-r from-brand-gold/15 via-black/40 to-black/60 border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center text-2xl font-bold">
@@ -414,7 +469,6 @@
           </div>
         </div>
 
-        <!-- LISTAGEM DE COMPROMISSOS SINCRONIZADOS -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           
           <div class="glass p-4 rounded-xl border border-white/10 space-y-2">
@@ -458,20 +512,18 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 5: NETWORKING E MATCHMAKING ================= -->
+    <!-- ================= SLIDE 6: NETWORKING E MATCHMAKING ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Networking e Conexões C-Level">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">04 / Conexões Estratégicas</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">05 / Conexões Estratégicas</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Networking & Matchmaking</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /networking</div>
       </div>
 
-      <!-- MOCKUP IDÊNTICO À Networking.tsx -->
       <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-5">
         
-        <!-- BARRA DE BUSCA E FILTROS DO APP -->
         <div class="glass p-3 rounded-xl flex flex-col sm:flex-row gap-3">
           <div class="relative flex-1">
             <input type="text" value="Tecnologia & Finanças" readonly class="w-full bg-black/30 border border-white/10 rounded-full py-2 pl-9 pr-4 text-xs text-brand-gold font-medium">
@@ -484,10 +536,8 @@
           </div>
         </div>
 
-        <!-- 3 CARDS DE MEMBROS REAIS -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           
-          <!-- Card 1 -->
           <div class="glass p-5 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
               <div class="flex items-center gap-3">
@@ -509,7 +559,6 @@
             </div>
           </div>
 
-          <!-- Card 2 -->
           <div class="glass p-5 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
               <div class="flex items-center gap-3">
@@ -531,7 +580,6 @@
             </div>
           </div>
 
-          <!-- Card 3 -->
           <div class="glass p-5 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
               <div class="flex items-center gap-3">
@@ -560,20 +608,18 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 6: FEED DA COMUNIDADE ================= -->
+    <!-- ================= SLIDE 7: FEED DA COMUNIDADE ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Feed da Comunidade">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">05 / Conteúdo & Trocas</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">06 / Conteúdo & Trocas</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Feed Fechado da Comunidade</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /feed</div>
       </div>
 
-      <!-- MOCKUP IDÊNTICO À Feed.tsx -->
       <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-4 max-h-[460px] overflow-y-auto">
         
-        <!-- Post 1 -->
         <div class="glass p-5 rounded-2xl space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -597,7 +643,6 @@
           </div>
         </div>
 
-        <!-- Post 2 -->
         <div class="glass p-5 rounded-2xl space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -624,20 +669,328 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 7: MINERVA AI (EXATOS 3 AGENTES REAIS) ================= -->
+    <!-- ================= SLIDE 8: MARKETPLACE & LOJA OFICIAL ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Marketplace & Loja Oficial">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">07 / Ecossistema Comercial</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Marketplace & Loja Oficial Minerva</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /marketplace (Produtos & Serviços)</div>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-5">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto text-xs">
+            <button class="px-3.5 py-1.5 rounded-full bg-brand-gold text-black font-bold">Todas</button>
+            <button class="px-3.5 py-1.5 rounded-full bg-white/5 text-white/70 hover:text-white border border-white/10">Consultorias</button>
+            <button class="px-3.5 py-1.5 rounded-full bg-white/5 text-white/70 hover:text-white border border-white/10">Serviços B2B</button>
+            <button class="px-3.5 py-1.5 rounded-full bg-white/5 text-white/70 hover:text-white border border-white/10">Artigos Oficiais</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-emerald-400 font-mono">Selo de Idoneidade Garantido ✓</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div class="glass p-4 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
+            <div class="space-y-3">
+              <div class="h-32 rounded-xl bg-gradient-to-br from-zinc-800 to-black p-3 flex flex-col justify-between border border-brand-gold/30 relative overflow-hidden">
+                <span class="text-[9px] bg-brand-gold text-black font-extrabold uppercase px-2 py-0.5 rounded w-max">Artigo Oficial</span>
+                <div class="text-center my-auto">
+                  <span class="text-3xl">📖</span>
+                  <div class="text-xs font-serif text-brand-gold mt-1">Edição de Luxo 2026</div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-brand-gold font-bold">R$ 289,00</span>
+                  <span class="text-[10px] text-yellow-500">★ 5.0 (48)</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mt-1">Planner Executivo Minerva</h4>
+                <p class="text-[11px] text-white/60 mt-0.5">Encadernação artesanal em couro legítimo com metodologia de metas trimestrais.</p>
+              </div>
+            </div>
+            <button class="w-full mt-3 py-2 rounded-xl bg-brand-gold text-black font-bold text-xs hover:bg-brand-goldLight transition-all">
+              Comprar Agora
+            </button>
+          </div>
+
+          <div class="glass p-4 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
+            <div class="space-y-3">
+              <div class="h-32 rounded-xl bg-gradient-to-br from-zinc-900 to-black p-3 flex flex-col justify-between border border-white/10 relative overflow-hidden">
+                <span class="text-[9px] bg-white/10 text-white font-semibold uppercase px-2 py-0.5 rounded w-max border border-white/15">Consultoria</span>
+                <div class="flex items-center gap-2.5 my-auto">
+                  <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover border border-brand-gold">
+                  <div class="text-left">
+                    <p class="text-[10px] text-white/50">Vendido por</p>
+                    <p class="text-xs font-bold text-white">Carolina Albuquerque</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-brand-gold font-bold">R$ 4.500,00</span>
+                  <span class="text-[10px] text-yellow-500">★ 5.0 (19)</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mt-1">Auditoria de Governança & M&A</h4>
+                <p class="text-[11px] text-white/60 mt-0.5">Revisão completa da estrutura societária com emissão de parecer executivo para captação.</p>
+              </div>
+            </div>
+            <button class="w-full mt-3 py-2 rounded-xl bg-white/10 hover:bg-brand-gold hover:text-black text-white font-bold text-xs border border-white/15 transition-all">
+              Contratar Serviço
+            </button>
+          </div>
+
+          <div class="glass p-4 rounded-2xl flex flex-col justify-between border border-brand-gold/40 transition-all bg-brand-gold/5">
+            <div class="space-y-3">
+              <div class="h-32 rounded-xl bg-gradient-to-br from-brand-gold/20 via-black to-black p-3 flex flex-col justify-between border border-brand-gold/40 relative overflow-hidden">
+                <span class="text-[9px] bg-brand-gold text-black font-extrabold uppercase px-2 py-0.5 rounded w-max">Benefício Membro</span>
+                <div class="text-center my-auto">
+                  <span class="text-3xl">💎</span>
+                  <div class="text-xs font-serif text-brand-gold mt-1">Minerva Welcome Box</div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-emerald-400 font-bold uppercase text-[11px]">Gratuito para VIPs</span>
+                  <span class="text-[10px] text-yellow-500">★ 5.0</span>
+                </div>
+                <h4 class="text-sm font-semibold text-white mt-1">Kit Boas-Vindas Fundadora</h4>
+                <p class="text-[11px] text-white/60 mt-0.5">Broche oficial banhado a ouro 18k, crachá digital NFT e convite físico para o Summit anual.</p>
+              </div>
+            </div>
+            <button class="w-full mt-3 py-2 rounded-xl bg-brand-gold text-black font-bold text-xs hover:bg-brand-goldLight transition-all">
+              Resgatar Benefício
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 9: CLUBE DE BENEFÍCIOS (NOVO) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Clube de Benefícios & Parcerias">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">08 / Vantagens Corporativas</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Clube de Benefícios Exclusivos</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /benefits (Hotéis • Softwares • Experiências)</div>
+      </div>
+
+      <!-- MOCKUP IDÊNTICO À Benefits.tsx COM PARCEIROS REAIS DO APP -->
+      <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-4">
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          
+          <!-- Parceiro 1: Fasano -->
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2 hover:border-brand-gold/40 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-xl">🏨</span>
+              <span class="text-xs bg-brand-gold/20 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">25% OFF</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Hotel Fasano</h4>
+            <p class="text-[11px] text-white/60">Tarifa exclusiva para integrantes em todas as unidades nacionais.</p>
+            <span class="text-[10px] text-white/40 block pt-1">Categoria: Hotéis & Viagens</span>
+          </div>
+
+          <!-- Parceiro 2: D.O.M. -->
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2 hover:border-brand-gold/40 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-xl">🍽️</span>
+              <span class="text-xs bg-brand-gold/20 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">15% OFF</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Restaurante D.O.M.</h4>
+            <p class="text-[11px] text-white/60">Desconto em jantares durante a semana e mesa VIP garantida.</p>
+            <span class="text-[10px] text-white/40 block pt-1">Categoria: Gastronomia</span>
+          </div>
+
+          <!-- Parceiro 3: Jusbrasil PRO -->
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2 hover:border-brand-gold/40 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-xl">⚖️</span>
+              <span class="text-xs bg-brand-gold/20 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">40% OFF</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Jusbrasil PRO</h4>
+            <p class="text-[11px] text-white/60">Assinatura com desconto exclusivo para pesquisa jurídica corporativa.</p>
+            <span class="text-[10px] text-white/40 block pt-1">Categoria: Softwares</span>
+          </div>
+
+          <!-- Parceiro 4: WeWork -->
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2 hover:border-brand-gold/40 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-xl">💼</span>
+              <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full font-bold">1 MÊS GRÁTIS</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">WeWork Global</h4>
+            <p class="text-[11px] text-white/60">Isenção na primeira mensalidade e acesso às salas de reunião.</p>
+            <span class="text-[10px] text-white/40 block pt-1">Categoria: Coworking</span>
+          </div>
+
+          <!-- Parceiro 5: Tamboré Retreat Trancoso -->
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2 hover:border-brand-gold/40 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-xl">🌴</span>
+              <span class="text-xs bg-brand-gold/20 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">20% OFF</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Tamboré Retreat</h4>
+            <p class="text-[11px] text-white/60">Retiro de networking em resort parceiro em Trancoso/BA.</p>
+            <span class="text-[10px] text-white/40 block pt-1">Categoria: Imersões</span>
+          </div>
+
+          <!-- Parceiro 6: Congresso de Liderança -->
+          <div class="glass p-4 rounded-xl border border-white/10 space-y-2 hover:border-brand-gold/40 transition-all">
+            <div class="flex justify-between items-center">
+              <span class="text-xl">🎟️</span>
+              <span class="text-xs bg-brand-gold/20 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">ENTRADA VIP</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">Congresso Nacional</h4>
+            <p class="text-[11px] text-white/60">Acesso exclusivo e lounge privativo reservado para membros Minerva.</p>
+            <span class="text-[10px] text-white/40 block pt-1">Categoria: Eventos</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 10: BIBLIOTECA & AULAS GRAVADAS (NOVO) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Biblioteca & Aulas Gravadas">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">09 / Acervo de Conhecimento</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Biblioteca & Aulas Gravadas</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /library & /aulas-gravadas</div>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-5">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- COLUNA 1: BIBLIOTECA DE DOCUMENTOS -->
+          <div class="space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b border-white/10">
+              <h4 class="text-base font-bold text-white flex items-center gap-2">
+                <span>📚</span> <span>Biblioteca de Documentos & Modelos</span>
+              </h4>
+              <span class="text-[10px] text-brand-gold font-mono">Downloads Ilimitados</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="glass p-3 rounded-xl flex items-center justify-between border border-white/5">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl text-brand-gold">📄</span>
+                  <div>
+                    <h5 class="text-xs font-semibold text-white">Minuta Padrão de Mútuo Conversível (Seed)</h5>
+                    <p class="text-[10px] text-white/50">PDF + Word Editável • 24 páginas</p>
+                  </div>
+                </div>
+                <button class="bg-white/5 hover:bg-brand-gold hover:text-black text-xs px-3 py-1 rounded-lg border border-white/10 transition-colors">
+                  Baixar ⬇
+                </button>
+              </div>
+
+              <div class="glass p-3 rounded-xl flex items-center justify-between border border-white/5">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl text-brand-gold">📊</span>
+                  <div>
+                    <h5 class="text-xs font-semibold text-white">Planilha Financeira de Valuation & CAC/LTV</h5>
+                    <p class="text-[10px] text-white/50">Excel com fórmulas automáticas de projeção</p>
+                  </div>
+                </div>
+                <button class="bg-white/5 hover:bg-brand-gold hover:text-black text-xs px-3 py-1 rounded-lg border border-white/10 transition-colors">
+                  Baixar ⬇
+                </button>
+              </div>
+
+              <div class="glass p-3 rounded-xl flex items-center justify-between border border-white/5">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl text-brand-gold">⚖️</span>
+                  <div>
+                    <h5 class="text-xs font-semibold text-white">Acordo de Acionistas com Drag & Tag Along</h5>
+                    <p class="text-[10px] text-white/50">Validado por escritórios de conselho</p>
+                  </div>
+                </div>
+                <button class="bg-white/5 hover:bg-brand-gold hover:text-black text-xs px-3 py-1 rounded-lg border border-white/10 transition-colors">
+                  Baixar ⬇
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUNA 2: AULAS GRAVADAS EM VÍDEO -->
+          <div class="space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b border-white/10">
+              <h4 class="text-base font-bold text-white flex items-center gap-2">
+                <span>🎬</span> <span>Masterclasses em Vídeo (Academy)</span>
+              </h4>
+              <span class="text-[10px] text-brand-gold font-mono">60+ Horas Gravadas</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="glass p-3 rounded-xl flex items-center justify-between border border-white/5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-brand-gold font-bold">
+                    ▶
+                  </div>
+                  <div>
+                    <h5 class="text-xs font-semibold text-white">Estratégias de Saída e M&A</h5>
+                    <p class="text-[10px] text-white/50">Com Beatriz Vasconcelos • 1h 45min</p>
+                  </div>
+                </div>
+                <span class="text-[10px] bg-brand-gold/15 text-brand-gold px-2 py-0.5 rounded">Concluída</span>
+              </div>
+
+              <div class="glass p-3 rounded-xl flex items-center justify-between border border-white/5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-brand-gold font-bold">
+                    ▶
+                  </div>
+                  <div>
+                    <h5 class="text-xs font-semibold text-white">Captação Internacional de Venture Capital</h5>
+                    <p class="text-[10px] text-white/50">Com Carolina Albuquerque • 2h 10min</p>
+                  </div>
+                </div>
+                <span class="text-[10px] bg-white/10 text-white/70 px-2 py-0.5 rounded">Assistir</span>
+              </div>
+
+              <div class="glass p-3 rounded-xl flex items-center justify-between border border-white/5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-brand-gold font-bold">
+                    ▶
+                  </div>
+                  <div>
+                    <h5 class="text-xs font-semibold text-white">Posicionamento de Autoridade no C-Level</h5>
+                    <p class="text-[10px] text-white/50">Com Giulia Ferrari • 1h 20min</p>
+                  </div>
+                </div>
+                <span class="text-[10px] bg-white/10 text-white/70 px-2 py-0.5 rounded">Assistir</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 11: MINERVA AI (3 AGENTES REAIS) ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Minerva AI (3 Agentes Reais)">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">06 / Tecnologia Própria</span>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">10 / Inteligência Própria</span>
           <h2 class="font-serif text-3xl sm:text-4xl text-white">Minerva AI — 3 Especialistas Integrados</h2>
         </div>
         <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /minerva-ai (Estrategista • Criador • Analista)</div>
       </div>
 
-      <!-- MOCKUP EXATO DO MinervaAI.tsx DO APP REAL -->
       <div class="glass-card p-5 sm:p-6 border border-brand-gold/30 shadow-[0_0_50px_rgba(197,160,89,0.15)] flex flex-col justify-between h-[460px]">
         
-        <!-- HEADER COM OS 3 ROBÔS REAIS DO APP -->
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b border-white/10">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
@@ -645,7 +998,6 @@
             <span class="text-xs text-white/40">• Copiloto Executivo</span>
           </div>
 
-          <!-- SELETOR DOS 3 ROBÔS EXATOS DO CÓDIGO FONTE -->
           <div class="flex items-center gap-2 bg-black/50 p-1 rounded-xl border border-white/10 text-xs">
             <button onclick="setRobot('estrategista')" id="robot-estrategista" class="robot-btn px-3 py-1 rounded-lg bg-brand-gold text-black font-bold flex items-center gap-1.5 transition-all">
               <span>🧠</span> <span>Estrategista</span>
@@ -659,12 +1011,8 @@
           </div>
         </div>
 
-        <!-- MENSAGENS REALISTAS DO ROBÔ SELECIONADO -->
-        <div id="aiChatBox" class="flex-1 overflow-y-auto py-4 space-y-4">
-          <!-- Inserido dinamicamente por JS conforme o robô -->
-        </div>
+        <div id="aiChatBox" class="flex-1 overflow-y-auto py-4 space-y-4"></div>
 
-        <!-- BARRA DE INPUT COM MICROFONE / VOZ (RECURSO REAL DO APP) -->
         <div class="pt-3 border-t border-white/5 flex items-center gap-2">
           <button class="w-9 h-9 rounded-xl bg-white/5 hover:bg-brand-gold hover:text-black flex items-center justify-center text-sm transition-colors border border-white/10" title="Comando de Voz">
             🎙️
@@ -681,17 +1029,16 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 8: MENTORIAS & MASTERCLASSES ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mentorias e Masterclasses">
+    <!-- ================= SLIDE 12: MENTORIAS & SÓCIAS FUNDADORAS ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mentorias Individuais">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">07 / Sabedoria & Formação</span>
-          <h2 class="font-serif text-3xl sm:text-4xl text-white">Mentorias Individuais & Masterclasses</h2>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">11 / Mentoria Executiva</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Mentorias Individuais 1-on-1</h2>
         </div>
-        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /mentoring & /aulas-gravadas</div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /mentoring (Com as Sócias Fundadoras)</div>
       </div>
 
-      <!-- MOCKUP IDÊNTICO À Mentoring.tsx -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         
         <div class="glass-card p-6 border border-white/10 space-y-4">
@@ -739,7 +1086,7 @@
       </div>
     </section>
 
-    <!-- ================= SLIDE 9: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
+    <!-- ================= SLIDE 13: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
     <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Encerramento e Convite VIP">
       <div class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-brand-gold mb-4">
         ✦ Exclusivo para Esta Palestra
@@ -800,7 +1147,7 @@
     <div class="font-mono text-sm tracking-wider flex items-center gap-2">
       <span id="currentSlideNum" class="text-brand-gold font-bold">01</span>
       <span class="text-white/30">/</span>
-      <span id="totalSlidesNum" class="text-white/60">09</span>
+      <span id="totalSlidesNum" class="text-white/60">13</span>
     </div>
   </footer>
 
@@ -921,14 +1268,12 @@
       activeContactKey = key;
       const data = conversationsData[key];
 
-      // Atualiza aba ativa na lista
       document.querySelectorAll('.contact-tab').forEach(el => {
         el.classList.remove('bg-white/10', 'border-white/10');
       });
       const activeEl = document.getElementById('contact-' + key);
       if (activeEl) activeEl.classList.add('bg-white/10', 'border-white/10');
 
-      // Atualiza Header do Chat
       document.getElementById('chatHeaderName').textContent = data.name;
       document.getElementById('chatHeaderTag').textContent = data.tag;
       const avatarEl = document.getElementById('chatHeaderAvatar');
@@ -968,7 +1313,6 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Inicializa mensagens da Carolina
     selectContact('carolina');
 
     function handleSendSlideChat(e) {
@@ -980,7 +1324,6 @@
       const now = new Date();
       const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
-      // Adiciona na conversa ativa
       conversationsData[activeContactKey].messages.push({
         sender: 'me',
         text: text,
@@ -989,7 +1332,6 @@
       input.value = '';
       renderMessages();
 
-      // Resposta simulada após 700ms
       setTimeout(() => {
         let reply = "Perfeito, Beatriz! Já está alinhado na nossa agenda compartilhada do app. 🚀";
         if (activeContactKey === 'carolina') reply = "Excelente! Acabei de adicionar as notas na pauta do nosso comitê. Nos vemos no Fasano! 🥂";
@@ -1075,7 +1417,6 @@
 
       const chatBox = document.getElementById('aiChatBox');
 
-      // User bubble
       const userBubble = document.createElement('div');
       userBubble.className = 'flex items-start justify-end gap-3';
       userBubble.innerHTML = `
@@ -1087,7 +1428,6 @@
       input.value = '';
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // AI response
       setTimeout(() => {
         const aiBubble = document.createElement('div');
         aiBubble.className = 'flex items-start gap-3';
@@ -1104,7 +1444,6 @@
       }, 500);
     }
 
-    // Inicializa o Estrategista da IA
     setRobot('estrategista');
   </script>
 </body>
