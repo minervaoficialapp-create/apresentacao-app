@@ -139,6 +139,50 @@
       transform: scale(1);
     }
 
+    /* ROTEIRO DA PALESTRA (O QUE DIZER ACIMA DE CADA EXEMPLO) */
+    .speaker-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 0.85rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    html.theme-light .speaker-note {
+      background: #FFFDF8;
+      border: 1px solid rgba(184, 134, 11, 0.35);
+      box-shadow: 0 2px 10px rgba(184, 134, 11, 0.08);
+      color: #3b2807;
+    }
+
+    html.theme-dark .speaker-note {
+      background: rgba(197, 160, 89, 0.1);
+      border: 1px solid rgba(197, 160, 89, 0.28);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      color: #f7edd8;
+    }
+
+    .speaker-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    html.theme-light .speaker-tag { color: #996515; }
+    html.theme-dark .speaker-tag { color: #C5A059; }
+
+    .speaker-note.hidden-notes {
+      display: none !important;
+    }
+
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(184, 134, 11, 0.3); border-radius: 4px; }
@@ -168,8 +212,13 @@
         <span id="themeIcon">☀️</span> <span id="themeLabel">Tema Claro Ativo</span>
       </button>
 
-      <span class="hidden md:inline app-text-muted text-[11px]">
-        <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">➡️</kbd> Navegar • <kbd class="px-2 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">F</kbd> Tela Cheia
+      <!-- BOTÃO PARA ATIVAR / OCULTAR ROTEIRO DO ORADOR -->
+      <button onclick="toggleSpeakerNotes()" id="speakerNotesToggleBtn" class="px-3 py-1 rounded-full text-xs font-semibold border transition-all flex items-center gap-1 hover:border-brand-gold glass">
+        <span>🎤</span> <span id="speakerNotesLabel">O que falar (Ativo)</span>
+      </button>
+
+      <span class="hidden lg:inline app-text-muted text-[11px]">
+        <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">➡️</kbd> Navegar • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">F</kbd> Tela Cheia • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">N</kbd> Roteiro
       </span>
 
       <button onclick="toggleFullScreen()" class="px-3 py-1 rounded-full text-xs font-semibold border transition-all flex items-center gap-1 hover:border-brand-gold">
@@ -192,16 +241,25 @@
 
     <!-- ================= SLIDE 1: CAPA OFICIAL ================= -->
     <section class="slide active flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Capa Oficial">
-      <div class="w-28 h-28 rounded-full border border-brand-gold/40 p-2 mb-6 shadow-xl flex items-center justify-center glass">
-        <img src="assets/logo.png" alt="Minerva Logo" class="w-20 h-20 object-contain">
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note max-w-xl mx-auto mb-4 text-left">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Hoje quero apresentar o Minerva por dentro. Mais do que um aplicativo, este é o primeiro ecossistema fechado de tecnologia voltado exclusivamente para acelerar mulheres líderes, fundadoras e executivas em todo o Brasil."</p>
+        </div>
       </div>
-      <div class="app-text-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">
+
+      <div class="w-24 h-24 rounded-full border border-brand-gold/40 p-2 mb-4 shadow-xl flex items-center justify-center glass">
+        <img src="assets/logo.png" alt="Minerva Logo" class="w-16 h-16 object-contain">
+      </div>
+      <div class="app-text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
         Plataforma Digital Exclusiva
       </div>
-      <h1 class="font-serif text-6xl sm:text-8xl md:text-9xl font-normal leading-tight mb-4 app-text-title">
+      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal leading-tight mb-3 app-text-title">
         MINERVA
       </h1>
-      <p class="text-xl sm:text-2xl app-text-muted font-light max-w-2xl leading-relaxed mb-8">
+      <p class="text-lg sm:text-xl app-text-muted font-light max-w-2xl leading-relaxed mb-6">
         Conheça por dentro o ecossistema fechado de aceleração, mentoria e liderança executiva feminina.
       </p>
       <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full glass text-xs tracking-widest app-text-gold uppercase font-semibold">
@@ -211,12 +269,21 @@
 
     <!-- ================= SLIDE 2: TELA INÍCIO (DASHBOARD REAL) ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Tela Inicial / Dashboard">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">01 / Por Dentro do App</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Dashboard do Usuário</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: / (Home)</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Quando a líder abre o app pela manhã, ela tem um painel executivo com métricas reais do seu negócio e networking, seu nível de autoridade e seus próximos compromissos já sincronizados."</p>
+        </div>
       </div>
 
       <div class="glass-card p-5 sm:p-7 shadow-2xl space-y-6">
@@ -292,7 +359,7 @@
 
     <!-- ================= SLIDE 3: MENSAGENS E CHAT ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mensagens & Negociações">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">02 / Trocas Diretas</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Mensagens & Conversas de Negócios</h2>
@@ -300,7 +367,16 @@
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /chat (Mensagens)</div>
       </div>
 
-      <div class="glass-card p-0 shadow-2xl flex flex-col md:flex-row h-[460px] overflow-hidden">
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Aqui o networking vira negócio. Não é grupo barulhento de WhatsApp: são conversas diretas e privativas entre executivas de alto nível para fechar contratos, alianças e parcerias estratégicas."</p>
+        </div>
+      </div>
+
+      <div class="glass-card p-0 shadow-2xl flex flex-col md:flex-row h-[420px] overflow-hidden">
         
         <div class="w-full md:w-1/3 border-r app-border-subtle p-4 flex flex-col justify-between bg-black/[0.02] dark:bg-black/50">
           <div class="space-y-3">
@@ -419,12 +495,21 @@
 
     <!-- ================= SLIDE 4: COMUNIDADES & GRUPOS ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Comunidades & Grupos">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">03 / Conversas em Grupo</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Comunidades & Grupos Temáticos</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /communities (Grupos Exclusivos)</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Criamos salas temáticas segmentadas — como Tecnologia, Franquias, Varejo, Saúde e Governança. Cada líder troca bastidores reais com quem vive os mesmos desafios de faturamento e escala."</p>
+        </div>
       </div>
 
       <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4">
@@ -437,8 +522,8 @@
               <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">142 membros</span>
             </div>
             <div>
-              <h4 class="text-base font-bold app-text-title">Tech, Startups & IA</h4>
-              <p class="text-xs app-text-muted mt-1">Discussões sobre rodadas de investimento, captação Seed/Série A e novos modelos de IA corporativa.</p>
+              <h4 class="text-base font-bold app-text-title">Tech, Startups & Inovação</h4>
+              <p class="text-xs app-text-muted mt-1">Discussões sobre novos modelos de negócios, captação, inteligência artificial e parcerias digitais.</p>
             </div>
             <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
               <span class="app-text-gold font-semibold">Mensagem fixada 📌</span>
@@ -453,7 +538,7 @@
             </div>
             <div>
               <h4 class="text-base font-bold app-text-title">Governança & Conselhos</h4>
-              <p class="text-xs app-text-muted mt-1">Troca entre conselheiras de administração, comitês de auditoria e sucessão familiar patrimonial.</p>
+              <p class="text-xs app-text-muted mt-1">Troca entre conselheiras de administração, comitês executivos, auditoria e sucessão patrimonial.</p>
             </div>
             <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
               <span class="app-text-gold font-semibold">Grupo Fechado</span>
@@ -464,11 +549,11 @@
           <div class="glass p-5 rounded-2xl space-y-3 hover:border-brand-gold/30 transition-all">
             <div class="flex justify-between items-center">
               <span class="text-2xl">💎</span>
-              <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-mono font-bold">120 membros</span>
+              <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-mono font-bold">156 membros</span>
             </div>
             <div>
-              <h4 class="text-base font-bold app-text-title">Varejo, Luxo & Franquias</h4>
-              <p class="text-xs app-text-muted mt-1">Estratégias de expansão omnicanal, parcerias de alto valor e branding institucional internacional.</p>
+              <h4 class="text-base font-bold app-text-title">Varejo, Franquias & Saúde</h4>
+              <p class="text-xs app-text-muted mt-1">Estratégias de expansão de clínicas, franquias, marcas de varejo e contratação de lideranças.</p>
             </div>
             <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
               <span class="app-text-gold font-semibold">Grupo Fechado</span>
@@ -491,12 +576,21 @@
 
     <!-- ================= SLIDE 5: AGENDA CONECTADA ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Agenda Conectada (Google & Apple)">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">04 / Diferencial de Produtividade</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Agenda Conectada & Sincronizada</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /calendar (Google Calendar & Apple)</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"A nossa agenda se conecta em tempo real ao Google Agenda e Apple Calendar do seu celular. Qualquer mentoria, comitê ou jantar confirmado entra direto no seu dia a dia sem atrito."</p>
+        </div>
       </div>
 
       <div class="glass-card p-6 sm:p-8 shadow-2xl space-y-6">
@@ -535,7 +629,7 @@
               <span class="app-text-gold font-bold uppercase tracking-wider">Mentoria 1-on-1</span>
               <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Sincronizado ✓</span>
             </div>
-            <h5 class="text-sm font-semibold app-text-title">Revisão de M&A e Governança</h5>
+            <h5 class="text-sm font-semibold app-text-title">Estratégia de Escala & Canais B2B</h5>
             <p class="text-xs app-text-muted">Com Carolina Albuquerque • 16:00 às 17:00</p>
             <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
               <span>🔔 Lembrete 30 min antes no celular</span>
@@ -559,7 +653,7 @@
               <span class="app-text-gold font-bold uppercase tracking-wider">Masterclass Online</span>
               <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Sincronizado ✓</span>
             </div>
-            <h5 class="text-sm font-semibold app-text-title">Captação de Série A no Brasil</h5>
+            <h5 class="text-sm font-semibold app-text-title">Estratégias de Crescimento para Líderes</h5>
             <p class="text-xs app-text-muted">Ao vivo no app • 20:00</p>
             <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
               <span>🔗 Link de acesso adicionado ao convite</span>
@@ -573,19 +667,28 @@
 
     <!-- ================= SLIDE 6: NETWORKING E MATCHMAKING ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Networking e Conexões C-Level">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">05 / Conexões Estratégicas</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Networking & Matchmaking</h2>
+          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Networking & Matchmaking C-Level</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /networking</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"O app faz matchmaking inteligente: filtra executivas por setor, faturamento e estágio de negócio, conectando você diretamente com quem tem sinergia imediata de compra ou parceria."</p>
+        </div>
       </div>
 
       <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-5">
         
         <div class="glass p-3 rounded-xl flex flex-col sm:flex-row gap-3">
           <div class="relative flex-1">
-            <input type="text" value="Tecnologia & Finanças" readonly class="w-full border app-border-subtle rounded-full py-2 pl-9 pr-4 text-xs app-text-gold font-medium bg-black/5 dark:bg-black/30">
+            <input type="text" value="Tecnologia, Saúde, Varejo & Finanças" readonly class="w-full border app-border-subtle rounded-full py-2 pl-9 pr-4 text-xs app-text-gold font-medium bg-black/5 dark:bg-black/30">
             <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">🔍</span>
           </div>
           <div class="flex gap-2">
@@ -603,11 +706,11 @@
                 <img src="assets/carolina.jpg" alt="Carolina" class="w-12 h-12 rounded-full object-cover border-2 border-brand-gold">
                 <div>
                   <h4 class="text-sm font-semibold app-text-title">Carolina Albuquerque</h4>
-                  <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Venture Capital & M&A</p>
+                  <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Venture Capital & Inovação</p>
                 </div>
               </div>
               <p class="text-xs app-text-muted leading-relaxed">
-                Investidora e conselheira em 6 startups de tecnologia e logística no Brasil e EUA.
+                Investidora e mentora de empresas em expansão nacional nos setores de tecnologia e saúde.
               </p>
             </div>
             <div class="pt-4 border-t app-border-subtle flex items-center justify-between">
@@ -628,7 +731,7 @@
                 </div>
               </div>
               <p class="text-xs app-text-muted leading-relaxed">
-                Especialista em governança e alocação de capital para expansão de franquias e B2B.
+                Especialista em governança, crescimento de margem e estruturação de franquias e B2B.
               </p>
             </div>
             <div class="pt-4 border-t app-border-subtle flex items-center justify-between">
@@ -641,17 +744,15 @@
 
           <div class="glass p-5 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-gold to-zinc-600 text-white font-serif font-bold flex items-center justify-center text-sm border-2 border-brand-gold">
-                  FL
-                </div>
-                <div>
-                  <h4 class="text-sm font-semibold app-text-title">Fernanda Lima</h4>
-                  <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Diretora de M&A</p>
-                </div>
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-gold to-zinc-600 text-white font-serif font-bold flex items-center justify-center text-sm border-2 border-brand-gold">
+                FL
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold app-text-title">Fernanda Lima</h4>
+                <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Diretora de Operações & M&A</p>
               </div>
               <p class="text-xs app-text-muted leading-relaxed">
-                Liderança de fusões e aquisições no setor financeiro e bancário há mais de 15 anos.
+                Liderança de fusões, expansão e novos mercados corporativos há mais de 15 anos.
               </p>
             </div>
             <div class="pt-4 border-t app-border-subtle flex items-center justify-between">
@@ -669,7 +770,7 @@
 
     <!-- ================= SLIDE 7: FEED DA COMUNIDADE (NOVO CONHECIMENTO COMPARTILHADO QUE BRILHA OS OLHOS) ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Feed Fechado • Conhecimento de Bastidor">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">06 / Conhecimento Privativo de Alto Impacto</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Feed da Comunidade — Sabedoria Real</h2>
@@ -677,9 +778,18 @@
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /feed (Sem Algoritmos • 100% Executivo)</div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4 max-h-[470px] overflow-y-auto">
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"No Feed não tem dancinha nem algoritmo caçando likes. É sabedoria pura de bastidor executivo — líderes compartilhando como fecharam grandes contratos B2B e como organizaram suas operações para crescer a margem de lucro."</p>
+        </div>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4 max-h-[430px] overflow-y-auto">
         
-        <!-- Post 1: Conhecimento compartilhado sobre M&A e Proteção de Equity -->
+        <!-- Post 1: Bastidores de Vendas B2B e Fechamento High-Ticket -->
         <div class="glass p-5 rounded-2xl space-y-3 border hover:border-brand-gold/40 transition-all">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -690,62 +800,62 @@
               </div>
             </div>
             <span class="text-[10px] bg-brand-gold/15 text-brand-gold border border-brand-gold/30 px-3 py-1 rounded-full font-bold">
-              💡 Segredo de Bastidor • M&A
+              💡 Bastidores B2B • Fechamento High-Ticket
             </span>
           </div>
           
           <div class="text-xs app-text-title space-y-2 leading-relaxed">
             <p class="font-semibold text-sm app-text-gold">
-              Como salvamos 18% do equity da fundadora na nossa última rodada de Série A:
+              Como fechamos uma parceria corporativa de R$ 850 mil sem fazer uma única ligação fria:
             </p>
             <p>
-              No fechamento da rodada de R$ 14M, o fundo insistiu em uma cláusula de <em>Liquidation Preference 2x</em>. Na prática, em uma saída de R$ 100M, a fundadora perderia quase R$ 18M de ganho real.
+              Em vez de gastar meses tentando vender por e-mails com quem não tem poder de decisão, levamos nossa proposta de serviços corporativos direto para uma das mesas redondas do Minerva. Sentamos lado a lado com a Diretora Geral de Operações.
             </p>
             <p>
-              Aqui dentro da rede Minerva, estruturamos uma contraproposta de <em>1x Non-Participating com Floor Price indexado ao IPCA</em>. O fundo aceitou em 48h pela solidez do conselho que apresentamos.
+              Em 3 semanas o contrato estava assinado. Ter o selo e a credibilidade de um ecossistema executivo qualificado abre portas comerciais que nenhuma publicidade fria consegue abrir.
             </p>
             <p class="text-[11px] p-2.5 rounded-lg bg-black/5 dark:bg-black/30 border app-border-subtle font-mono text-emerald-600 dark:text-emerald-400">
-              📁 Subi na nossa Biblioteca o modelo exato do termo com as cláusulas grifadas em vermelho para você nunca assinar sem proteção!
+              📁 Subi na nossa Biblioteca o roteiro de proposta comercial que usamos para fechar contratos de múltiplos 6 dígitos!
             </p>
           </div>
 
           <div class="flex items-center gap-6 pt-3 border-t app-border-subtle text-xs app-text-muted">
-            <span class="text-red-500 font-semibold">❤️ 154 curtidas</span>
-            <span>💬 38 comentários de conselheiras</span>
-            <span class="app-text-gold font-semibold">🔖 89 downloads do documento</span>
+            <span class="text-red-500 font-semibold">❤️ 184 curtidas</span>
+            <span>💬 42 comentários de executivas</span>
+            <span class="app-text-gold font-semibold">🔖 92 parcerias geradas</span>
           </div>
         </div>
 
-        <!-- Post 2: Conhecimento compartilhado sobre Redução de Churn e Inteligência -->
+        <!-- Post 2: Gestão, Escala e Delegação Prática -->
         <div class="glass p-5 rounded-2xl space-y-3 border hover:border-brand-gold/40 transition-all">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
               <img src="assets/giulia.jpg" alt="Giulia" class="w-11 h-11 rounded-full object-cover border-2 border-brand-gold">
               <div>
                 <h4 class="text-sm font-bold app-text-title">Giulia Ferrari</h4>
-                <p class="text-[10px] app-text-muted">Sócia & Mentora • há 5 horas</p>
+                <p class="text-[10px] app-text-muted">Sócia & Mentora de Escala • há 5 horas</p>
               </div>
             </div>
             <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full font-bold">
-              🚀 Estratégia de Escala B2B
+              🚀 Gestão & Escala de Negócios
             </span>
           </div>
 
           <div class="text-xs app-text-title space-y-2 leading-relaxed">
             <p class="font-semibold text-sm app-text-gold">
-              Derrubamos o Churn de 4.8% para 0.8% sem aumentar equipe de suporte:
+              Estratégia prática: Como aumentei a margem líquida da empresa em 28% saindo do operacional:
             </p>
             <p>
-              Criamos uma régua de <em>'Antecipação Decisória'</em>. A Minerva AI monitora quando uma líder C-Level passa mais de 7 dias sem acessar o dashboard executivo e já agenda automaticamente um café de alinhamento com seu conselheiro dedicado.
+              Eu passava 14 horas por dia apagando incêndios e centralizando decisões de equipe. Nas trocas aqui no Minerva, reestruturei meus gerentes diretos e criamos rituais semanais de decisão de 20 minutos.
             </p>
             <p>
-              Grandes contratos corporativos não se perdem por preço, mas pelo silêncio na governança.
+              O faturamento cresceu 35% no trimestre e eu recuperei meus finais de semana para focar exclusivamente em novos negócios e parcerias estratégicas. O maior gargalo de um negócio em expansão costuma ser a própria fundadora presa na rotina.
             </p>
           </div>
 
           <div class="flex items-center gap-6 pt-3 border-t app-border-subtle text-xs app-text-muted">
-            <span class="text-red-500 font-semibold">❤️ 112 curtidas</span>
-            <span>💬 29 discussões aplicadas</span>
+            <span class="text-red-500 font-semibold">❤️ 210 curtidas</span>
+            <span>💬 56 discussões aplicadas</span>
             <span class="app-text-gold font-semibold">📅 Sincronizado na Agenda</span>
           </div>
         </div>
@@ -755,12 +865,21 @@
 
     <!-- ================= SLIDE 8: MARKETPLACE & LOJA OFICIAL ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Marketplace & Loja Oficial">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">07 / Ecossistema Comercial</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Marketplace & Loja Oficial Minerva</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /marketplace (Produtos & Serviços)</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"O app possui uma loja integrada com itens de marca própria e um marketplace interno onde as próprias integrantes contratam consultorias e serviços umas das outras com selo de idoneidade."</p>
+        </div>
       </div>
 
       <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-5">
@@ -819,8 +938,8 @@
                   <span class="app-text-gold font-bold">R$ 4.500,00</span>
                   <span class="text-[10px] text-yellow-600 font-bold">★ 5.0 (19)</span>
                 </div>
-                <h4 class="text-sm font-semibold app-text-title mt-1">Auditoria de Governança & M&A</h4>
-                <p class="text-[11px] app-text-muted mt-0.5">Revisão completa da estrutura societária com emissão de parecer executivo para captação.</p>
+                <h4 class="text-sm font-semibold app-text-title mt-1">Consultoria de Posicionamento & B2B</h4>
+                <p class="text-[11px] app-text-muted mt-0.5">Diagnóstico executivo de processos, autoridade de mercado e aceleração de receita corporativa.</p>
               </div>
             </div>
             <button class="w-full mt-3 py-2 rounded-xl border app-border-subtle hover:bg-brand-gold hover:text-white app-text-title font-bold text-xs transition-all">
@@ -858,12 +977,21 @@
 
     <!-- ================= SLIDE 9: CLUBE DE BENEFÍCIOS ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Clube de Benefícios & Parcerias">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">08 / Vantagens Corporativas</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Clube de Benefícios Exclusivos</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /benefits (Hotéis • Softwares • Experiências)</div>
+        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /benefits (Hotéis • Finanças • Experiências)</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Nossas membros contam com benefícios de alto padrão: tarifas especiais na rede Fasano, espaços WeWork, gastronomia executiva e condições corporativas negociadas para o grupo."</p>
+        </div>
       </div>
 
       <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4">
@@ -892,12 +1020,12 @@
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">⚖️</span>
-              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">40% OFF</span>
+              <span class="text-xl">💳</span>
+              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">CONDIÇÃO VIP</span>
             </div>
-            <h4 class="text-sm font-bold app-text-title">Jusbrasil PRO</h4>
-            <p class="text-[11px] app-text-muted">Assinatura com desconto exclusivo para pesquisa jurídica corporativa.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Softwares</span>
+            <h4 class="text-sm font-bold app-text-title">Cartão Corporativo & Gestão</h4>
+            <p class="text-[11px] app-text-muted">Cashback corporativo de 1.5% e linha de crédito inteligente para despesas da sua empresa.</p>
+            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Finanças & Gestão</span>
           </div>
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
@@ -937,12 +1065,21 @@
 
     <!-- ================= SLIDE 10: BIBLIOTECA & AULAS GRAVADAS ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Biblioteca & Aulas Gravadas">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">09 / Acervo de Conhecimento</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Biblioteca & Aulas Gravadas</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /library & /aulas-gravadas</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Toda associada tem acesso ilimitado a planilhas financeiras, playbooks de precificação e mais de 60 horas de aulas gravadas com grandes referências de mercado."</p>
+        </div>
       </div>
 
       <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-5">
@@ -962,8 +1099,8 @@
                 <div class="flex items-center gap-3">
                   <span class="text-xl text-brand-gold">📄</span>
                   <div>
-                    <h5 class="text-xs font-semibold app-text-title">Minuta Padrão de Mútuo Conversível (Seed)</h5>
-                    <p class="text-[10px] app-text-muted">PDF + Word Editável • 24 páginas</p>
+                    <h5 class="text-xs font-semibold app-text-title">Playbook de Precificação & Vendas B2B High-Ticket</h5>
+                    <p class="text-[10px] app-text-muted">PDF + Roteiro Editável • 28 páginas</p>
                   </div>
                 </div>
                 <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
@@ -975,7 +1112,7 @@
                 <div class="flex items-center gap-3">
                   <span class="text-xl text-brand-gold">📊</span>
                   <div>
-                    <h5 class="text-xs font-semibold app-text-title">Planilha Financeira de Valuation & CAC/LTV</h5>
+                    <h5 class="text-xs font-semibold app-text-title">Planilha Financeira de Valuation, DRE & Margem</h5>
                     <p class="text-[10px] app-text-muted">Excel com fórmulas automáticas de projeção</p>
                   </div>
                 </div>
@@ -986,10 +1123,10 @@
 
               <div class="glass p-3 rounded-xl flex items-center justify-between border">
                 <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold">⚖️</span>
+                  <span class="text-xl text-brand-gold">👑</span>
                   <div>
-                    <h5 class="text-xs font-semibold app-text-title">Acordo de Acionistas com Drag & Tag Along</h5>
-                    <p class="text-[10px] app-text-muted">Validado por escritórios de conselho</p>
+                    <h5 class="text-xs font-semibold app-text-title">Matriz de Delegação, OKRs & Rituais de Liderança</h5>
+                    <p class="text-[10px] app-text-muted">Guia prático para estruturar gerentes e descentralizar</p>
                   </div>
                 </div>
                 <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
@@ -1014,7 +1151,7 @@
                     ▶
                   </div>
                   <div>
-                    <h5 class="text-xs font-semibold app-text-title">Estratégias de Saída e M&A</h5>
+                    <h5 class="text-xs font-semibold app-text-title">Estratégias de Expansão & Escala de Negócios</h5>
                     <p class="text-[10px] app-text-muted">Com Beatriz Vasconcelos • 1h 45min</p>
                   </div>
                 </div>
@@ -1027,7 +1164,7 @@
                     ▶
                   </div>
                   <div>
-                    <h5 class="text-xs font-semibold app-text-title">Captação Internacional de Venture Capital</h5>
+                    <h5 class="text-xs font-semibold app-text-title">Captação de Investimento e Parcerias B2B</h5>
                     <p class="text-[10px] app-text-muted">Com Carolina Albuquerque • 2h 10min</p>
                   </div>
                 </div>
@@ -1056,7 +1193,7 @@
 
     <!-- ================= SLIDE 11: MINERVA AI (3 AGENTES REAIS) ================= -->
     <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Minerva AI (3 Agentes Reais)">
-      <div class="flex justify-between items-end mb-4">
+      <div class="flex justify-between items-end mb-2">
         <div>
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">10 / Inteligência Própria</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Minerva AI — 3 Especialistas Integrados</h2>
@@ -1064,7 +1201,16 @@
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /minerva-ai (Estrategista • Criador • Analista)</div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl flex flex-col justify-between h-[460px]">
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Integramos uma Inteligência Artificial com 3 agentes especializados: o Estrategista para planos de negócios, o Criador para copywriting executivo e o Analista para interpretar relatórios e números."</p>
+        </div>
+      </div>
+
+      <div class="glass-card p-5 sm:p-6 shadow-2xl flex flex-col justify-between h-[420px]">
         
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b app-border-subtle">
           <div class="flex items-center gap-2">
@@ -1112,6 +1258,15 @@
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Mentorias Individuais 1-on-1</h2>
         </div>
         <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /mentoring (Com as Sócias Fundadoras)</div>
+      </div>
+
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Cada associada tem acesso a sessões 1-on-1 com as três sócias fundadoras — mulheres que construíram negócios de múltiplos 7 dígitos. Não é uma mentoria genérica: você agenda direto pelo app, cai automaticamente no seu calendário, e a sessão acontece sobre o seu negócio, o seu momento, a sua meta."</p>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -1163,6 +1318,15 @@
 
     <!-- ================= SLIDE 13: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
     <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Encerramento e Convite VIP">
+      <!-- GUIA DE FALA NA PALESTRA -->
+      <div class="speaker-note max-w-xl mx-auto mb-4 text-left">
+        <span class="text-base shrink-0">🎤</span>
+        <div>
+          <span class="speaker-tag">O que falar nesta tela</span>
+          <p class="text-xs">"Para quem está aqui hoje, temos vagas prioritárias — sem fila de espera. Aponte a câmera agora para o QR Code, informe que esteve nesta palestra e nossa equipe entra em contato em até 24h para a análise de perfil. Esta oferta é exclusiva para este momento."</p>
+        </div>
+      </div>
+
       <div class="inline-block text-xs font-bold uppercase tracking-[0.25em] app-text-gold mb-4 font-bold">
         ✦ Exclusivo para Esta Palestra
       </div>
@@ -1288,6 +1452,22 @@
       }
     }
 
+    // Roteiro do Orador - Ativar / Ocultar
+    let speakerNotesVisible = true;
+    function toggleSpeakerNotes() {
+      speakerNotesVisible = !speakerNotesVisible;
+      const notes = document.querySelectorAll('.speaker-note');
+      notes.forEach(note => {
+        if (speakerNotesVisible) {
+          note.classList.remove('hidden-notes');
+        } else {
+          note.classList.add('hidden-notes');
+        }
+      });
+      const label = document.getElementById('speakerNotesLabel');
+      if (label) label.textContent = speakerNotesVisible ? 'O que falar (Ativo)' : 'O que falar (Oculto)';
+    }
+
     // Teclado
     document.addEventListener('keydown', (e) => {
       if (e.target && e.target.tagName === 'INPUT') return;
@@ -1302,6 +1482,8 @@
         toggleFullScreen();
       } else if (e.key.toLowerCase() === 't') {
         toggleTheme();
+      } else if (e.key.toLowerCase() === 'n') {
+        toggleSpeakerNotes();
       }
     });
 
