@@ -3,316 +3,715 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINERVA — Pitch Deck de Palco</title>
+  <title>MINERVA — Apresentação do App em Slides</title>
   <link rel="icon" type="image/png" href="assets/logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #D4AF37;
-      --gold-light: #F7E7A9;
-      --gold-dark: #8C7326;
-      --bg: #050505;
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#C5A059',
+              goldLight: '#FBF5B7',
+              goldDark: '#8B6508',
+              bronze: '#996515',
+              dark: '#0a0a0a',
+              darker: '#050505',
+              light: '#ffffff',
+              gray: '#1f1f1f',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+          }
+        }
+      }
     }
+  </script>
+
+  <style>
     body {
-      background-color: var(--bg);
-      color: #FFFFFF;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0a0a0a;
+      background-image: radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 50%, #050505 100%);
+      background-attachment: fixed;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
       overflow: hidden;
       user-select: none;
     }
-    .font-serif-luxury {
-      font-family: 'Playfair Display', serif;
+
+    h1, h2, h3, h4, .font-serif-app {
+      font-family: 'Cormorant Garamond', serif;
     }
-    .text-gold-gradient {
-      background: linear-gradient(135deg, #FFFFFF 0%, #F7E7A9 45%, #D4AF37 80%, #99781F 100%);
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(197, 160, 89, 0.4);
+      box-shadow: 0 8px 40px rgba(224, 174, 67, 0.15);
+    }
+
+    .gold-metallic-text {
+      background: linear-gradient(145deg, #FBF5B7 0%, #C5A059 40%, #8B6508 80%, #C5A059 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .slide {
       display: none;
       opacity: 0;
       transform: scale(0.98);
-      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
     }
+
     .slide.active {
       display: flex;
       opacity: 1;
       transform: scale(1);
     }
-    .noise-overlay {
-      background-image: radial-gradient(rgba(212, 175, 55, 0.07) 1px, transparent 0);
-      background-size: 28px 28px;
-    }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(197, 160, 89, 0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C5A059; }
   </style>
 </head>
-<body class="w-screen h-screen relative flex flex-col justify-between noise-overlay">
+<body class="w-screen h-screen flex flex-col justify-between">
 
-  <!-- BARRA DE SELEÇÃO RÁPIDA / STATUS -->
-  <div class="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/90 backdrop-blur-md border-b border-[#D4AF37]/20 px-6 py-2.5 flex justify-between items-center text-xs">
+  <!-- TOP BAR DE NAVEGAÇÃO DA PALESTRA -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#050505]/90 backdrop-blur-md border-b border-white/10 px-6 py-2.5 flex justify-between items-center text-xs">
     <div class="flex items-center gap-3">
-      <a href="index.html" class="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
-        <img src="assets/logo.png" alt="Minerva" class="w-5 h-5 rounded-full border border-[#D4AF37]/40">
-        <span class="font-bold tracking-widest text-white">MINERVA</span>
-      </a>
+      <div class="flex items-center gap-2">
+        <img src="assets/logo.png" alt="Logo" class="w-6 h-6 object-contain">
+        <span class="font-serif text-lg tracking-widest font-bold text-white">MINERVA</span>
+      </div>
       <span class="text-zinc-600">|</span>
-      <span class="text-[#D4AF37] font-semibold uppercase tracking-wider">Modelo 2: Apresentação de Palco</span>
+      <span id="slideTitleIndicator" class="text-brand-gold uppercase tracking-wider font-semibold text-[11px]">
+        Apresentação do App Oficial
+      </span>
     </div>
 
+    <!-- CONTROLES DE PALESTRA -->
     <div class="flex items-center gap-4">
-      <span class="hidden sm:inline text-zinc-400">Navegue com <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-[#D4AF37] font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-[#D4AF37] font-mono text-[10px]">➡️</kbd> ou <kbd class="px-2 py-0.5 rounded bg-zinc-800 text-[#D4AF37] font-mono text-[10px]">Espaço</kbd></span>
-      <a href="app-preview.html" target="_blank" class="bg-[#D4AF37] text-black hover:bg-[#F7E7A9] px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
-        <span>📱</span> <span>Ver App Por Dentro</span>
-      </a>
-      <button onclick="toggleFullScreen()" class="bg-[#1f1f1f] hover:bg-[#D4AF37] hover:text-black text-white px-3 py-1 rounded-full text-xs font-semibold border border-white/10 transition-all flex items-center gap-1">
+      <span class="hidden md:inline text-zinc-400 text-[11px]">
+        Navegue com <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">➡️</kbd> ou <kbd class="px-2 py-0.5 rounded bg-zinc-800 text-brand-gold font-mono text-[10px]">Espaço</kbd>
+      </span>
+      <button onclick="toggleFullScreen()" class="bg-white/5 hover:bg-brand-gold hover:text-black text-white px-3 py-1 rounded-full text-xs font-semibold border border-white/10 transition-all flex items-center gap-1">
         <span>⛶</span> <span class="hidden sm:inline">Tela Cheia [F]</span>
       </button>
-      <a href="landing-page.html" class="text-zinc-400 hover:text-[#D4AF37] text-xs transition-colors hidden md:inline">
-        Landing Page →
+      <a href="index.html" class="text-zinc-400 hover:text-brand-gold text-xs transition-colors hidden sm:inline">
+        Menu Principal
       </a>
     </div>
+  </header>
+
+  <!-- BARRA DE PROGRESSO SUPERIOR -->
+  <div class="fixed top-[45px] left-0 w-full h-[3px] bg-zinc-900 z-50">
+    <div id="progressBar" class="h-full bg-brand-gold transition-all duration-300 w-[12.5%]"></div>
   </div>
 
-  <!-- PROGRESS BAR SUPERIOR -->
-  <div class="fixed top-[45px] left-0 w-full h-1 bg-zinc-900 z-50">
-    <div id="progressBar" class="h-full bg-gradient-to-r from-[#D4AF37] to-[#F7E7A9] transition-all duration-300 w-[12.5%]"></div>
-  </div>
+  <!-- CONTAINER CENTRAL DOS SLIDES -->
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-16 pb-16 flex items-center justify-center">
 
-  <!-- ÁREA DE SLIDES -->
-  <main class="flex-1 w-full max-w-7xl mx-auto px-8 pt-20 pb-16 flex items-center justify-center">
-
-    <!-- SLIDE 1: CAPA -->
-    <section class="slide active flex-col items-center justify-center text-center max-w-4xl mx-auto">
-      <div class="w-24 h-24 rounded-full border-2 border-[#D4AF37]/50 p-1 mb-8 shadow-[0_0_50px_rgba(212,175,55,0.3)] animate-pulse">
-        <img src="assets/logo.png" alt="Minerva Logo" class="w-full h-full object-contain rounded-full">
+    <!-- ================= SLIDE 1: CAPA OFICIAL ================= -->
+    <section class="slide active flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Capa Oficial">
+      <div class="w-28 h-28 rounded-full border border-brand-gold/40 p-2 mb-6 shadow-[0_0_60px_rgba(197,160,89,0.25)] flex items-center justify-center bg-white/5 backdrop-blur-md">
+        <img src="assets/logo.png" alt="Minerva Logo" class="w-20 h-20 object-contain">
       </div>
-      <div class="text-[#D4AF37] text-sm font-bold uppercase tracking-[0.3em] mb-4">
-        Ecossistema Fechado de Liderança Executiva
+      <div class="text-brand-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">
+        Plataforma Digital Exclusiva
       </div>
-      <h1 class="font-serif-luxury text-5xl sm:text-7xl md:text-8xl font-bold leading-tight mb-8">
+      <h1 class="font-serif text-6xl sm:text-8xl md:text-9xl font-normal leading-tight mb-4">
         MINERVA
       </h1>
-      <p class="text-xl sm:text-2xl text-zinc-300 max-w-2xl font-light leading-relaxed mb-10">
-        Onde poder, inteligência e conexões de alto escalão constroem o futuro dos negócios.
+      <p class="text-xl sm:text-2xl text-zinc-300 font-light max-w-2xl leading-relaxed mb-8">
+        Conheça por dentro o ecossistema fechado de aceleração, mentoria e liderança executiva feminina.
       </p>
-      <div class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-[#141414] border border-[#D4AF37]/30 text-xs uppercase tracking-widest text-zinc-400">
-        <span>Apresentação Oficial</span> • <span>2026</span>
+      <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full glass text-xs tracking-widest text-brand-gold uppercase">
+        <span>✦ Demonstração ao Vivo das Telas do App</span>
       </div>
     </section>
 
-    <!-- SLIDE 2: O PROBLEMA -->
-    <section class="slide flex-col justify-center max-w-5xl mx-auto w-full">
-      <div class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] mb-3">01 / Diagnóstico do Cenário</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl font-bold mb-6">A Solidão no Topo Executivo</h2>
-      <p class="text-lg sm:text-xl text-zinc-400 mb-12 max-w-3xl">
-        Líderes e empresárias de alto faturamento enfrentam um gargalo invisível no crescimento:
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-8 rounded-2xl bg-[#0f0f0f] border border-white/10">
-          <div class="text-[#D4AF37] text-4xl font-serif-luxury mb-4">01</div>
-          <h3 class="text-xl font-bold text-white mb-2">Falta de Pares Reais</h3>
-          <p class="text-zinc-400 text-sm leading-relaxed">Ambientes convencionais são superficiais e não permitem debates sobre M&A, governança e desafios societários complexos.</p>
+    <!-- ================= SLIDE 2: TELA INÍCIO (DASHBOARD REAL) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Tela Inicial / Dashboard">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">01 / Por Dentro do App</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Dashboard do Usuário</h2>
         </div>
-        <div class="p-8 rounded-2xl bg-[#141414] border border-[#D4AF37]/40 shadow-xl">
-          <div class="text-[#D4AF37] text-4xl font-serif-luxury mb-4">02</div>
-          <h3 class="text-xl font-bold text-[#D4AF37] mb-2">Excesso de Ruído</h3>
-          <p class="text-zinc-300 text-sm leading-relaxed">Redes abertas viraram vitrines de autopromoção sem foco em gerar negócios concretos e trocas de valor confidencial.</p>
-        </div>
-        <div class="p-8 rounded-2xl bg-[#0f0f0f] border border-white/10">
-          <div class="text-[#D4AF37] text-4xl font-serif-luxury mb-4">03</div>
-          <h3 class="text-xl font-bold text-white mb-2">Acesso Restrito a Mentorias</h3>
-          <p class="text-zinc-400 text-sm leading-relaxed">Dificuldade em ter orientações diretas com executivas consagradas que já atingiram valuations milionários.</p>
-        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: / (Home)</div>
       </div>
-    </section>
 
-    <!-- SLIDE 3: A SOLUÇÃO -->
-    <section class="slide flex-col justify-center max-w-5xl mx-auto w-full">
-      <div class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] mb-3">02 / A Tese Minerva</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl font-bold mb-4">Mais que um App: Uma Fortaleza de Negócios</h2>
-      <p class="text-lg sm:text-xl text-zinc-400 mb-10 max-w-3xl">
-        Um ecossistema digital privativo que une três engrenagens essenciais:
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div class="p-8 rounded-2xl bg-[#101010] border border-white/10 flex flex-col items-center">
-          <div class="w-16 h-16 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] flex items-center justify-center text-3xl mb-6">
-            ✦
-          </div>
-          <h3 class="text-2xl font-bold mb-2">Inteligência</h3>
-          <p class="text-zinc-400 text-sm">Copiloto IA especializado e acervo de masterclasses de elite.</p>
-        </div>
-
-        <div class="p-8 rounded-2xl bg-[#141414] border border-[#D4AF37]/40 flex flex-col items-center shadow-lg">
-          <div class="w-16 h-16 rounded-2xl bg-[#D4AF37]/20 text-[#D4AF37] flex items-center justify-center text-3xl mb-6">
-            ⚡
-          </div>
-          <h3 class="text-2xl font-bold text-[#D4AF37] mb-2">Conexão Real</h3>
-          <p class="text-zinc-300 text-sm">Matchmaking guiado por perfil societário e sinergia de mercado.</p>
-        </div>
-
-        <div class="p-8 rounded-2xl bg-[#101010] border border-white/10 flex flex-col items-center">
-          <div class="w-16 h-16 rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37] flex items-center justify-center text-3xl mb-6">
-            🏛️
-          </div>
-          <h3 class="text-2xl font-bold mb-2">Transações</h3>
-          <p class="text-zinc-400 text-sm">Marketplace interno para contratações e parcerias seguras.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 4: O PRODUTO -->
-    <section class="slide flex-col justify-center max-w-5xl mx-auto w-full">
-      <div class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] mb-3">03 / A Experiência do App</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl font-bold mb-6">Projetado para Executivas Ocupadas</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div class="space-y-4">
-          <div class="p-5 rounded-xl bg-[#121212] border-l-4 border-[#D4AF37]">
-            <h4 class="text-lg font-bold text-white">Feed e Comunidades Exclusivas</h4>
-            <p class="text-zinc-400 text-sm">Discussões de alto nível divididas por verticais de mercado sem algoritmos manipulativos.</p>
-          </div>
-          <div class="p-5 rounded-xl bg-[#121212] border-l-4 border-zinc-700">
-            <h4 class="text-lg font-bold text-white">Mentorias Individuais e em Grupo</h4>
-            <p class="text-zinc-400 text-sm">Agendamento direto no app com relatórios de acompanhamento.</p>
-          </div>
-          <div class="p-5 rounded-xl bg-[#121212] border-l-4 border-zinc-700">
-            <h4 class="text-lg font-bold text-white">Marketplace & Clube de Vantagens</h4>
-            <p class="text-zinc-400 text-sm">Ofertas especiais de fornecedores validados e parcerias estratégicas.</p>
-          </div>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-gradient-to-br from-[#181818] to-[#0a0a0a] border border-[#D4AF37]/30 shadow-2xl">
-          <div class="text-xs uppercase tracking-widest text-[#D4AF37] font-bold mb-4 flex items-center justify-between">
-            <span>Interface Mobile & Web</span>
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          </div>
-          <div class="bg-black/60 rounded-xl p-5 border border-white/5 space-y-3 font-mono text-xs text-zinc-300">
-            <div class="text-[#D4AF37] font-bold">// Minhas Conexões Ativas</div>
-            <div class="flex justify-between py-1 border-b border-white/5">
-              <span>Match de Hoje:</span>
-              <span class="text-white">Diretora de M&A (Fintech)</span>
+      <!-- MOCKUP IDÊNTICO À HOME DO APP MINERVA -->
+      <div class="glass-card p-5 sm:p-7 border border-white/10 shadow-2xl space-y-6">
+        
+        <!-- HEADER DO USUÁRIO NO APP -->
+        <div class="glass p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-5">
+            <div class="relative">
+              <img src="assets/beatriz.jpg" alt="Beatriz" class="w-16 h-16 rounded-full object-cover border-2 border-brand-gold">
+              <div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-black rounded-full"></div>
             </div>
-            <div class="flex justify-between py-1 border-b border-white/5">
-              <span>Mentoria Agendada:</span>
-              <span class="text-[#D4AF37]">Quinta, 18:30</span>
-            </div>
-            <div class="flex justify-between py-1">
-              <span>Minerva AI Insights:</span>
-              <span class="text-emerald-400">3 Oportunidades Identificadas</span>
+            <div>
+              <p class="text-white/70 text-xs font-light">Bom dia, bem-vinda de volta</p>
+              <h3 class="text-2xl font-serif text-white mt-0.5">Beatriz Vasconcelos</h3>
+              <div class="flex items-center gap-2 mt-1.5 text-xs text-brand-gold">
+                <span>✦ 1.450 pontos</span>
+                <span class="text-white/30">|</span>
+                <span>Nível 5 (Conselheira)</span>
+              </div>
             </div>
           </div>
-
-          <a href="app-preview.html" target="_blank" class="mt-4 w-full block py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#B38F24] hover:brightness-110 text-black font-extrabold text-xs uppercase tracking-widest text-center shadow-lg transition-transform hover:scale-[1.02]">
-            ▶ Abrir Demonstração do App ao Vivo
-          </a>
+          <div class="flex items-center gap-3">
+            <span class="bg-brand-gold/15 text-brand-gold border border-brand-gold/30 text-xs px-3.5 py-1.5 rounded-full font-semibold">
+              Membro Fundadora VIP
+            </span>
+          </div>
         </div>
+
+        <!-- 4 CARDS DE MÉTRICAS EXATAS DO MINERVA -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="glass p-4 rounded-xl flex flex-col justify-between">
+            <span class="text-xs text-brand-gold">📈 Networking</span>
+            <p class="text-3xl font-serif text-white mt-2">48</p>
+            <p class="text-[10px] text-white/50 uppercase tracking-wider mt-1">Conexões Ativas</p>
+          </div>
+          <div class="glass p-4 rounded-xl flex flex-col justify-between">
+            <span class="text-xs text-brand-gold">📅 Eventos</span>
+            <p class="text-3xl font-serif text-white mt-2">04</p>
+            <p class="text-[10px] text-white/50 uppercase tracking-wider mt-1">Confirmados</p>
+          </div>
+          <div class="glass p-4 rounded-xl flex flex-col justify-between">
+            <span class="text-xs text-brand-gold">❤️ Curtidas</span>
+            <p class="text-3xl font-serif text-white mt-2">382</p>
+            <p class="text-[10px] text-white/50 uppercase tracking-wider mt-1">Engajamento Total</p>
+          </div>
+          <div class="glass p-4 rounded-xl flex flex-col justify-between">
+            <span class="text-xs text-brand-gold">🏆 Mentorias</span>
+            <p class="text-3xl font-serif text-white mt-2">12h</p>
+            <p class="text-[10px] text-white/50 uppercase tracking-wider mt-1">Sessões Concluídas</p>
+          </div>
+        </div>
+
+        <!-- PRÓXIMOS EVENTOS -->
+        <div class="glass p-4 rounded-xl space-y-3">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-serif text-lg text-white">Próximos Eventos Exclusivos</span>
+            <span class="text-brand-gold text-xs">Ver calendário completo →</span>
+          </div>
+          <div class="flex items-center justify-between p-3 rounded-lg bg-black/40 border border-white/5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-brand-gold/15 text-brand-gold flex flex-col items-center justify-center font-bold text-xs">
+                <span>28</span>
+                <span class="text-[8px] uppercase">NOV</span>
+              </div>
+              <div>
+                <h5 class="text-xs font-semibold text-white">Jantar Privativo de Negócios</h5>
+                <p class="text-[11px] text-white/50">Restaurante Fasano • Presencial Exclusivo</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded font-semibold">Confirmada</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 5: MINERVA AI -->
-    <section class="slide flex-col justify-center max-w-5xl mx-auto w-full">
-      <div class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] mb-3">04 / Diferencial Tecnológico</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl font-bold mb-4">Minerva AI</h2>
-      <p class="text-lg sm:text-xl text-zinc-400 mb-8 max-w-3xl">
-        Seu copiloto de negócios treinado para o contexto da alta liderança feminina.
-      </p>
+    <!-- ================= SLIDE 3: MENSAGENS E CHAT (O QUE O USUÁRIO PEDIU) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mensagens e Chat Privativo">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">02 / Trocas Diretas</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Área de Mensagens & Negociações</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /chat (Mensagens)</div>
+      </div>
 
-      <div class="p-8 rounded-2xl bg-gradient-to-r from-[#141414] via-[#1c1a13] to-[#141414] border border-[#D4AF37]/50 shadow-[0_0_50px_rgba(212,175,55,0.15)]">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="space-y-2">
-            <div class="text-[#D4AF37] font-bold text-lg">✦ Matchmaking Inteligente</div>
-            <p class="text-zinc-400 text-xs leading-relaxed">Analisa os desafios que você posta e sugere as 3 membros da rede mais qualificadas para te ajudar.</p>
+      <!-- INTERFACE IDÊNTICA AO Chat.tsx DO APP MINERVA -->
+      <div class="glass-card p-0 border border-white/10 shadow-2xl flex flex-col md:flex-row h-[460px] overflow-hidden">
+        
+        <!-- SIDEBAR DE CONTATOS (EXATA DO APP) -->
+        <div class="w-full md:w-1/3 bg-black/50 border-r border-white/10 p-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <h3 class="text-xl font-serif text-white">Mensagens</h3>
+              <span class="text-[10px] bg-brand-gold/20 text-brand-gold px-2 py-0.5 rounded font-mono font-bold">Direto</span>
+            </div>
+
+            <!-- SOLICITAÇÕES NOVAS -->
+            <div class="bg-white/5 border border-white/10 rounded-xl p-2.5 flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs">
+                  🔔
+                </div>
+                <div>
+                  <h5 class="text-white text-xs font-medium">Solicitações Novas</h5>
+                  <p class="text-white/40 text-[9px]">2 líderes aguardando conexão</p>
+                </div>
+              </div>
+              <div class="w-4 h-4 rounded-full bg-brand-gold text-black text-[9px] font-bold flex items-center justify-center">
+                2
+              </div>
+            </div>
+
+            <!-- CAMPO DE BUSCA -->
+            <div class="relative">
+              <input type="text" placeholder="Buscar conversas..." class="w-full bg-white/5 border border-white/10 rounded-full py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-brand-gold/50">
+              <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/40 text-xs">🔍</span>
+            </div>
+
+            <!-- LISTA DE CONTATOS -->
+            <div class="space-y-1 pt-1">
+              <!-- Contato Ativo (Carolina) -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl bg-white/10 border border-white/10 cursor-pointer">
+                <div class="relative">
+                  <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover">
+                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full"></div>
+                </div>
+                <div class="flex-1 overflow-hidden">
+                  <div class="flex justify-between items-center">
+                    <h5 class="text-white text-xs font-semibold truncate">Carolina Albuquerque</h5>
+                    <span class="text-[9px] text-white/40 font-mono">11:42</span>
+                  </div>
+                  <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Co-Founder & Investidora</p>
+                  <p class="text-white/60 text-[10px] truncate">Vamos assinar quinta-feira às 18h no jantar...</p>
+                </div>
+              </div>
+
+              <!-- Contato 2 (Giulia) -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
+                <div class="relative">
+                  <img src="assets/giulia.jpg" alt="Giulia" class="w-10 h-10 rounded-full object-cover">
+                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-black rounded-full"></div>
+                </div>
+                <div class="flex-1 overflow-hidden">
+                  <div class="flex justify-between items-center">
+                    <h5 class="text-white text-xs font-semibold truncate">Giulia Ferrari</h5>
+                    <span class="text-[9px] text-white/40 font-mono">Ontem</span>
+                  </div>
+                  <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Sócia & Mentora</p>
+                  <p class="text-white/40 text-[10px] truncate">A pauta da mentoria sobre precificação está pronta!</p>
+                </div>
+              </div>
+
+              <!-- Contato 3 (Dra. Helena) -->
+              <div class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors">
+                <div class="relative">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold to-zinc-800 text-black font-serif font-bold flex items-center justify-center text-xs border border-brand-gold">
+                    HR
+                  </div>
+                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-zinc-600 border-2 border-black rounded-full"></div>
+                </div>
+                <div class="flex-1 overflow-hidden">
+                  <div class="flex justify-between items-center">
+                    <h5 class="text-white text-xs font-semibold truncate">Dra. Helena Rocha</h5>
+                    <span class="text-[9px] text-white/40 font-mono">22 Nov</span>
+                  </div>
+                  <p class="text-brand-gold text-[9px] uppercase tracking-widest truncate font-medium">Diretora Médica • Rede D'Or</p>
+                  <p class="text-white/40 text-[10px] truncate">Conexão aceita pelo Minerva Match.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="space-y-2">
-            <div class="text-[#D4AF37] font-bold text-lg">✦ Diagnósticos de Governança</div>
-            <p class="text-zinc-400 text-xs leading-relaxed">Simula cenários de captação, reestruturação de quadro societário e expansão de mercado.</p>
-          </div>
-          <div class="space-y-2">
-            <div class="text-[#D4AF37] font-bold text-lg">✦ Curadoria de Conteúdo</div>
-            <p class="text-zinc-400 text-xs leading-relaxed">Filtra as aulas e mentorias mais relevantes especificamente para a fase atual da sua empresa.</p>
+
+          <div class="text-[10px] text-white/30 text-center pt-2 border-t border-white/5">
+            🔒 Mensagens criptografadas de ponta a ponta
           </div>
         </div>
+
+        <!-- JANELA DE CONVERSA COM MENSAGENS REAIS -->
+        <div class="flex-1 flex flex-col justify-between bg-black/30">
+          
+          <!-- CHAT HEADER -->
+          <div class="p-3.5 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+            <div class="flex items-center gap-3">
+              <img src="assets/carolina.jpg" alt="Carolina" class="w-9 h-9 rounded-full object-cover border border-brand-gold">
+              <div>
+                <h4 class="text-white text-xs font-bold">Carolina Albuquerque</h4>
+                <p class="text-emerald-400 text-[10px] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Online agora
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] bg-brand-gold/15 text-brand-gold px-2.5 py-1 rounded-full font-medium">
+                Pacto de Sócios • Rodada Seed
+              </span>
+            </div>
+          </div>
+
+          <!-- HISTÓRICO DE MENSAGENS -->
+          <div id="slideChatMessages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+            <div class="text-center">
+              <span class="text-[9px] text-white/30 uppercase tracking-widest bg-black/50 px-3 py-1 rounded-full border border-white/5">
+                Hoje • Conversa Privativa
+              </span>
+            </div>
+
+            <!-- Mensagem recebida de Carolina -->
+            <div class="flex justify-start">
+              <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-white/5 border border-white/10 text-white/90 rounded-tl-sm">
+                <p class="text-xs leading-relaxed">
+                  Beatriz, adorei o alinhamento de ontem! Nosso conselho aprovou os termos e queremos liderar a nova rodada da sua healthtech.
+                </p>
+                <p class="text-[9px] mt-1.5 text-right text-white/40">11:38</p>
+              </div>
+            </div>
+
+            <!-- Mensagem enviada por Você (Beatriz) -->
+            <div class="flex justify-end">
+              <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-brand-gold/20 border border-brand-gold/30 text-white rounded-tr-sm">
+                <p class="text-xs leading-relaxed">
+                  Perfeito, Carolina! Já ajustamos a minuta societária garantindo proteção ao comitê fundador e Drag Along favorável. O contrato já está assinado pelo nosso jurídico. 📄✨
+                </p>
+                <p class="text-[9px] mt-1.5 text-right text-brand-gold/70">11:40 ✓✓</p>
+              </div>
+            </div>
+
+            <!-- Mensagem recebida de Carolina confirmando -->
+            <div class="flex justify-start">
+              <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-white/5 border border-white/10 text-white/90 rounded-tl-sm">
+                <p class="text-xs leading-relaxed">
+                  Excelente agilidade! Vamos celebrar a assinatura quinta-feira às 18h no jantar exclusivo da Minerva. Nos vemos lá! 🥂
+                </p>
+                <p class="text-[9px] mt-1.5 text-right text-white/40">11:42</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- INPUT DE MENSAGEM INTERATIVO (PODE TESTAR AO VIVO) -->
+          <form onsubmit="handleSendSlideChat(event)" class="p-3 border-t border-white/5 bg-black/40 flex items-center gap-2">
+            <input id="slideChatInput" type="text" placeholder="Envie uma mensagem em tempo real para testar..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white placeholder-white/30 focus:outline-none focus:border-brand-gold/50">
+            <button type="submit" class="bg-brand-gold hover:bg-brand-goldLight text-black font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md">
+              Enviar
+            </button>
+          </form>
+
+        </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 6: MÉTRICAS -->
-    <section class="slide flex-col justify-center max-w-5xl mx-auto w-full">
-      <div class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] mb-3">05 / Tração & Resultados</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl font-bold mb-10">Métricas Que Comprovam a Força da Rede</h2>
+    <!-- ================= SLIDE 4: NETWORKING E MATCHMAKING ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Networking e Conexões C-Level">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">03 / Conexões Estratégicas</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Networking & Matchmaking</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /networking</div>
+      </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="p-8 rounded-2xl bg-[#0f0f0f] border border-white/10">
-          <div class="font-serif-luxury text-4xl sm:text-5xl font-bold text-[#D4AF37] mb-2">+500</div>
-          <div class="text-xs uppercase tracking-widest text-zinc-400">Líderes Ativas</div>
+      <!-- MOCKUP IDÊNTICO À Networking.tsx -->
+      <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-5">
+        
+        <!-- BARRA DE BUSCA E FILTROS DO APP -->
+        <div class="glass p-3 rounded-xl flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-1">
+            <input type="text" value="Tecnologia & Finanças" readonly class="w-full bg-black/30 border border-white/10 rounded-full py-2 pl-9 pr-4 text-xs text-brand-gold font-medium">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 text-xs">🔍</span>
+          </div>
+          <div class="flex gap-2">
+            <span class="bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs px-3.5 py-1.5 rounded-full font-medium">
+              Filtro: Faturamento > R$ 5M/ano
+            </span>
+          </div>
         </div>
-        <div class="p-8 rounded-2xl bg-[#0f0f0f] border border-white/10">
-          <div class="font-serif-luxury text-4xl sm:text-5xl font-bold text-white mb-2">R$ 15M+</div>
-          <div class="text-xs uppercase tracking-widest text-zinc-400">Em Negócios Gerados</div>
+
+        <!-- 3 CARDS DE MEMBROS REAIS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <!-- Card 1 -->
+          <div class="glass p-5 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <img src="assets/carolina.jpg" alt="Carolina" class="w-12 h-12 rounded-full object-cover border-2 border-brand-gold">
+                <div>
+                  <h4 class="text-sm font-semibold text-white">Carolina Albuquerque</h4>
+                  <p class="text-[10px] text-brand-gold uppercase tracking-widest font-medium">Venture Capital & M&A</p>
+                </div>
+              </div>
+              <p class="text-xs text-white/70 leading-relaxed">
+                Investidora e conselheira em 6 startups de tecnologia e logística no Brasil e EUA.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+              <span class="text-[10px] text-emerald-400 font-mono">Compatibilidade: 98%</span>
+              <button class="bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full">
+                Conectada ✓
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass p-5 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <img src="assets/giulia.jpg" alt="Giulia" class="w-12 h-12 rounded-full object-cover border-2 border-brand-gold">
+                <div>
+                  <h4 class="text-sm font-semibold text-white">Giulia Ferrari</h4>
+                  <p class="text-[10px] text-brand-gold uppercase tracking-widest font-medium">Estratégia & Escala</p>
+                </div>
+              </div>
+              <p class="text-xs text-white/70 leading-relaxed">
+                Especialista em governança e alocação de capital para expansão de franquias e B2B.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+              <span class="text-[10px] text-emerald-400 font-mono">Compatibilidade: 95%</span>
+              <button class="bg-brand-gold text-black text-xs font-bold px-3 py-1 rounded-full">
+                Conectada ✓
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass p-5 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-brand-gold/40 transition-all">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-gold to-zinc-900 text-black font-serif font-bold flex items-center justify-center text-sm border-2 border-brand-gold">
+                  FL
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-white">Fernanda Lima</h4>
+                  <p class="text-[10px] text-brand-gold uppercase tracking-widest font-medium">Diretora de M&A</p>
+                </div>
+              </div>
+              <p class="text-xs text-white/70 leading-relaxed">
+                Liderança de fusões e aquisições no setor financeiro e bancário há mais de 15 anos.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+              <span class="text-[10px] text-emerald-400 font-mono">Compatibilidade: 91%</span>
+              <button onclick="this.textContent = 'Solicitado ✓'; this.className = 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs px-3 py-1 rounded-full';" class="bg-brand-gold hover:bg-brand-goldLight text-black text-xs font-bold px-3 py-1 rounded-full transition-all">
+                Conectar
+              </button>
+            </div>
+          </div>
+
         </div>
-        <div class="p-8 rounded-2xl bg-[#0f0f0f] border border-white/10">
-          <div class="font-serif-luxury text-4xl sm:text-5xl font-bold text-[#D4AF37] mb-2">94%</div>
-          <div class="text-xs uppercase tracking-widest text-zinc-400">Taxa de Retenção</div>
-        </div>
-        <div class="p-8 rounded-2xl bg-[#0f0f0f] border border-white/10">
-          <div class="font-serif-luxury text-4xl sm:text-5xl font-bold text-white mb-2">100%</div>
-          <div class="text-xs uppercase tracking-widest text-zinc-400">Membros Validadas</div>
-        </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 7: FOUNDERS -->
-    <section class="slide flex-col justify-center max-w-5xl mx-auto w-full">
-      <div class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.25em] mb-3">06 / Liderança</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl font-bold mb-10">Sócias Fundadoras</h2>
+    <!-- ================= SLIDE 5: FEED DA COMUNIDADE ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Feed da Comunidade">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">04 / Conteúdo & Trocas</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Feed Fechado da Comunidade</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /feed</div>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="rounded-2xl bg-[#111] overflow-hidden border border-white/5 text-center">
-          <div class="h-56 bg-zinc-900 overflow-hidden">
+      <!-- MOCKUP IDÊNTICO À Feed.tsx -->
+      <div class="glass-card p-5 sm:p-6 border border-white/10 shadow-2xl space-y-4 max-h-[460px] overflow-y-auto">
+        
+        <!-- Post 1 -->
+        <div class="glass p-5 rounded-2xl space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover border border-brand-gold">
+              <div>
+                <h4 class="text-xs font-bold text-white">Carolina Albuquerque</h4>
+                <p class="text-[10px] text-white/50">Co-Founder & Investidora • há 2 horas</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-brand-gold/15 text-brand-gold border border-brand-gold/30 px-2.5 py-0.5 rounded-full font-semibold">
+              #RodadaDeNegócios
+            </span>
+          </div>
+          <p class="text-xs text-white/90 leading-relaxed">
+            Fechamos hoje uma nova aliança estratégica com um dos maiores fundos da América Latina. O conselho executivo formado aqui na Minerva foi fundamental para a validação do contrato de governança! 🥂✨
+          </p>
+          <div class="flex items-center gap-6 pt-2 border-t border-white/5 text-xs text-white/50">
+            <span class="text-red-400 font-medium">❤️ 42 curtidas</span>
+            <span>💬 11 comentários executivos</span>
+            <span class="text-brand-gold">🔗 Salvo no acervo</span>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="glass p-5 rounded-2xl space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="assets/giulia.jpg" alt="Giulia" class="w-10 h-10 rounded-full object-cover border border-brand-gold">
+              <div>
+                <h4 class="text-xs font-bold text-white">Giulia Ferrari</h4>
+                <p class="text-[10px] text-white/50">Sócia & Mentora • há 5 horas</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-white/5 text-white/70 border border-white/10 px-2.5 py-0.5 rounded-full font-semibold">
+              #MentoriaEspecial
+            </span>
+          </div>
+          <p class="text-xs text-white/90 leading-relaxed">
+            Abrindo 3 vagas na minha agenda desta semana para membros do Minerva que estão em fase de reformulação de precificação de software B2B. Agendem direto pela aba de Mentorias!
+          </p>
+          <div class="flex items-center gap-6 pt-2 border-t border-white/5 text-xs text-white/50">
+            <span class="text-white/70">❤️ 28 curtidas</span>
+            <span>💬 7 pedidos de horário</span>
+            <span class="text-brand-gold">📅 Agendar no app</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 6: MINERVA AI (COPILOTO) ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Minerva AI (Inteligência Artificial)">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">05 / Tecnologia Própria</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Minerva AI — Copiloto Executivo</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /minerva-ai</div>
+      </div>
+
+      <!-- MOCKUP IDÊNTICO À MinervaAI.tsx -->
+      <div class="glass-card p-5 sm:p-6 border border-brand-gold/30 shadow-[0_0_50px_rgba(197,160,89,0.15)] flex flex-col justify-between h-[460px]">
+        
+        <div class="flex justify-between items-center pb-3 border-b border-white/10">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-sm font-bold text-brand-gold">MINERVA AI COPILOT</span>
+          </div>
+          <span class="text-xs text-white/40">Treinado em Governança, Captação & Conselho</span>
+        </div>
+
+        <!-- MENSAGENS COM A IA -->
+        <div class="flex-1 overflow-y-auto py-4 space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
+              ✦
+            </div>
+            <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30">
+              Olá, Beatriz. Identifiquei 2 novas oportunidades de sinergia societária com membros da vertical de Tecnologia e Finanças. Como posso acelerar seu conselho hoje?
+            </div>
+          </div>
+
+          <div class="flex items-start justify-end gap-3">
+            <div class="bg-brand-gold text-black font-semibold p-3.5 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[80%] shadow-md">
+              "Qual é a estrutura mais recomendada para alinhamento de cláusula Drag Along na nossa rodada de sócios?"
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs flex-shrink-0">
+              ✦
+            </div>
+            <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs text-white/90 leading-relaxed max-w-[85%] border border-brand-gold/30 space-y-2">
+              <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider block">Recomendação Estratégica:</span>
+              <p>1. Estabelecer Floor Price (preço mínimo por ação) para evitar liquidação desvantajosa.</p>
+              <p>2. Exigir quórum qualificado de 75% dos fundadores para acionamento compulsório.</p>
+              <p>3. As sócias Carolina e Giulia têm modelos validados no acervo da biblioteca.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-white/5 flex items-center gap-2">
+          <input type="text" value="Analisando cenários de expansão..." readonly class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white/70">
+          <button class="bg-brand-gold text-black font-bold text-xs px-4 py-2 rounded-xl">
+            Copilot Ativo
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 7: MENTORIAS & ACERVO EXECUTIVO ================= -->
+    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mentorias e Masterclasses">
+      <div class="flex justify-between items-end mb-4">
+        <div>
+          <span class="text-brand-gold text-xs uppercase tracking-widest font-bold">06 / Sabedoria & Formação</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-white">Mentorias Individuais & Masterclasses</h2>
+        </div>
+        <div class="text-xs text-zinc-400 font-mono hidden sm:block">Rota: /mentoring & /aulas-gravadas</div>
+      </div>
+
+      <!-- MOCKUP IDÊNTICO À Mentoring.tsx -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="glass-card p-6 border border-white/10 space-y-4">
+          <div class="h-44 rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
             <img src="assets/beatriz.jpg" alt="Beatriz" class="w-full h-full object-cover object-top">
           </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-white">Beatriz</h3>
-            <p class="text-xs text-[#D4AF37] uppercase tracking-wider font-semibold">Co-Founder & Estratégia</p>
+          <div>
+            <h4 class="text-lg font-serif text-white">Beatriz Vasconcelos</h4>
+            <p class="text-xs text-brand-gold uppercase tracking-wider font-semibold">Conselho & Estrutura Societária</p>
+            <p class="text-xs text-white/60 mt-2">Sessões 1-on-1 para reestruturação patrimonial e governança de alta gestão.</p>
           </div>
+          <button class="w-full py-2.5 rounded-xl bg-brand-gold text-black font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-all">
+            Agendar Sessão
+          </button>
         </div>
 
-        <div class="rounded-2xl bg-[#111] overflow-hidden border border-white/5 text-center">
-          <div class="h-56 bg-zinc-900 overflow-hidden">
+        <div class="glass-card p-6 border border-white/10 space-y-4">
+          <div class="h-44 rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
             <img src="assets/carolina.jpg" alt="Carolina" class="w-full h-full object-cover object-top">
           </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-white">Carolina</h3>
-            <p class="text-xs text-[#D4AF37] uppercase tracking-wider font-semibold">Co-Founder & Expansão</p>
+          <div>
+            <h4 class="text-lg font-serif text-white">Carolina Albuquerque</h4>
+            <p class="text-xs text-brand-gold uppercase tracking-wider font-semibold">Captação & Venture Capital</p>
+            <p class="text-xs text-white/60 mt-2">Preparação de pitch, valuation, rodadas de investimento e relacionamento com fundos.</p>
           </div>
+          <button class="w-full py-2.5 rounded-xl bg-brand-gold text-black font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-all">
+            Agendar Sessão
+          </button>
         </div>
 
-        <div class="rounded-2xl bg-[#111] overflow-hidden border border-white/5 text-center">
-          <div class="h-56 bg-zinc-900 overflow-hidden">
+        <div class="glass-card p-6 border border-white/10 space-y-4">
+          <div class="h-44 rounded-xl overflow-hidden bg-zinc-900 border border-white/5">
             <img src="assets/giulia.jpg" alt="Giulia" class="w-full h-full object-cover object-top">
           </div>
-          <div class="p-5">
-            <h3 class="text-xl font-bold text-white">Giulia</h3>
-            <p class="text-xs text-[#D4AF37] uppercase tracking-wider font-semibold">Co-Founder & Comunidade</p>
+          <div>
+            <h4 class="text-lg font-serif text-white">Giulia Ferrari</h4>
+            <p class="text-xs text-brand-gold uppercase tracking-wider font-semibold">Crescimento & Alianças</p>
+            <p class="text-xs text-white/60 mt-2">Criação de novos canais de receita B2B e posicionamento institucional premium.</p>
           </div>
+          <button class="w-full py-2.5 rounded-xl bg-brand-gold text-black font-bold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-all">
+            Agendar Sessão
+          </button>
         </div>
+
       </div>
     </section>
 
-    <!-- SLIDE 8: CTA DE PALCO -->
-    <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full">
-      <div class="inline-block text-xs font-bold uppercase tracking-widest text-[#D4AF37] mb-4">✦ Oportunidade para a Platéia</div>
-      <h2 class="font-serif-luxury text-4xl sm:text-6xl md:text-7xl font-bold mb-6">Faça Parte do Círculo</h2>
-      <p class="text-lg sm:text-xl text-zinc-300 max-w-xl mx-auto mb-10 leading-relaxed">
-        Liberação de convites VIP prioritários exclusiva para quem está participando desta palestra.
+    <!-- ================= SLIDE 8: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
+    <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Encerramento e Convite VIP">
+      <div class="inline-block text-xs font-bold uppercase tracking-[0.25em] text-brand-gold mb-4">
+        ✦ Exclusivo para Esta Palestra
+      </div>
+      <h2 class="font-serif text-5xl sm:text-7xl font-normal text-white mb-6">
+        Faça Parte do Círculo Minerva
+      </h2>
+      <p class="text-base sm:text-xl text-zinc-300 max-w-xl mx-auto mb-8 leading-relaxed font-light">
+        Aponte a câmera para solicitar a análise prioritária do comitê com liberação em 24h para quem esteve presente.
       </p>
 
-      <div class="p-8 rounded-3xl bg-gradient-to-b from-[#181818] to-[#0c0c0c] border border-[#D4AF37]/50 shadow-[0_0_60px_rgba(212,175,55,0.25)] flex flex-col sm:flex-row items-center gap-8 mb-8">
-        <div class="w-36 h-36 bg-white rounded-2xl p-2.5 flex items-center justify-center shadow-lg">
-          <!-- QR Code simulado em SVG preciso -->
+      <div class="p-7 rounded-3xl glass border border-brand-gold/40 shadow-[0_0_80px_rgba(197,160,89,0.2)] flex flex-col sm:flex-row items-center gap-8 mb-6">
+        <div class="w-36 h-36 bg-white rounded-2xl p-2.5 flex items-center justify-center shadow-xl">
           <svg class="w-full h-full text-black" viewBox="0 0 100 100" fill="currentColor">
             <rect x="0" y="0" width="30" height="30" fill="black"/>
             <rect x="5" y="5" width="20" height="20" fill="white"/>
@@ -332,39 +731,39 @@
           </svg>
         </div>
         <div class="text-left space-y-2">
-          <div class="text-sm font-bold uppercase tracking-wider text-[#D4AF37]">Aponte a câmera do seu celular</div>
-          <div class="text-2xl font-bold text-white">w.app/minerva</div>
-          <p class="text-xs text-zinc-400">Preencha o formulário e mencione a palestra para ter acesso com análise em até 24h.</p>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-gold">Acesso Direto pelo WhatsApp</div>
+          <div class="text-3xl font-serif font-bold text-white">w.app/minerva</div>
+          <p class="text-xs text-white/60">Informe que assistiu à apresentação para receber o passe VIP de boas-vindas.</p>
         </div>
       </div>
 
-      <div class="text-xs text-zinc-500">
-        Obrigada pela presença • Minerva Official Platform
+      <div class="text-xs text-white/40">
+        Obrigada pela presença • Minerva Platform Oficial
       </div>
     </section>
 
   </main>
 
-  <!-- CONTROLES INFERIORES FLUTUANTES -->
-  <footer class="fixed bottom-0 left-0 right-0 z-50 bg-[#0d0d0d]/90 backdrop-blur-md border-t border-white/5 px-8 py-3 flex justify-between items-center text-xs">
+  <!-- CONTROLES INFERIORES DOS SLIDES -->
+  <footer class="fixed bottom-0 left-0 right-0 z-50 bg-[#050505]/95 backdrop-blur-md border-t border-white/10 px-6 sm:px-10 py-3 flex justify-between items-center text-xs">
     <div class="flex items-center gap-3">
-      <button onclick="prevSlide()" class="p-2 rounded-lg bg-zinc-900 hover:bg-[#D4AF37] hover:text-black border border-white/10 transition-colors">
+      <button onclick="prevSlide()" class="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-brand-gold hover:text-black border border-white/10 transition-colors font-semibold">
         ◀ Anterior
       </button>
-      <button onclick="nextSlide()" class="p-2 px-4 rounded-lg bg-[#D4AF37] text-black font-bold hover:bg-[#F7E7A9] transition-colors">
+      <button onclick="nextSlide()" class="px-4 py-1.5 rounded-lg bg-brand-gold text-black font-bold hover:bg-brand-goldLight transition-colors">
         Próximo ▶
       </button>
     </div>
 
     <!-- CONTADOR DE SLIDES -->
-    <div class="font-mono text-sm tracking-wider">
-      <span id="currentSlideNum" class="text-[#D4AF37] font-bold">01</span>
-      <span class="text-zinc-600">/</span>
-      <span id="totalSlidesNum" class="text-zinc-400">08</span>
+    <div class="font-mono text-sm tracking-wider flex items-center gap-2">
+      <span id="currentSlideNum" class="text-brand-gold font-bold">01</span>
+      <span class="text-white/30">/</span>
+      <span id="totalSlidesNum" class="text-white/60">08</span>
     </div>
   </footer>
 
-  <!-- SCRIPT DE NAVEGAÇÃO -->
+  <!-- JAVASCRIPT DE NAVEGAÇÃO E CHAT INTERATIVO -->
   <script>
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
@@ -376,6 +775,8 @@
       slides.forEach((slide, idx) => {
         if (idx === currentSlide) {
           slide.classList.add('active');
+          const title = slide.dataset.title || 'Apresentação Minerva';
+          document.getElementById('slideTitleIndicator').textContent = title;
         } else {
           slide.classList.remove('active');
         }
@@ -401,6 +802,9 @@
 
     // Teclado
     document.addEventListener('keydown', (e) => {
+      // Não intercepta se o usuário estiver digitando no chat do slide 3
+      if (e.target && e.target.tagName === 'INPUT') return;
+
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
         nextSlide();
@@ -431,6 +835,45 @@
           document.exitFullscreen();
         }
       }
+    }
+
+    // Enviar mensagem interativa no Slide 3 (Chat)
+    function handleSendSlideChat(e) {
+      e.preventDefault();
+      const input = document.getElementById('slideChatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatBox = document.getElementById('slideChatMessages');
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+      // Adiciona mensagem da usuária (Beatriz)
+      const userBubble = document.createElement('div');
+      userBubble.className = 'flex justify-end';
+      userBubble.innerHTML = `
+        <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-brand-gold/20 border border-brand-gold/30 text-white rounded-tr-sm">
+          <p class="text-xs leading-relaxed">${text}</p>
+          <p class="text-[9px] mt-1.5 text-right text-brand-gold/70">${timeStr} ✓✓</p>
+        </div>
+      `;
+      chatBox.appendChild(userBubble);
+      input.value = '';
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Resposta simulada de Carolina
+      setTimeout(() => {
+        const replyBubble = document.createElement('div');
+        replyBubble.className = 'flex justify-start';
+        replyBubble.innerHTML = `
+          <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-lg backdrop-blur-md bg-white/5 border border-white/10 text-white/90 rounded-tl-sm">
+            <p class="text-xs leading-relaxed">Combinadíssimo, Beatriz! Já registrei na pauta do nosso comitê de investimentos. 🚀</p>
+            <p class="text-[9px] mt-1.5 text-right text-white/40">${timeStr}</p>
+          </div>
+        `;
+        chatBox.appendChild(replyBubble);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 700);
     }
   </script>
 </body>
