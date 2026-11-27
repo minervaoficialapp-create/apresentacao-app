@@ -1,1678 +1,671 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="theme-light">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINERVA — Apresentação Oficial (Versão Clara & Escura)</title>
-  <link rel="icon" type="image/png" href="assets/logo.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              gold: '#996515',
-              goldLight: '#B8860B',
-              goldDark: '#704705',
-              bronze: '#8C5A10',
-              dark: '#0a0a0a',
-              darker: '#050505',
-              light: '#ffffff',
-              gray: '#1f1f1f',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            serif: ['"Cormorant Garamond"', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minerva — Conheça o app</title>
+<link rel="icon" type="image/png" href="assets/minerva-logo-gold.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+/* =========================================================
+   SISTEMA VISUAL
+   ========================================================= */
+:root{
+  --bg:#F6F3EE; --bg2:#EEE8DF; --ink:#1D1B18; --muted:#7A736B; --gold:#A67C2E; --line:rgba(29,27,24,.12);
+  /* App (tela do celular) — tokens reais do app, tema claro */
+  --a-bg:radial-gradient(ellipse at 50% 0%,#FFFFFF 0%,#EFF2F6 45%,#E2E6ED 100%);
+  --a-card:rgba(255,255,255,.88); --a-border:rgba(18,22,33,.08); --a-ink:#161411;
+  --a-muted:rgba(22,20,17,.55); --a-gold:#AF822D; --a-goldsoft:rgba(175,130,45,.12);
+  --a-shadow:0 12px 24px -14px rgba(18,22,33,.22),0 2px 6px -2px rgba(18,22,33,.06);
+  --a-nav:rgba(255,255,255,.92);
+}
+html.dark{
+  --bg:#0F0E0D; --bg2:#191715; --ink:#F2EEE7; --muted:rgba(242,238,231,.56); --gold:#C5A059; --line:rgba(242,238,231,.14);
+  --a-bg:radial-gradient(circle at 50% 0%,#151517 0%,#0c0c0e 50%,#050505 100%);
+  --a-card:rgba(32,32,36,.72); --a-border:rgba(255,255,255,.10); --a-ink:#FFFFFF;
+  --a-muted:rgba(255,255,255,.55); --a-gold:#C5A059; --a-goldsoft:rgba(197,160,89,.14);
+  --a-shadow:0 12px 24px -12px rgba(0,0,0,.8); --a-nav:rgba(14,14,16,.94);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);overflow:hidden;transition:background-color .5s ease}
+body{font-family:'Inter',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;user-select:none;cursor:default}
+.serif{font-family:'Cormorant Garamond',serif}
 
-  <style>
-    /* ================= TEMA CLARO (PADRÃO) ================= */
-    html.theme-light body {
-      background-color: #F7F7F5;
-      color: #1A1D20;
-    }
+/* Palco 16:9 que se ajusta a qualquer projetor */
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1920px;height:1080px;position:relative;flex-shrink:0;transform-origin:center center}
 
-    html.theme-light .glass {
-      background: #FFFFFF;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: none;
-      color: #1A1D20;
-    }
+/* Slides */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s}
+.slide.active{opacity:1;visibility:visible}
+.r{opacity:0;transition:opacity .9s ease}
+.slide.active .r{opacity:1;transition-delay:calc(var(--d,0) * 110ms + 150ms)}
 
-    html.theme-light .glass-card {
-      background: #FFFFFF;
-      border: 1px solid rgba(0, 0, 0, 0.09);
-      border-radius: 0.875rem;
-      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
-      color: #1A1D20;
-      transition: all 0.3s ease;
-    }
+/* Tipografia dos slides */
+.eyebrow{display:flex;align-items:center;gap:20px;font-size:15px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.eyebrow .n{color:var(--muted);letter-spacing:.12em}
+.eyebrow .dash{width:44px;height:1px;background:var(--line)}
+.title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:112px;line-height:1;letter-spacing:-.015em;color:var(--ink);margin:40px 0 38px}
+.title em{font-style:italic;font-weight:300;color:var(--gold)}
+.lead{font-size:26px;font-weight:300;line-height:1.6;color:var(--muted);max-width:580px}
+.keys{display:flex;gap:44px;margin-top:64px;padding-top:26px;border-top:1px solid var(--line);max-width:600px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 
+/* Layout de funcionalidade: texto + celular */
+.feature{display:grid;grid-template-columns:1fr 1fr;align-items:center;height:100%;padding:0 160px 0 170px}
+.visual{position:relative;height:100%;display:flex;align-items:center;justify-content:center}
+.visual::before{content:'';position:absolute;width:660px;height:660px;border-radius:50%;background:var(--bg2);transition:background .5s}
 
+/* Rodapé discreto */
+#chrome{position:absolute;left:170px;right:160px;bottom:64px;display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.24em;color:var(--muted);transition:opacity .6s}
+#chrome .brand{display:flex;align-items:center;gap:14px}
+#chrome img{width:22px;height:22px;object-fit:contain}
+#progress{position:absolute;left:0;bottom:0;height:2px;background:var(--gold);transition:width .6s ease}
+body.is-cover #chrome{opacity:0}
 
-    html.theme-light .app-text-title { color: #111827; }
-    html.theme-light .app-text-muted { color: #6B7280; }
-    html.theme-light .app-text-gold { color: #996515; }
-    html.theme-light .app-bg-surface { background: #FFFFFF; }
-    html.theme-light .app-border-subtle { border-color: rgba(0, 0, 0, 0.08); }
+/* =========================================================
+   CELULAR
+   ========================================================= */
+.phone{position:relative;z-index:1;width:392px;height:820px;border-radius:62px;background:#151413;padding:11px;
+  box-shadow:0 60px 100px -50px rgba(60,40,10,.45),0 24px 48px -24px rgba(0,0,0,.25),inset 0 0 0 1.5px #2C2A27}
+.scr{position:relative;width:100%;height:100%;border-radius:51px;overflow:hidden;background:var(--a-bg);color:var(--a-ink);display:flex;flex-direction:column;font-size:13px}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:112px;height:32px;border-radius:20px;background:#000;z-index:5}
+.status{height:52px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:8px 30px 0 34px;font-size:15px;font-weight:600}
+.status .ic{width:16px;height:16px}
+.status span:last-child{display:flex;gap:5px}
+.appbar{display:flex;align-items:center;justify-content:space-between;padding:6px 20px 4px;flex-shrink:0}
+.appbar .lg{display:flex;align-items:center;gap:8px;font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:.22em}
+.appbar img{width:24px;height:24px;object-fit:contain}
+.content{flex:1;overflow:hidden;padding:10px 16px 0;display:flex;flex-direction:column;gap:12px}
+.card{background:var(--a-card);border:1px solid var(--a-border);border-radius:18px;box-shadow:var(--a-shadow);padding:14px}
+.nav{flex-shrink:0;display:flex;justify-content:space-between;padding:10px 26px 30px;border-top:1px solid var(--a-border);background:var(--a-nav)}
+.nav div{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:var(--a-muted)}
+.nav .ic{width:22px;height:22px}
+.nav .on{color:var(--a-gold)}
+.home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:128px;height:5px;border-radius:3px;background:var(--a-ink);opacity:.85}
 
-    /* ================= TEMA ESCURO ================= */
-    html.theme-dark body {
-      background-color: #0a0a0a;
-      color: #ffffff;
-    }
+.ic{width:16px;height:16px;stroke-width:1.75;flex-shrink:0}
+.gold{color:var(--a-gold)} .mut{color:var(--a-muted)}
+.row{display:flex;align-items:center;gap:8px}
+.between{display:flex;align-items:center;justify-content:space-between}
+.av{border-radius:50%;object-fit:cover;object-position:top;border:1px solid rgba(175,130,45,.4);flex-shrink:0}
+.ini{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:500;background:url(assets/avatar-bg.jpg) center/cover;border:1px solid rgba(175,130,45,.4);flex-shrink:0}
+.s10{font-size:10px}.s11{font-size:11px}.s12{font-size:12px}.s13{font-size:13px}.s14{font-size:14px}
+.w5{font-weight:500}
+.up{text-transform:uppercase;letter-spacing:.1em}
+.ph-head{padding:4px 2px 2px}
+.ph-title{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.1}
+.ph-bar{width:28px;height:2px;border-radius:2px;background:var(--a-gold);margin-top:10px}
+.pill{border:1px solid var(--a-border);background:var(--a-card);border-radius:999px;padding:10px 14px;display:flex;align-items:center;gap:8px;color:var(--a-muted);font-size:12px}
+.chip{border:1px solid var(--a-border);background:var(--a-card);border-radius:999px;padding:6px 12px;font-size:11px;color:var(--a-muted);white-space:nowrap}
+.chip.on{background:var(--a-gold);border-color:var(--a-gold);color:#fff}
+.btn-o{border:1px solid var(--a-gold);color:var(--a-gold);border-radius:999px;padding:6px 12px;font-size:11px;font-weight:500}
+.ibox{width:40px;height:40px;border-radius:12px;background:var(--a-goldsoft);color:var(--a-gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ibox .ic{width:19px;height:19px}
 
-    html.theme-dark .glass {
-      background: #141414;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: none;
-      color: #ffffff;
-    }
+/* =========================================================
+   ROTEIRO (fora do palco: só para a apresentadora)
+   ========================================================= */
+#notes{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);width:min(980px,92vw);background:var(--ink);color:var(--bg);
+  border-radius:16px;padding:20px 26px;font-size:17px;line-height:1.6;z-index:20;display:none;box-shadow:0 20px 50px -20px rgba(0,0,0,.4)}
+#notes.show{display:block}
+#notes .tag{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.55;margin-bottom:8px}
+.pause{display:inline-block;margin:0 8px 0 4px;padding:1px 9px;border-radius:999px;border:1px solid currentColor;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;vertical-align:2px}
+.key{font-weight:600}
+#notes .key{color:#E2C17F}
+html.dark #notes .key{color:#8A6420}
 
-    html.theme-dark .glass-card {
-      background: #141414;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.875rem;
-      color: #ffffff;
-      transition: all 0.3s ease;
-    }
-
-
-
-    html.theme-dark .app-text-title { color: #ffffff; }
-    html.theme-dark .app-text-muted { color: rgba(255, 255, 255, 0.6); }
-    html.theme-dark .app-text-gold { color: #C5A059; }
-    html.theme-dark .app-bg-surface { background: #000000; }
-    html.theme-dark .app-border-subtle { border-color: rgba(255, 255, 255, 0.1); }
-
-    /* Estilos Gerais */
-    body {
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;
-      user-select: none;
-      transition: background-color 0.4s ease, color 0.4s ease;
-    }
-
-    h1, h2, h3, h4, .font-serif-app {
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    .slide {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.25s ease-out;
-    }
-
-    .slide.active {
-      display: flex;
-      opacity: 1;
-    }
-
-    /* ROTEIRO DA PALESTRA (discreto) */
-    .speaker-note {
-      display: block;
-      padding: 0.35rem 0 0.35rem 0.85rem;
-      margin-bottom: 0.9rem;
-      line-height: 1.5;
-      width: 100%;
-      border-left: 2px solid #996515;
-    }
-    html.theme-light .speaker-note { color: #4B5563; }
-    html.theme-dark .speaker-note { color: rgba(255,255,255,0.65); border-left-color: #C5A059; }
-    .speaker-note p { font-size: 0.8rem; }
-    .speaker-tag {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.15rem;
-    }
-    html.theme-light .speaker-tag { color: #996515; }
-    html.theme-dark .speaker-tag { color: #C5A059; }
-
-    /* Ícones de linha */
-    .ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.14em; flex-shrink: 0; }
-
-    .speaker-note.hidden-notes {
-      display: none !important;
-    }
-
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(184, 134, 11, 0.3); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #996515; }
-  </style>
+#hint{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);font-size:12px;letter-spacing:.14em;color:var(--muted);transition:opacity 1s;z-index:10;white-space:nowrap}
+#hint b{font-weight:500;color:var(--ink)}
+</style>
 </head>
-<body class="w-screen h-screen flex flex-col justify-between">
+<body class="is-cover">
+<div id="viewport"><div id="stage">
 
-  <!-- TOP BAR DE NAVEGAÇÃO DA PALESTRA -->
-  <header class="fixed top-0 left-0 right-0 z-50 glass px-6 py-2.5 flex justify-between items-center text-xs border-b">
-    <div class="flex items-center gap-3">
-      <div class="flex items-center gap-2">
-        <img src="assets/logo.png" alt="Logo" class="w-6 h-6 object-contain">
-        <span class="font-serif text-lg tracking-widest font-bold app-text-title">MINERVA</span>
-      </div>
-      <span class="text-zinc-400">|</span>
-      <span id="slideTitleIndicator" class="app-text-gold uppercase tracking-wider font-semibold text-[11px]">
-        Apresentação Oficial da Plataforma
-      </span>
-    </div>
-
-    <!-- CONTROLES DE PALESTRA (INCLUINDO ALTERNADOR CLARO / ESCURO) -->
-    <div class="flex items-center gap-3">
-      
-      <!-- BOTÃO DE TEMA CLARO / ESCURO -->
-      <button onclick="toggleTheme()" id="themeToggleBtn" class="px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm app-border-subtle app-text-title">
-        <span id="themeIcon"></span><span id="themeLabel">Tema Claro</span>
-      </button>
-
-      <!-- BOTÃO PARA ATIVAR / OCULTAR ROTEIRO DO ORADOR -->
-      <button onclick="toggleSpeakerNotes()" id="speakerNotesToggleBtn" class="px-3 py-1 rounded-full text-xs font-semibold border transition-all flex items-center gap-1 hover:border-brand-gold glass">
-        <span id="speakerNotesLabel">Roteiro: ligado</span>
-      </button>
-
-      <span class="hidden lg:inline app-text-muted text-[11px]">
-        <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">→</kbd> Navegar • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">F</kbd> Tela Cheia • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">N</kbd> Roteiro
-      </span>
-
-      <button onclick="toggleFullScreen()" class="px-3 py-1 rounded-full text-xs font-semibold border transition-all flex items-center gap-1 hover:border-brand-gold">
-        <span>Tela Cheia</span>
-      </button>
-
-      <a href="index.html" class="app-text-muted hover:text-brand-gold text-xs transition-colors hidden sm:inline">
-        Menu Principal
-      </a>
-    </div>
-  </header>
-
-  <!-- BARRA DE PROGRESSO SUPERIOR -->
-  <div class="fixed top-[45px] left-0 w-full h-[3px] bg-zinc-200 dark:bg-zinc-900 z-50">
-    <div id="progressBar" class="h-full bg-brand-gold transition-all duration-300 w-[7.7%]"></div>
+<!-- 01 · CAPA -->
+<section class="slide active" data-title="Capa">
+  <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <img class="r" style="--d:0;width:96px;height:96px;object-fit:contain" src="assets/minerva-logo-gold.png" alt="Minerva">
+    <div class="r eyebrow" style="--d:1;margin-top:48px">Conheça o aplicativo</div>
+    <h1 class="r serif" style="--d:2;font-weight:300;font-size:220px;line-height:.95;letter-spacing:.02em;margin:26px 0 30px">Minerva</h1>
+    <p class="r serif" style="--d:3;font-style:italic;font-weight:300;font-size:40px;color:var(--muted)">Um lugar para crescer entre mulheres que lideram.</p>
   </div>
-
-  <!-- CONTAINER CENTRAL DOS SLIDES -->
-  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-16 pb-16 flex items-center justify-center">
-
-    <!-- ================= SLIDE 1: CAPA OFICIAL ================= -->
-    <section class="slide active flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Capa Oficial">
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note max-w-xl mx-auto mb-4 text-left">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Vocês já conhecem a proposta da Minerva. Agora quero mostrar, tela por tela, como é o app por dentro — exatamente o que vocês vão usar no dia a dia a partir de agora."</p>
-        </div>
-      </div>
-
-      <div class="w-24 h-24 rounded-full border border-brand-gold/40 p-2 mb-4 shadow-sm flex items-center justify-center glass">
-        <img src="assets/logo.png" alt="Minerva Logo" class="w-16 h-16 object-contain">
-      </div>
-      <div class="app-text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
-        Plataforma Digital Exclusiva
-      </div>
-      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal leading-tight mb-3 app-text-title">
-        MINERVA
-      </h1>
-      <p class="text-lg sm:text-xl app-text-muted font-light max-w-2xl leading-relaxed mb-6">
-        Conheça por dentro o ecossistema fechado de aceleração, mentoria e liderança executiva feminina.
-      </p>
-      <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full glass text-xs tracking-widest app-text-gold uppercase font-semibold">
-        <span>Demonstração Completa de Todos os Módulos do App</span>
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 2: TELA INÍCIO (DASHBOARD REAL) ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Tela Inicial / Dashboard">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">01 / Por Dentro do App</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Dashboard do Usuário</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Essa é a primeira tela ao abrir o app: o painel com seu nível na comunidade, suas conexões, mensagens e os próximos compromissos — já sincronizados com a sua agenda."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-7 shadow-sm space-y-6">
-        
-        <div class="glass p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-5">
-            <div class="relative">
-              <img src="assets/beatriz.jpg" alt="Beatriz" class="w-16 h-16 rounded-full object-cover border-2 border-brand-gold">
-              <div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></div>
-            </div>
-            <div>
-              <p class="app-text-muted text-xs font-light">Bom dia, bem-vinda de volta</p>
-              <h3 class="text-2xl font-serif app-text-title mt-0.5">Beatriz Vasconcelos</h3>
-              <div class="flex items-center gap-2 mt-1.5 text-xs app-text-gold">
-                <span>1.450 pontos</span>
-                <span class="opacity-40">|</span>
-                <span>Nível 5 (Conselheira)</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="bg-brand-gold/15 text-brand-gold border border-brand-gold/30 text-xs px-3.5 py-1.5 rounded-full font-semibold">
-              Membro Fundadora VIP
-            </span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold"><i data-lucide="trending-up" class="ico"></i> Networking</span>
-            <p class="text-3xl font-serif app-text-title mt-2">48</p>
-            <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Conexões Ativas</p>
-          </div>
-          <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold"><i data-lucide="calendar" class="ico"></i> Eventos</span>
-            <p class="text-3xl font-serif app-text-title mt-2">04</p>
-            <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Confirmados</p>
-          </div>
-          <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold"><i data-lucide="heart" class="ico"></i> Curtidas</span>
-            <p class="text-3xl font-serif app-text-title mt-2">382</p>
-            <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Engajamento Total</p>
-          </div>
-          <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold"><i data-lucide="award" class="ico"></i> Mentorias</span>
-            <p class="text-3xl font-serif app-text-title mt-2">12h</p>
-            <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Sessões Concluídas</p>
-          </div>
-        </div>
-
-        <div class="glass p-4 rounded-xl space-y-3">
-          <div class="flex justify-between items-center text-xs">
-            <span class="font-serif text-lg app-text-title">Próximos Eventos Exclusivos</span>
-            <span class="app-text-gold text-xs font-semibold">Ver calendário completo →</span>
-          </div>
-          <div class="flex items-center justify-between p-3 rounded-lg border app-border-subtle bg-black/5 dark:bg-black/40">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-brand-gold/15 text-brand-gold flex flex-col items-center justify-center font-bold text-xs">
-                <span>28</span>
-                <span class="text-[8px] uppercase">NOV</span>
-              </div>
-              <div>
-                <h5 class="text-xs font-semibold app-text-title">Jantar Privativo de Negócios</h5>
-                <p class="text-[11px] app-text-muted">Restaurante Fasano • Presencial Exclusivo</p>
-              </div>
-            </div>
-            <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded font-semibold">Sincronizado na Agenda ✓</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 3: MENSAGENS E CHAT ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mensagens & Negociações">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">02 / Trocas Diretas</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Mensagens & Conversas de Negócios</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Aqui ficam as mensagens. Conversas diretas e privadas com outras integrantes — é por aqui que as conexões viram parcerias e negócios."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-0 shadow-sm flex flex-col md:flex-row h-[420px] overflow-hidden">
-        
-        <div class="w-full md:w-1/3 border-r app-border-subtle p-4 flex flex-col justify-between bg-black/[0.02] dark:bg-black/50">
-          <div class="space-y-3">
-            <div class="flex justify-between items-center">
-              <h3 class="text-xl font-serif app-text-title">Mensagens</h3>
-              <span class="text-[10px] bg-brand-gold/20 text-brand-gold px-2 py-0.5 rounded font-mono font-bold">Direto</span>
-            </div>
-
-            <div class="border app-border-subtle rounded-xl p-2.5 flex items-center justify-between glass">
-              <div class="flex items-center gap-2.5">
-                <div class="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs">
-                  <i data-lucide="bell" class="ico"></i>
-                </div>
-                <div>
-                  <h5 class="app-text-title text-xs font-medium">Solicitações Novas</h5>
-                  <p class="app-text-muted text-[9px]">2 executivas aguardando conexão</p>
-                </div>
-              </div>
-              <div class="w-4 h-4 rounded-full bg-brand-gold text-white text-[9px] font-bold flex items-center justify-center">
-                2
-              </div>
-            </div>
-
-            <div class="relative">
-              <input type="text" placeholder="Buscar conversas..." class="w-full border app-border-subtle rounded-full py-1.5 pl-8 pr-3 text-xs app-text-title placeholder:text-zinc-400 bg-white/50 dark:bg-white/5 focus:outline-none focus:border-brand-gold">
-              <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 text-xs"><i data-lucide="search" class="ico"></i></span>
-            </div>
-
-            <div class="space-y-1 pt-1">
-              <div id="contact-carolina" onclick="selectContact('carolina')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl border border-transparent hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors">
-                <div class="relative">
-                  <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover">
-                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
-                </div>
-                <div class="flex-1 overflow-hidden text-left">
-                  <div class="flex justify-between items-center">
-                    <h5 class="app-text-title text-xs font-semibold truncate">Carolina Albuquerque</h5>
-                    <span class="text-[9px] app-text-muted font-mono">11:42</span>
-                  </div>
-                  <p class="app-text-gold text-[9px] uppercase tracking-widest truncate font-medium">Co-Founder & Investidora</p>
-                  <p class="app-text-muted text-[10px] truncate">Já reservei o jantar Fasano na quinta...</p>
-                </div>
-              </div>
-
-              <div id="contact-giulia" onclick="selectContact('giulia')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl border border-transparent hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors">
-                <div class="relative">
-                  <img src="assets/giulia.jpg" alt="Giulia" class="w-10 h-10 rounded-full object-cover">
-                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
-                </div>
-                <div class="flex-1 overflow-hidden text-left">
-                  <div class="flex justify-between items-center">
-                    <h5 class="app-text-title text-xs font-semibold truncate">Giulia Ferrari</h5>
-                    <span class="text-[9px] app-text-muted font-mono">10:15</span>
-                  </div>
-                  <p class="app-text-gold text-[9px] uppercase tracking-widest truncate font-medium">Sócia & Mentora</p>
-                  <p class="app-text-muted text-[10px] truncate">A mentoria caiu direto na Apple Agenda...</p>
-                </div>
-              </div>
-
-              <div id="contact-fernanda" onclick="selectContact('fernanda')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl border border-transparent hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors">
-                <div class="relative">
-                  <div class="w-10 h-10 rounded-full bg-zinc-700 text-white font-serif font-bold flex items-center justify-center text-xs border border-brand-gold">
-                    FL
-                  </div>
-                  <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
-                </div>
-                <div class="flex-1 overflow-hidden text-left">
-                  <div class="flex justify-between items-center">
-                    <h5 class="app-text-title text-xs font-semibold truncate">Fernanda Lima</h5>
-                    <span class="text-[9px] app-text-muted font-mono">Ontem</span>
-                  </div>
-                  <p class="app-text-gold text-[9px] uppercase tracking-widest truncate font-medium">Diretora de M&A</p>
-                  <p class="app-text-muted text-[10px] truncate">Vamos marcar o alinhamento de expansão...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-[10px] app-text-muted text-center pt-2 border-t app-border-subtle">
-            <i data-lucide="lock" class="ico"></i> Mensagens criptografadas de ponta a ponta
-          </div>
-        </div>
-
-        <div class="flex-1 flex flex-col justify-between">
-          
-          <div class="p-3.5 border-b app-border-subtle flex items-center justify-between glass">
-            <div class="flex items-center gap-3">
-              <img id="chatHeaderAvatar" src="assets/carolina.jpg" alt="Avatar" class="w-9 h-9 rounded-full object-cover border border-brand-gold">
-              <div>
-                <h4 id="chatHeaderName" class="app-text-title text-xs font-bold">Carolina Albuquerque</h4>
-                <p class="text-emerald-600 dark:text-emerald-400 text-[10px] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online agora
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <span id="chatHeaderTag" class="text-[10px] bg-brand-gold/15 text-brand-gold px-2.5 py-1 rounded-full font-medium">
-                Pacto de Sócios • Rodada Seed
-              </span>
-            </div>
-          </div>
-
-          <div id="slideChatMessages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4"></div>
-
-          <form onsubmit="handleSendSlideChat(event)" class="p-3 border-t app-border-subtle flex items-center gap-2 glass">
-            <input id="slideChatInput" type="text" placeholder="Envie uma mensagem em tempo real para demonstrar na palestra..." class="flex-1 border app-border-subtle rounded-xl px-3.5 py-2 text-xs app-text-title placeholder:text-zinc-400 bg-white/70 dark:bg-white/5 focus:outline-none focus:border-brand-gold">
-            <button type="submit" class="bg-brand-gold hover:opacity-90 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-md">
-              Enviar
-            </button>
-          </form>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 4: COMUNIDADES & GRUPOS ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Comunidades & Grupos">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">03 / Conversas em Grupo</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Comunidades & Grupos Temáticos</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Nas Comunidades vocês entram nas salas do seu setor — Tecnologia, Franquias, Varejo, Saúde, Governança — e trocam bastidores com quem vive os mesmos desafios."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-4">
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <div class="glass p-5 rounded-2xl border border-brand-gold/40 space-y-3 bg-brand-gold/5">
-            <div class="flex justify-between items-center">
-              <span class="text-2xl app-text-gold"><i data-lucide="zap" class="ico"></i></span>
-              <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">142 membros</span>
-            </div>
-            <div>
-              <h4 class="text-base font-bold app-text-title">Tech, Startups & Inovação</h4>
-              <p class="text-xs app-text-muted mt-1">Discussões sobre novos modelos de negócios, captação, inteligência artificial e parcerias digitais.</p>
-            </div>
-            <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
-              <span class="app-text-gold font-semibold">Mensagem fixada <i data-lucide="pin" class="ico"></i></span>
-              <span class="app-text-muted">Ativo agora</span>
-            </div>
-          </div>
-
-          <div class="glass p-5 rounded-2xl space-y-3 hover:border-brand-gold/30 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-2xl app-text-gold"><i data-lucide="landmark" class="ico"></i></span>
-              <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-mono font-bold">98 membros</span>
-            </div>
-            <div>
-              <h4 class="text-base font-bold app-text-title">Governança & Conselhos</h4>
-              <p class="text-xs app-text-muted mt-1">Troca entre conselheiras de administração, comitês executivos, auditoria e sucessão patrimonial.</p>
-            </div>
-            <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
-              <span class="app-text-gold font-semibold">Grupo Fechado</span>
-              <span class="app-text-muted">5 novas msgs</span>
-            </div>
-          </div>
-
-          <div class="glass p-5 rounded-2xl space-y-3 hover:border-brand-gold/30 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-2xl app-text-gold"><i data-lucide="gem" class="ico"></i></span>
-              <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-mono font-bold">156 membros</span>
-            </div>
-            <div>
-              <h4 class="text-base font-bold app-text-title">Varejo, Franquias & Saúde</h4>
-              <p class="text-xs app-text-muted mt-1">Estratégias de expansão de clínicas, franquias, marcas de varejo e contratação de lideranças.</p>
-            </div>
-            <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
-              <span class="app-text-gold font-semibold">Grupo Fechado</span>
-              <span class="app-text-muted">12 novas msgs</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="p-4 rounded-xl border app-border-subtle flex items-center justify-between glass">
-          <div class="flex items-center gap-3">
-            <span class="text-brand-gold"><i data-lucide="lock" class="ico"></i></span>
-            <p class="text-xs app-text-muted">Ambiente 100% blindado contra autopromoção invasiva e spam. Só membros verificados pelo conselho.</p>
-          </div>
-          <span class="text-xs app-text-gold font-semibold">Moderação Ativa</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 5: AGENDA CONECTADA ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Agenda Conectada (Google & Apple)">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">04 / Diferencial de Produtividade</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Agenda Conectada & Sincronizada</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"A agenda do app é conectada ao Google Agenda e ao Apple Calendar. Confirmou um evento, mentoria ou jantar? Ele já aparece direto no calendário do seu celular."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-6 sm:p-8 shadow-sm space-y-6">
-        
-        <div class="p-5 rounded-2xl bg-brand-gold/10 border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center text-2xl font-bold">
-              <i data-lucide="refresh-cw" class="ico"></i>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <h4 class="text-base font-bold app-text-title">Sincronização Ativa em Tempo Real</h4>
-                <span class="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full">CONECTADO</span>
-              </div>
-              <p class="text-xs app-text-muted mt-1">
-                Eventos, jantares e mentorias confirmadas no Minerva entram <strong>automaticamente</strong> no seu Google Agenda ou Apple Agenda.
-              </p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="px-3 py-1.5 rounded-lg border app-border-subtle text-xs font-semibold app-text-title flex items-center gap-1.5 glass">
-              <span><i data-lucide="calendar" class="ico"></i> Google Agenda</span>
-              <span class="text-emerald-500 font-bold">✓</span>
-            </div>
-            <div class="px-3 py-1.5 rounded-lg border app-border-subtle text-xs font-semibold app-text-title flex items-center gap-1.5 glass">
-              <span><i data-lucide="smartphone" class="ico"></i> Apple Calendar</span>
-              <span class="text-emerald-500 font-bold">✓</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <div class="glass p-4 rounded-xl space-y-2">
-            <div class="flex justify-between items-center text-[10px]">
-              <span class="app-text-gold font-bold uppercase tracking-wider">Mentoria 1-on-1</span>
-              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Sincronizado ✓</span>
-            </div>
-            <h5 class="text-sm font-semibold app-text-title">Estratégia de Escala & Canais B2B</h5>
-            <p class="text-xs app-text-muted">Com Carolina Albuquerque • 16:00 às 17:00</p>
-            <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
-              <span><i data-lucide="bell" class="ico"></i> Lembrete 30 min antes no celular</span>
-            </div>
-          </div>
-
-          <div class="glass p-4 rounded-xl space-y-2">
-            <div class="flex justify-between items-center text-[10px]">
-              <span class="app-text-gold font-bold uppercase tracking-wider">Jantar Exclusivo</span>
-              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Sincronizado ✓</span>
-            </div>
-            <h5 class="text-sm font-semibold app-text-title">Encontro Presencial Fasano</h5>
-            <p class="text-xs app-text-muted">Com Fundadoras & Líderes • 19:30</p>
-            <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
-              <span><i data-lucide="map-pin" class="ico"></i> Endereço anexado ao calendário</span>
-            </div>
-          </div>
-
-          <div class="glass p-4 rounded-xl space-y-2">
-            <div class="flex justify-between items-center text-[10px]">
-              <span class="app-text-gold font-bold uppercase tracking-wider">Masterclass Online</span>
-              <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Sincronizado ✓</span>
-            </div>
-            <h5 class="text-sm font-semibold app-text-title">Estratégias de Crescimento para Líderes</h5>
-            <p class="text-xs app-text-muted">Ao vivo no app • 20:00</p>
-            <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
-              <span><i data-lucide="link" class="ico"></i> Link de acesso adicionado ao convite</span>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 6: NETWORKING E MATCHMAKING ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Networking e Conexões C-Level">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">05 / Conexões Estratégicas</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Networking & Matchmaking C-Level</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"No Networking vocês filtram integrantes por setor, faturamento e momento do negócio, e pedem conexão com um toque. É assim que vocês encontram as pessoas certas."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-5">
-        
-        <div class="glass p-3 rounded-xl flex flex-col sm:flex-row gap-3">
-          <div class="relative flex-1">
-            <input type="text" value="Tecnologia, Saúde, Varejo & Finanças" readonly class="w-full border app-border-subtle rounded-full py-2 pl-9 pr-4 text-xs app-text-gold font-medium bg-black/5 dark:bg-black/30">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs"><i data-lucide="search" class="ico"></i></span>
-          </div>
-          <div class="flex gap-2">
-            <span class="bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs px-3.5 py-1.5 rounded-full font-medium">
-              Filtro: Faturamento > R$ 5M/ano
-            </span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <div class="glass p-5 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <img src="assets/carolina.jpg" alt="Carolina" class="w-12 h-12 rounded-full object-cover border-2 border-brand-gold">
-                <div>
-                  <h4 class="text-sm font-semibold app-text-title">Carolina Albuquerque</h4>
-                  <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Venture Capital & Inovação</p>
-                </div>
-              </div>
-              <p class="text-xs app-text-muted leading-relaxed">
-                Investidora e mentora de empresas em expansão nacional nos setores de tecnologia e saúde.
-              </p>
-            </div>
-            <div class="pt-4 border-t app-border-subtle flex items-center justify-between">
-              <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">Compatibilidade: 98%</span>
-              <button class="bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full">
-                Conectada ✓
-              </button>
-            </div>
-          </div>
-
-          <div class="glass p-5 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <img src="assets/giulia.jpg" alt="Giulia" class="w-12 h-12 rounded-full object-cover border-2 border-brand-gold">
-                <div>
-                  <h4 class="text-sm font-semibold app-text-title">Giulia Ferrari</h4>
-                  <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Estratégia & Escala</p>
-                </div>
-              </div>
-              <p class="text-xs app-text-muted leading-relaxed">
-                Especialista em governança, crescimento de margem e estruturação de franquias e B2B.
-              </p>
-            </div>
-            <div class="pt-4 border-t app-border-subtle flex items-center justify-between">
-              <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">Compatibilidade: 95%</span>
-              <button class="bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full">
-                Conectada ✓
-              </button>
-            </div>
-          </div>
-
-          <div class="glass p-5 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
-            <div class="space-y-3">
-              <div class="w-12 h-12 rounded-full bg-zinc-700 text-white font-serif font-bold flex items-center justify-center text-sm border-2 border-brand-gold">
-                FL
-              </div>
-              <div>
-                <h4 class="text-sm font-semibold app-text-title">Fernanda Lima</h4>
-                <p class="text-[10px] app-text-gold uppercase tracking-widest font-medium">Diretora de Operações & M&A</p>
-              </div>
-              <p class="text-xs app-text-muted leading-relaxed">
-                Liderança de fusões, expansão e novos mercados corporativos há mais de 15 anos.
-              </p>
-            </div>
-            <div class="pt-4 border-t app-border-subtle flex items-center justify-between">
-              <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold">Compatibilidade: 91%</span>
-              <button onclick="this.textContent = 'Solicitado ✓'; this.className = 'bg-emerald-500/15 text-emerald-600 border border-emerald-500/40 text-xs px-3 py-1 rounded-full font-bold';" class="bg-brand-gold hover:opacity-90 text-white text-xs font-bold px-3 py-1 rounded-full transition-all">
-                Conectar
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 7: FEED DA COMUNIDADE (NOVO CONHECIMENTO COMPARTILHADO QUE BRILHA OS OLHOS) ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Feed Fechado • Conhecimento de Bastidor">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">06 / Conhecimento Privativo de Alto Impacto</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Feed da Comunidade — Sabedoria Real</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"O Feed é onde as integrantes compartilham conquistas e aprendizados reais — como fecharam um contrato, como cresceram a margem. Conteúdo de bastidor, sem ruído."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-4 max-h-[430px] overflow-y-auto">
-        
-        <!-- Post 1: Bastidores de Vendas B2B e Fechamento High-Ticket -->
-        <div class="glass p-5 rounded-2xl space-y-3 border hover:border-brand-gold/40 transition-all">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <img src="assets/carolina.jpg" alt="Carolina" class="w-11 h-11 rounded-full object-cover border-2 border-brand-gold">
-              <div>
-                <h4 class="text-sm font-bold app-text-title">Carolina Albuquerque</h4>
-                <p class="text-[10px] app-text-muted">Co-Founder & Investidora • há 2 horas</p>
-              </div>
-            </div>
-            <span class="text-[10px] bg-brand-gold/15 text-brand-gold border border-brand-gold/30 px-3 py-1 rounded-full font-bold">
-              <i data-lucide="lightbulb" class="ico"></i> Bastidores B2B • Fechamento High-Ticket
-            </span>
-          </div>
-          
-          <div class="text-xs app-text-title space-y-2 leading-relaxed">
-            <p class="font-semibold text-sm app-text-gold">
-              Como fechamos uma parceria corporativa de R$ 850 mil sem fazer uma única ligação fria:
-            </p>
-            <p>
-              Em vez de gastar meses tentando vender por e-mails com quem não tem poder de decisão, levamos nossa proposta de serviços corporativos direto para uma das mesas redondas do Minerva. Sentamos lado a lado com a Diretora Geral de Operações.
-            </p>
-            <p>
-              Em 3 semanas o contrato estava assinado. Ter o selo e a credibilidade de um ecossistema executivo qualificado abre portas comerciais que nenhuma publicidade fria consegue abrir.
-            </p>
-            <p class="text-[11px] p-2.5 rounded-lg bg-black/5 dark:bg-black/30 border app-border-subtle font-mono text-emerald-600 dark:text-emerald-400">
-              Subi na nossa Biblioteca o roteiro de proposta comercial que usamos para fechar contratos de múltiplos 6 dígitos!
-            </p>
-          </div>
-
-          <div class="flex items-center gap-6 pt-3 border-t app-border-subtle text-xs app-text-muted">
-            <span class="app-text-muted font-semibold"><i data-lucide="heart" class="ico"></i> 184 curtidas</span>
-            <span><i data-lucide="message-circle" class="ico"></i> 42 comentários de executivas</span>
-            <span class="app-text-gold font-semibold"><i data-lucide="handshake" class="ico"></i> 92 parcerias geradas</span>
-          </div>
-        </div>
-
-        <!-- Post 2: Gestão, Escala e Delegação Prática -->
-        <div class="glass p-5 rounded-2xl space-y-3 border hover:border-brand-gold/40 transition-all">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <img src="assets/giulia.jpg" alt="Giulia" class="w-11 h-11 rounded-full object-cover border-2 border-brand-gold">
-              <div>
-                <h4 class="text-sm font-bold app-text-title">Giulia Ferrari</h4>
-                <p class="text-[10px] app-text-muted">Sócia & Mentora de Escala • há 5 horas</p>
-              </div>
-            </div>
-            <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full font-bold">
-              <i data-lucide="trending-up" class="ico"></i> Gestão & Escala de Negócios
-            </span>
-          </div>
-
-          <div class="text-xs app-text-title space-y-2 leading-relaxed">
-            <p class="font-semibold text-sm app-text-gold">
-              Estratégia prática: Como aumentei a margem líquida da empresa em 28% saindo do operacional:
-            </p>
-            <p>
-              Eu passava 14 horas por dia apagando incêndios e centralizando decisões de equipe. Nas trocas aqui no Minerva, reestruturei meus gerentes diretos e criamos rituais semanais de decisão de 20 minutos.
-            </p>
-            <p>
-              O faturamento cresceu 35% no trimestre e eu recuperei meus finais de semana para focar exclusivamente em novos negócios e parcerias estratégicas. O maior gargalo de um negócio em expansão costuma ser a própria fundadora presa na rotina.
-            </p>
-          </div>
-
-          <div class="flex items-center gap-6 pt-3 border-t app-border-subtle text-xs app-text-muted">
-            <span class="app-text-muted font-semibold"><i data-lucide="heart" class="ico"></i> 210 curtidas</span>
-            <span><i data-lucide="message-circle" class="ico"></i> 56 discussões aplicadas</span>
-            <span class="app-text-gold font-semibold"><i data-lucide="calendar" class="ico"></i> Sincronizado na Agenda</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 8: MARKETPLACE & LOJA OFICIAL ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Marketplace & Loja Oficial">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">07 / Ecossistema Comercial</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Marketplace & Loja Oficial Minerva</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Na Loja vocês encontram os itens oficiais da marca, e no Marketplace podem contratar serviços e consultorias das próprias integrantes — ou oferecer os seus."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-5">
-        
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b app-border-subtle">
-          <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto text-xs">
-            <button class="px-3.5 py-1.5 rounded-full bg-brand-gold text-white font-bold">Todas</button>
-            <button class="px-3.5 py-1.5 rounded-full border app-border-subtle app-text-muted hover:text-black">Consultorias</button>
-            <button class="px-3.5 py-1.5 rounded-full border app-border-subtle app-text-muted hover:text-black">Serviços B2B</button>
-            <button class="px-3.5 py-1.5 rounded-full border app-border-subtle app-text-muted hover:text-black">Artigos Oficiais</button>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs text-emerald-600 dark:text-emerald-400 font-mono font-semibold">Selo de Idoneidade Garantido ✓</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <div class="glass p-4 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
-            <div class="space-y-3">
-              <div class="h-32 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-3 flex flex-col justify-between border border-brand-gold/30 relative overflow-hidden">
-                <span class="text-[9px] bg-brand-gold text-white font-extrabold uppercase px-2 py-0.5 rounded w-max">Artigo Oficial</span>
-                <div class="text-center my-auto">
-                  <span class="text-3xl app-text-gold"><i data-lucide="book-open" class="ico"></i></span>
-                  <div class="text-xs font-serif app-text-gold mt-1 font-bold">Edição de Luxo 2026</div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center text-xs">
-                  <span class="app-text-gold font-bold">R$ 289,00</span>
-                  <span class="text-[10px] text-yellow-600 font-bold">★ 5.0 (48)</span>
-                </div>
-                <h4 class="text-sm font-semibold app-text-title mt-1">Planner Executivo Minerva</h4>
-                <p class="text-[11px] app-text-muted mt-0.5">Encadernação artesanal em couro legítimo com metodologia de metas trimestrais.</p>
-              </div>
-            </div>
-            <button class="w-full mt-3 py-2 rounded-xl bg-brand-gold text-white font-bold text-xs hover:opacity-90 transition-all">
-              Comprar Agora
-            </button>
-          </div>
-
-          <div class="glass p-4 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
-            <div class="space-y-3">
-              <div class="h-32 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-3 flex flex-col justify-between border app-border-subtle relative overflow-hidden">
-                <span class="text-[9px] bg-black/10 dark:bg-white/10 app-text-title font-semibold uppercase px-2 py-0.5 rounded w-max border app-border-subtle">Consultoria</span>
-                <div class="flex items-center gap-2.5 my-auto">
-                  <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover border border-brand-gold">
-                  <div class="text-left">
-                    <p class="text-[10px] app-text-muted">Vendido por</p>
-                    <p class="text-xs font-bold app-text-title">Carolina Albuquerque</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center text-xs">
-                  <span class="app-text-gold font-bold">R$ 4.500,00</span>
-                  <span class="text-[10px] text-yellow-600 font-bold">★ 5.0 (19)</span>
-                </div>
-                <h4 class="text-sm font-semibold app-text-title mt-1">Consultoria de Posicionamento & B2B</h4>
-                <p class="text-[11px] app-text-muted mt-0.5">Diagnóstico executivo de processos, autoridade de mercado e aceleração de receita corporativa.</p>
-              </div>
-            </div>
-            <button class="w-full mt-3 py-2 rounded-xl border app-border-subtle hover:bg-brand-gold hover:text-white app-text-title font-bold text-xs transition-all">
-              Contratar Serviço
-            </button>
-          </div>
-
-          <div class="glass p-4 rounded-2xl flex flex-col justify-between border border-brand-gold/40 transition-all bg-brand-gold/5">
-            <div class="space-y-3">
-              <div class="h-32 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-3 flex flex-col justify-between border border-brand-gold/40 relative overflow-hidden">
-                <span class="text-[9px] bg-brand-gold text-white font-extrabold uppercase px-2 py-0.5 rounded w-max">Benefício Membro</span>
-                <div class="text-center my-auto">
-                  <span class="text-3xl app-text-gold"><i data-lucide="gem" class="ico"></i></span>
-                  <div class="text-xs font-serif app-text-gold mt-1 font-bold">Minerva Welcome Box</div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center text-xs">
-                  <span class="text-emerald-600 dark:text-emerald-400 font-bold uppercase text-[11px]">Gratuito para VIPs</span>
-                  <span class="text-[10px] text-yellow-600 font-bold">★ 5.0</span>
-                </div>
-                <h4 class="text-sm font-semibold app-text-title mt-1">Kit Boas-Vindas Fundadora</h4>
-                <p class="text-[11px] app-text-muted mt-0.5">Broche oficial banhado a ouro 18k, crachá digital NFT e convite físico para o Summit anual.</p>
-              </div>
-            </div>
-            <button class="w-full mt-3 py-2 rounded-xl bg-brand-gold text-white font-bold text-xs hover:opacity-90 transition-all">
-              Resgatar Benefício
-            </button>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 9: CLUBE DE BENEFÍCIOS ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Clube de Benefícios & Parcerias">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">08 / Vantagens Corporativas</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Clube de Benefícios Exclusivos</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Como integrantes, vocês têm acesso ao clube de benefícios: condições especiais em hotéis, restaurantes, coworkings e serviços parceiros."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-4">
-        
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          
-          <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-xl app-text-gold"><i data-lucide="hotel" class="ico"></i></span>
-              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">25% OFF</span>
-            </div>
-            <h4 class="text-sm font-bold app-text-title">Hotel Fasano</h4>
-            <p class="text-[11px] app-text-muted">Tarifa exclusiva para integrantes em todas as unidades nacionais.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Hotéis & Viagens</span>
-          </div>
-
-          <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-xl app-text-gold"><i data-lucide="utensils" class="ico"></i></span>
-              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">15% OFF</span>
-            </div>
-            <h4 class="text-sm font-bold app-text-title">Restaurante D.O.M.</h4>
-            <p class="text-[11px] app-text-muted">Desconto em jantares durante a semana e mesa VIP garantida.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Gastronomia</span>
-          </div>
-
-          <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-xl app-text-gold"><i data-lucide="credit-card" class="ico"></i></span>
-              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">CONDIÇÃO VIP</span>
-            </div>
-            <h4 class="text-sm font-bold app-text-title">Cartão Corporativo & Gestão</h4>
-            <p class="text-[11px] app-text-muted">Cashback corporativo de 1.5% e linha de crédito inteligente para despesas da sua empresa.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Finanças & Gestão</span>
-          </div>
-
-          <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-xl app-text-gold"><i data-lucide="briefcase" class="ico"></i></span>
-              <span class="text-xs bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-0.5 rounded-full font-bold">1 MÊS GRÁTIS</span>
-            </div>
-            <h4 class="text-sm font-bold app-text-title">WeWork Global</h4>
-            <p class="text-[11px] app-text-muted">Isenção na primeira mensalidade e acesso às salas de reunião.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Coworking</span>
-          </div>
-
-          <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-xl app-text-gold"><i data-lucide="tree-palm" class="ico"></i></span>
-              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">20% OFF</span>
-            </div>
-            <h4 class="text-sm font-bold app-text-title">Tamboré Retreat</h4>
-            <p class="text-[11px] app-text-muted">Retiro de networking em resort parceiro em Trancoso/BA.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Imersões</span>
-          </div>
-
-          <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
-            <div class="flex justify-between items-center">
-              <span class="text-xl app-text-gold"><i data-lucide="ticket" class="ico"></i></span>
-              <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">ENTRADA VIP</span>
-            </div>
-            <h4 class="text-sm font-bold app-text-title">Congresso Nacional</h4>
-            <p class="text-[11px] app-text-muted">Acesso exclusivo e lounge privativo reservado para membros Minerva.</p>
-            <span class="text-[10px] app-text-gold block pt-1 font-semibold">Eventos</span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 10: BIBLIOTECA & AULAS GRAVADAS ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Biblioteca & Aulas Gravadas">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">09 / Acervo de Conhecimento</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Biblioteca & Aulas Gravadas</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Na Biblioteca ficam os materiais: planilhas, playbooks, modelos prontos e aulas gravadas. Tudo liberado para vocês usarem no próprio negócio."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-5">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <div class="space-y-3">
-            <div class="flex justify-between items-center pb-2 border-b app-border-subtle">
-              <h4 class="text-base font-bold app-text-title flex items-center gap-2">
-                <span><i data-lucide="library" class="ico"></i></span> <span>Modelos & Documentos Exclusivos</span>
-              </h4>
-              <span class="text-[10px] app-text-gold font-mono font-bold">Downloads Ilimitados</span>
-            </div>
-
-            <div class="space-y-2">
-              <div class="glass p-3 rounded-xl flex items-center justify-between border">
-                <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold"><i data-lucide="file-text" class="ico"></i></span>
-                  <div>
-                    <h5 class="text-xs font-semibold app-text-title">Playbook de Precificação & Vendas B2B High-Ticket</h5>
-                    <p class="text-[10px] app-text-muted">PDF + Roteiro Editável • 28 páginas</p>
-                  </div>
-                </div>
-                <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
-                  Baixar <i data-lucide="download" class="ico"></i>
-                </button>
-              </div>
-
-              <div class="glass p-3 rounded-xl flex items-center justify-between border">
-                <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold"><i data-lucide="chart-column" class="ico"></i></span>
-                  <div>
-                    <h5 class="text-xs font-semibold app-text-title">Planilha Financeira de Valuation, DRE & Margem</h5>
-                    <p class="text-[10px] app-text-muted">Excel com fórmulas automáticas de projeção</p>
-                  </div>
-                </div>
-                <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
-                  Baixar <i data-lucide="download" class="ico"></i>
-                </button>
-              </div>
-
-              <div class="glass p-3 rounded-xl flex items-center justify-between border">
-                <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold"><i data-lucide="crown" class="ico"></i></span>
-                  <div>
-                    <h5 class="text-xs font-semibold app-text-title">Matriz de Delegação, OKRs & Rituais de Liderança</h5>
-                    <p class="text-[10px] app-text-muted">Guia prático para estruturar gerentes e descentralizar</p>
-                  </div>
-                </div>
-                <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
-                  Baixar <i data-lucide="download" class="ico"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex justify-between items-center pb-2 border-b app-border-subtle">
-              <h4 class="text-base font-bold app-text-title flex items-center gap-2">
-                <span><i data-lucide="circle-play" class="ico"></i></span> <span>Masterclasses em Vídeo (Academy)</span>
-              </h4>
-              <span class="text-[10px] app-text-gold font-mono font-bold">60+ Horas Gravadas</span>
-            </div>
-
-            <div class="space-y-2">
-              <div class="glass p-3 rounded-xl flex items-center justify-between border">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-black/10 dark:bg-zinc-800 flex items-center justify-center text-brand-gold font-bold">
-                    ▶
-                  </div>
-                  <div>
-                    <h5 class="text-xs font-semibold app-text-title">Estratégias de Expansão & Escala de Negócios</h5>
-                    <p class="text-[10px] app-text-muted">Com Beatriz Vasconcelos • 1h 45min</p>
-                  </div>
-                </div>
-                <span class="text-[10px] bg-brand-gold/15 text-brand-gold px-2 py-0.5 rounded font-bold">Concluída</span>
-              </div>
-
-              <div class="glass p-3 rounded-xl flex items-center justify-between border">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-black/10 dark:bg-zinc-800 flex items-center justify-center text-brand-gold font-bold">
-                    ▶
-                  </div>
-                  <div>
-                    <h5 class="text-xs font-semibold app-text-title">Captação de Investimento e Parcerias B2B</h5>
-                    <p class="text-[10px] app-text-muted">Com Carolina Albuquerque • 2h 10min</p>
-                  </div>
-                </div>
-                <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-bold">Assistir</span>
-              </div>
-
-              <div class="glass p-3 rounded-xl flex items-center justify-between border">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-black/10 dark:bg-zinc-800 flex items-center justify-center text-brand-gold font-bold">
-                    ▶
-                  </div>
-                  <div>
-                    <h5 class="text-xs font-semibold app-text-title">Posicionamento de Autoridade no C-Level</h5>
-                    <p class="text-[10px] app-text-muted">Com Giulia Ferrari • 1h 20min</p>
-                  </div>
-                </div>
-                <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-bold">Assistir</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 11: MINERVA AI (3 AGENTES REAIS) ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Minerva AI (3 Agentes Reais)">
-      <div class="flex justify-between items-end mb-2">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">10 / Inteligência Própria</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Minerva AI — 3 Especialistas Integrados</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Essa é a Minerva AI, com 3 agentes: o Estrategista para planos de negócio, o Criador para textos e o Analista para números e relatórios. Vou fazer uma pergunta aqui para vocês verem."</p>
-        </div>
-      </div>
-
-      <div class="glass-card p-5 sm:p-6 shadow-sm flex flex-col justify-between h-[420px]">
-        
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b app-border-subtle">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-            <span class="text-sm font-bold app-text-gold">MINERVA AI</span>
-            <span class="text-xs app-text-muted">• Copiloto Executivo</span>
-          </div>
-
-          <div class="flex items-center gap-2 border app-border-subtle p-1 rounded-xl text-xs glass">
-            <button onclick="setRobot('estrategista')" id="robot-estrategista" class="robot-btn px-3 py-1 rounded-lg bg-brand-gold text-white font-bold flex items-center gap-1.5 transition-all">
-              <span><i data-lucide="brain" class="ico"></i></span> <span>Estrategista</span>
-            </button>
-            <button onclick="setRobot('criador')" id="robot-criador" class="robot-btn px-3 py-1 rounded-lg app-text-muted hover:text-black flex items-center gap-1.5 transition-all">
-              <span><i data-lucide="pen-line" class="ico"></i></span> <span>Criador</span>
-            </button>
-            <button onclick="setRobot('analista')" id="robot-analista" class="robot-btn px-3 py-1 rounded-lg app-text-muted hover:text-black flex items-center gap-1.5 transition-all">
-              <span><i data-lucide="chart-column" class="ico"></i></span> <span>Analista</span>
-            </button>
-          </div>
-        </div>
-
-        <div id="aiChatBox" class="flex-1 overflow-y-auto py-4 space-y-4"></div>
-
-        <div class="pt-3 border-t app-border-subtle flex items-center gap-2">
-          <button class="w-9 h-9 rounded-xl border app-border-subtle hover:bg-brand-gold hover:text-white flex items-center justify-center text-sm transition-colors glass" title="Comando de Voz">
-            <i data-lucide="mic" class="ico"></i>
-          </button>
-          <button class="w-9 h-9 rounded-xl border app-border-subtle hover:bg-brand-gold hover:text-white flex items-center justify-center text-sm transition-colors glass" title="Anexar Documento">
-            <i data-lucide="paperclip" class="ico"></i>
-          </button>
-          <input id="aiInteractiveInput" type="text" placeholder="Pergunte ao Estrategista sobre seu plano de negócio..." class="flex-1 border app-border-subtle rounded-xl px-4 py-2 text-xs app-text-title placeholder:text-zinc-400 bg-white/70 dark:bg-white/5 focus:outline-none focus:border-brand-gold">
-          <button onclick="handleSendAI()" class="bg-brand-gold hover:opacity-90 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all">
-            Consultar
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 12: MENTORIAS & SÓCIAS FUNDADORAS ================= -->
-    <section class="slide flex-col justify-center max-w-6xl mx-auto w-full" data-title="Mentorias Individuais">
-      <div class="flex justify-between items-end mb-4">
-        <div>
-          <span class="app-text-gold text-xs uppercase tracking-widest font-bold">11 / Mentoria Executiva</span>
-          <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Mentorias Individuais 1-on-1</h2>
-        </div>
-      </div>
-
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Aqui vocês agendam mentorias individuais com as sócias fundadoras. Escolhe o horário, confirma, e a sessão já cai na sua agenda."</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        
-        <div class="glass-card p-6 shadow-sm space-y-4">
-          <div class="h-44 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border app-border-subtle">
-            <img src="assets/beatriz.jpg" alt="Beatriz" class="w-full h-full object-cover object-top">
-          </div>
-          <div>
-            <h4 class="text-lg font-serif app-text-title">Beatriz Vasconcelos</h4>
-            <p class="text-xs app-text-gold uppercase tracking-wider font-semibold">Conselho & Estrutura Societária</p>
-            <p class="text-xs app-text-muted mt-2">Sessões 1-on-1 para reestruturação patrimonial e governança de alta gestão.</p>
-          </div>
-          <button class="w-full py-2.5 rounded-xl bg-brand-gold text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all">
-            Agendar na Minha Agenda ✓
-          </button>
-        </div>
-
-        <div class="glass-card p-6 shadow-sm space-y-4">
-          <div class="h-44 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border app-border-subtle">
-            <img src="assets/carolina.jpg" alt="Carolina" class="w-full h-full object-cover object-top">
-          </div>
-          <div>
-            <h4 class="text-lg font-serif app-text-title">Carolina Albuquerque</h4>
-            <p class="text-xs app-text-gold uppercase tracking-wider font-semibold">Captação & Venture Capital</p>
-            <p class="text-xs app-text-muted mt-2">Preparação de pitch, valuation, rodadas de investimento e relacionamento com fundos.</p>
-          </div>
-          <button class="w-full py-2.5 rounded-xl bg-brand-gold text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all">
-            Agendar na Minha Agenda ✓
-          </button>
-        </div>
-
-        <div class="glass-card p-6 shadow-sm space-y-4">
-          <div class="h-44 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border app-border-subtle">
-            <img src="assets/giulia.jpg" alt="Giulia" class="w-full h-full object-cover object-top">
-          </div>
-          <div>
-            <h4 class="text-lg font-serif app-text-title">Giulia Ferrari</h4>
-            <p class="text-xs app-text-gold uppercase tracking-wider font-semibold">Crescimento & Alianças</p>
-            <p class="text-xs app-text-muted mt-2">Criação de novos canais de receita B2B e posicionamento institucional premium.</p>
-          </div>
-          <button class="w-full py-2.5 rounded-xl bg-brand-gold text-white font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all">
-            Agendar na Minha Agenda ✓
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= SLIDE 13: CONCLUSÃO & ACESSO PARA A PLATÉIA ================= -->
-    <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Encerramento e Próximos Passos">
-      <!-- GUIA DE FALA NA PALESTRA -->
-      <div class="speaker-note max-w-xl mx-auto mb-4 text-left">
-        <div>
-          <span class="speaker-tag">Roteiro</span>
-          <p class="text-xs">"Esse é o app que vocês vão usar a partir de agora. Apontem a câmera para o QR Code para dar o próximo passo da sua entrada — qualquer dúvida, nossa equipe atende por ali."</p>
-        </div>
-      </div>
-
-      <div class="inline-block text-xs font-bold uppercase tracking-[0.25em] app-text-gold mb-4 font-bold">
-        Seu Próximo Passo
-      </div>
-      <h2 class="font-serif text-5xl sm:text-7xl font-normal app-text-title mb-6">
-        Bem-vinda ao Círculo Minerva
-      </h2>
-      <p class="text-base sm:text-xl app-text-muted max-w-xl mx-auto mb-8 leading-relaxed font-light">
-        Aponte a câmera para finalizar sua entrada e começar a usar o app.
-      </p>
-
-      <div class="p-7 rounded-3xl glass border border-brand-gold/40 shadow-sm flex flex-col sm:flex-row items-center gap-8 mb-6">
-        <div class="w-36 h-36 bg-white rounded-2xl p-2.5 flex items-center justify-center shadow-md">
-          <svg class="w-full h-full text-black" viewBox="0 0 100 100" fill="currentColor">
-            <rect x="0" y="0" width="30" height="30" fill="black"/>
-            <rect x="5" y="5" width="20" height="20" fill="white"/>
-            <rect x="10" y="10" width="10" height="10" fill="black"/>
-            <rect x="70" y="0" width="30" height="30" fill="black"/>
-            <rect x="75" y="5" width="20" height="20" fill="white"/>
-            <rect x="80" y="10" width="10" height="10" fill="black"/>
-            <rect x="0" y="70" width="30" height="30" fill="black"/>
-            <rect x="5" y="75" width="20" height="20" fill="white"/>
-            <rect x="10" y="80" width="10" height="10" fill="black"/>
-            <rect x="40" y="10" width="20" height="10" fill="black"/>
-            <rect x="40" y="30" width="10" height="40" fill="black"/>
-            <rect x="60" y="40" width="20" height="10" fill="black"/>
-            <rect x="55" y="60" width="25" height="15" fill="black"/>
-            <rect x="40" y="80" width="15" height="15" fill="black"/>
-            <rect x="80" y="75" width="15" height="20" fill="black"/>
-          </svg>
-        </div>
-        <div class="text-left space-y-2">
-          <div class="text-xs font-bold uppercase tracking-wider app-text-gold">Acesso Direto pelo WhatsApp</div>
-          <div class="text-3xl font-serif font-bold app-text-title">w.app/minerva</div>
-          <p class="text-xs app-text-muted">Nossa equipe acompanha sua entrada e tira qualquer dúvida.</p>
-        </div>
-      </div>
-
-      <div class="text-xs app-text-muted">
-        Obrigada pela presença • Minerva Platform Oficial
-      </div>
-    </section>
-
-  </main>
-
-  <!-- CONTROLES INFERIORES DOS SLIDES -->
-  <footer class="fixed bottom-0 left-0 right-0 z-50 glass px-6 sm:px-10 py-3 flex justify-between items-center text-xs border-t">
-    <div class="flex items-center gap-3">
-      <button onclick="prevSlide()" class="px-3.5 py-1.5 rounded-lg border app-border-subtle hover:bg-brand-gold hover:text-white transition-colors font-semibold glass">
-        ◀ Anterior
-      </button>
-      <button onclick="nextSlide()" class="px-4 py-1.5 rounded-lg bg-brand-gold text-white font-bold hover:opacity-90 transition-colors shadow-sm">
-        Próximo ▶
-      </button>
+</section>
+
+<!-- 02 · BOAS-VINDAS -->
+<section class="slide" data-title="Boas-vindas">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0">Boas-vindas</div>
+      <h2 class="r title" style="--d:1">Que bom ter<br><em>você</em> aqui.</h2>
+      <p class="r lead" style="--d:2">Vamos conhecer, com calma, como é estar dentro da Minerva.</p>
     </div>
-
-    <!-- CONTADOR DE SLIDES -->
-    <div class="font-mono text-sm tracking-wider flex items-center gap-2">
-      <span id="currentSlideNum" class="app-text-gold font-bold">01</span>
-      <span class="opacity-40">/</span>
-      <span id="totalSlidesNum" class="app-text-muted font-bold">13</span>
+    <div class="r" style="--d:3;display:grid;grid-template-columns:1fr 1fr;column-gap:64px;align-self:center">
+      <div class="idx">
+        <div><span>01</span>Início</div><div><span>02</span>Networking</div><div><span>03</span>Conversas</div><div><span>04</span>Comunidades</div><div><span>05</span>Agenda</div>
+      </div>
+      <div class="idx">
+        <div><span>06</span>Feed</div><div><span>07</span>Biblioteca</div><div><span>08</span>Minerva AI</div><div><span>09</span>Mentorias</div><div><span>10</span>Benefícios</div>
+      </div>
     </div>
-  </footer>
+  </div>
+  <style>
+    .idx div{display:flex;align-items:baseline;gap:22px;padding:20px 0;border-bottom:1px solid var(--line);font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--ink)}
+    .idx span{font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.14em;color:var(--gold);width:24px}
+  </style>
+</section>
 
-  <!-- JAVASCRIPT DE NAVEGAÇÃO, CHATS E ROBÔS IA -->
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    let currentSlide = 0;
-
-    document.getElementById('totalSlidesNum').textContent = String(totalSlides).padStart(2, '0');
-
-    function updateSlide() {
-      slides.forEach((slide, idx) => {
-        if (idx === currentSlide) {
-          slide.classList.add('active');
-          const title = slide.dataset.title || 'Apresentação Minerva';
-          document.getElementById('slideTitleIndicator').textContent = title;
-        } else {
-          slide.classList.remove('active');
-        }
-      });
-      document.getElementById('currentSlideNum').textContent = String(currentSlide + 1).padStart(2, '0');
-      const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
-      document.getElementById('progressBar').style.width = progressPercent + '%';
-    }
-
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlide();
-      }
-    }
-
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlide();
-      }
-    }
-
-    // Alternar Tema Claro / Escuro
-    let currentTheme = 'light';
-    function toggleTheme() {
-      const html = document.documentElement;
-      const themeBtn = document.getElementById('themeToggleBtn');
-      const themeIcon = document.getElementById('themeIcon');
-      const themeLabel = document.getElementById('themeLabel');
-
-      if (currentTheme === 'light') {
-        currentTheme = 'dark';
-        html.classList.remove('theme-light');
-        html.classList.add('theme-dark', 'dark');
-        themeIcon.textContent = '';
-        themeLabel.textContent = 'Tema Escuro';
-        themeBtn.className = 'px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm app-border-subtle app-text-title';
-      } else {
-        currentTheme = 'light';
-        html.classList.remove('theme-dark', 'dark');
-        html.classList.add('theme-light');
-        themeIcon.textContent = '';
-        themeLabel.textContent = 'Tema Claro';
-        themeBtn.className = 'px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm app-border-subtle app-text-title';
-      }
-    }
-
-    // Roteiro do Orador - Ativar / Ocultar
-    let speakerNotesVisible = true;
-    function toggleSpeakerNotes() {
-      speakerNotesVisible = !speakerNotesVisible;
-      const notes = document.querySelectorAll('.speaker-note');
-      notes.forEach(note => {
-        if (speakerNotesVisible) {
-          note.classList.remove('hidden-notes');
-        } else {
-          note.classList.add('hidden-notes');
-        }
-      });
-      const label = document.getElementById('speakerNotesLabel');
-      if (label) label.textContent = speakerNotesVisible ? 'Roteiro: ligado' : 'Roteiro: desligado';
-    }
-
-    // Teclado
-    document.addEventListener('keydown', (e) => {
-      if (e.target && e.target.tagName === 'INPUT') return;
-
-      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-        e.preventDefault();
-        nextSlide();
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault();
-        prevSlide();
-      } else if (e.key.toLowerCase() === 'f') {
-        toggleFullScreen();
-      } else if (e.key.toLowerCase() === 't') {
-        toggleTheme();
-      } else if (e.key.toLowerCase() === 'n') {
-        toggleSpeakerNotes();
-      }
-    });
-
-    // Touch Swipe
-    let touchStartX = 0;
-    document.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-    document.addEventListener('touchend', (e) => {
-      let touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) nextSlide();
-      if (touchEndX - touchStartX > 50) prevSlide();
-    });
-
-    function toggleFullScreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
-      }
-    }
-
-    // ================= DADOS E LÓGICA DE MENSAGENS =================
-    const conversationsData = {
-      carolina: {
-        name: 'Carolina Albuquerque',
-        role: 'Co-Founder & Investidora',
-        tag: 'Pacto de Sócios • Rodada Seed',
-        avatar: 'assets/carolina.jpg',
-        messages: [
-          { sender: 'them', text: 'Beatriz, você viu a nova rodada de conexões no setor de Tech? Já temos 3 fundadoras querendo co-investir com a gente.', time: '11:35' },
-          { sender: 'me', text: 'Vi sim, Carol! Marquei uma conversa preliminar com elas. Nosso alinhamento de governança já está 100% estruturado.', time: '11:38' },
-          { sender: 'them', text: 'Excelente! Como a Agenda do app sincroniza direto com o Google Calendar, já reservei nosso horário para quinta-feira às 18h no jantar exclusivo do Fasano. Nos vemos lá!', time: '11:42' }
-        ]
-      },
-      giulia: {
-        name: 'Giulia Ferrari',
-        role: 'Sócia & Mentora',
-        tag: 'Mentoria • Estruturação de Escala',
-        avatar: 'assets/giulia.jpg',
-        messages: [
-          { sender: 'them', text: 'Boa tarde, Bia! Preparei a estrutura da nossa mentoria sobre precificação de contratos corporativos.', time: '10:05' },
-          { sender: 'me', text: 'Maravilha, Giulia! Já subi nossa planilha na área de documentos. O Estrategista da Minerva AI até me deu um feedback prévio excelente.', time: '10:10' },
-          { sender: 'them', text: 'Que ótimo! O horário já caiu automaticamente na minha Apple Agenda conectada. Quinta às 14h começamos!', time: '10:15' }
-        ]
-      },
-      fernanda: {
-        name: 'Fernanda Lima',
-        role: 'Diretora de M&A',
-        tag: 'Expansão & FinTech',
-        avatar: null,
-        initials: 'FL',
-        messages: [
-          { sender: 'them', text: 'Beatriz, um prazer conectar por aqui! Vi sua apresentação no ecossistema e temos total sinergia de expansão.', time: 'Ontem' },
-          { sender: 'me', text: 'Olá Fernanda! Seja bem-vinda à nossa rede. Vamos marcar um café virtual para trocar sobre sinergias na área financeira?', time: 'Ontem' },
-          { sender: 'them', text: 'Com certeza! Vou solicitar o convite pela Agenda Conectada do app para sincronizar no nosso calendário.', time: 'Ontem' }
-        ]
-      }
-    };
-
-    let activeContactKey = 'carolina';
-
-    function selectContact(key) {
-      activeContactKey = key;
-      const data = conversationsData[key];
-
-      document.querySelectorAll('.contact-tab').forEach(el => {
-        el.classList.remove('bg-black/10', 'dark:bg-white/10', 'border-brand-gold/40');
-      });
-      const activeEl = document.getElementById('contact-' + key);
-      if (activeEl) activeEl.classList.add('bg-black/10', 'dark:bg-white/10', 'border-brand-gold/40');
-
-      document.getElementById('chatHeaderName').textContent = data.name;
-      document.getElementById('chatHeaderTag').textContent = data.tag;
-      const avatarEl = document.getElementById('chatHeaderAvatar');
-      if (data.avatar) {
-        avatarEl.src = data.avatar;
-        avatarEl.style.display = 'block';
-      } else {
-        avatarEl.src = 'assets/logo.png';
-      }
-
-      renderMessages();
-    }
-
-    function renderMessages() {
-      const chatBox = document.getElementById('slideChatMessages');
-      const data = conversationsData[activeContactKey];
-      chatBox.innerHTML = `
-        <div class="text-center">
-          <span class="text-[9px] app-text-muted uppercase tracking-widest px-3 py-1 rounded-full border app-border-subtle glass">
-            Hoje • Conversa Privativa
-          </span>
-        </div>
-      `;
-
-      data.messages.forEach(msg => {
-        const isMe = msg.sender === 'me';
-        const bubble = document.createElement('div');
-        bubble.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
-        bubble.innerHTML = `
-          <div class="max-w-[80%] rounded-2xl px-4 py-3 shadow-sm border ${isMe ? 'bg-brand-gold/15 border-brand-gold/40 app-text-title rounded-tr-sm' : 'glass border app-border-subtle app-text-title rounded-tl-sm'}">
-            <p class="text-xs leading-relaxed">${msg.text}</p>
-            <p class="text-[9px] mt-1.5 text-right ${isMe ? 'app-text-gold font-bold' : 'app-text-muted'}">${msg.time} ${isMe ? '✓✓' : ''}</p>
+<!-- 03 · INÍCIO -->
+<section class="slide" data-title="Início">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">01</span><span class="dash"></span>Início</div>
+      <h2 class="r title" style="--d:1">Tudo começa<br><em>aqui.</em></h2>
+      <p class="r lead" style="--d:2">Seus encontros, suas conexões e as novidades da comunidade em uma só tela.</p>
+      <div class="r keys" style="--d:3"><span>Encontros</span><span>Conexões</span><span>Progresso</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="appbar"><div class="lg"><img src="assets/minerva-logo-gold.png" alt="">MINERVA</div><i data-lucide="bell" class="ic mut" style="width:20px;height:20px"></i></div>
+        <div class="content">
+          <div class="card row" style="gap:14px;padding:16px">
+            <img class="av" src="assets/beatriz.jpg" style="width:58px;height:58px" alt="">
+            <div>
+              <p class="s11 mut" style="font-weight:300">Bom dia, bem-vinda de volta</p>
+              <p class="serif" style="font-size:23px;line-height:1.15;margin-top:2px">Beatriz Vasconcelos</p>
+              <p class="row s11 gold" style="gap:6px;margin-top:5px"><i data-lucide="award" class="ic" style="width:13px;height:13px"></i>1.450 pontos <span class="mut" style="opacity:.5">|</span> Nível 4</p>
+            </div>
           </div>
-        `;
-        chatBox.appendChild(bubble);
-      });
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    selectContact('carolina');
-
-    function handleSendSlideChat(e) {
-      e.preventDefault();
-      const input = document.getElementById('slideChatInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const now = new Date();
-      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
-
-      conversationsData[activeContactKey].messages.push({
-        sender: 'me',
-        text: text,
-        time: timeStr
-      });
-      input.value = '';
-      renderMessages();
-
-      setTimeout(() => {
-        let reply = "Perfeito, Beatriz! Já está alinhado na nossa agenda compartilhada do app.";
-        if (activeContactKey === 'carolina') reply = "Excelente! Acabei de adicionar as notas na pauta do nosso comitê. Nos vemos no Fasano!";
-        else if (activeContactKey === 'giulia') reply = "Maravilhoso! Vou revisar o material e nos falamos no horário marcado.";
-
-        conversationsData[activeContactKey].messages.push({
-          sender: 'them',
-          text: reply,
-          time: timeStr
-        });
-        renderMessages();
-      }, 700);
-    }
-
-    // ================= DADOS E LÓGICA DA MINERVA AI (3 ROBÔS) =================
-    const robotContents = {
-      estrategista: {
-        intro: "Olá, Beatriz. Sou o **Estrategista**. Analiso seu modelo de negócio, posicionamento e planos de expansão.",
-        userSample: "Como estruturar nossa expansão B2B mantendo a margem líquida acima de 35%?",
-        aiReply: "Para preservar a margem acima de 35%, recomendo: 1) Focar em contratos anuais pré-pagos com desconto de até 10%; 2) Criar pacotes de onboarding estruturados; 3) Conectar com as líderes do ecossistema que já operam com contratos enterprise."
-      },
-      criador: {
-        intro: "Olá, Beatriz. Sou o **Criador**. Escrevo posts executivos, discursos, comunicados e roteiros de autoridade.",
-        userSample: "Crie um post para o LinkedIn sobre liderança feminina no conselho de administração.",
-        aiReply: "Aqui está o rascunho: 'Estar no conselho não é apenas ocupar uma cadeira: é desenhar a rota do valuation com sabedoria e clareza decisória. Na Minerva, aprendemos que quando líderes fortes se conectam, o mercado se transforma...' (Deseja ajustar o tom para mais formal?)"
-      },
-      analista: {
-        intro: "Olá, Beatriz. Sou o **Analista**. Examino suas métricas financeiras, churn, LTV e CAC para relatórios de conselho.",
-        userSample: "Qual foi nossa taxa de retenção de membros deste trimestre?",
-        aiReply: "Sua retenção atingiu 94,2% no último trimestre (+3,1% vs trimestre anterior). O LTV médio subiu para R$ 18.400 com tempo de permanência de 14 meses. Os indicadores estão prontos para envio ao conselho."
-      }
-    };
-
-    let currentRobotKey = 'estrategista';
-
-    function setRobot(key) {
-      currentRobotKey = key;
-      document.querySelectorAll('.robot-btn').forEach(btn => {
-        btn.classList.remove('bg-brand-gold', 'text-white', 'font-bold');
-        btn.classList.add('app-text-muted');
-      });
-      const activeBtn = document.getElementById('robot-' + key);
-      if (activeBtn) {
-        activeBtn.classList.add('bg-brand-gold', 'text-white', 'font-bold');
-        activeBtn.classList.remove('app-text-muted');
-      }
-
-      const data = robotContents[key];
-      const chatBox = document.getElementById('aiChatBox');
-      chatBox.innerHTML = `
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-brand-gold text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
-            M
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="card"><i data-lucide="trending-up" class="ic gold" style="width:18px;height:18px"></i><p class="serif" style="font-size:26px;margin-top:8px">24</p><p class="s10 mut up">Networking</p></div>
+            <div class="card"><i data-lucide="calendar" class="ic gold" style="width:18px;height:18px"></i><p class="serif" style="font-size:26px;margin-top:8px">6</p><p class="s10 mut up">Eventos</p></div>
+            <div class="card"><i data-lucide="heart" class="ic gold" style="width:18px;height:18px"></i><p class="serif" style="font-size:26px;margin-top:8px">312</p><p class="s10 mut up">Curtidas totais</p></div>
+            <div class="card"><i data-lucide="award" class="ic gold" style="width:18px;height:18px"></i><p class="serif" style="font-size:26px;margin-top:8px">3</p><p class="s10 mut up">Mentorias</p></div>
           </div>
-          <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs app-text-title leading-relaxed max-w-[85%] border border-brand-gold/30">
-            ${data.intro}
+          <div class="between" style="margin-top:6px;align-items:flex-end">
+            <div><p class="serif" style="font-size:21px">Próximos eventos</p><p class="s11 mut">Masterclasses, jantares e encontros</p></div>
+            <span class="row s12 gold" style="gap:2px">Ver todos<i data-lucide="chevron-right" class="ic" style="width:14px;height:14px"></i></span>
+          </div>
+          <div class="card row" style="gap:14px">
+            <div style="width:50px;text-align:center;border-right:1px solid var(--a-border);padding-right:12px"><p class="serif" style="font-size:26px;line-height:1">03</p><p class="s10 gold up">Dez</p></div>
+            <div><p class="s14 w5">Jantar das Fundadoras</p><p class="row s11 mut" style="gap:4px;margin-top:3px"><i data-lucide="map-pin" class="ic" style="width:12px;height:12px"></i>São Paulo · 19h30</p></div>
           </div>
         </div>
+        <div class="nav"><div class="on"><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
 
-        <div class="flex items-start justify-end gap-3">
-          <div class="bg-brand-gold text-white font-semibold p-3.5 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[80%] shadow-md">
-            "${data.userSample}"
+<!-- 04 · NETWORKING -->
+<section class="slide" data-title="Networking">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">02</span><span class="dash"></span>Networking</div>
+      <h2 class="r title" style="--d:1">As pessoas <em>certas,</em><br>perto de você.</h2>
+      <p class="r lead" style="--d:2">Encontre mulheres do seu setor, da sua cidade e do seu momento.</p>
+      <div class="r keys" style="--d:3"><span>Setor</span><span>Cidade</span><span>Momento</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="content" style="padding-top:14px">
+          <div class="ph-head"><p class="ph-title">Networking</p><p class="s12 mut">Mulheres que somam com você</p><div class="ph-bar"></div></div>
+          <div class="pill"><i data-lucide="search" class="ic"></i>Buscar por nome, setor ou cidade</div>
+          <div class="row" style="gap:6px"><span class="chip on">Todas</span><span class="chip">Tecnologia</span><span class="chip">Saúde</span><span class="chip">Varejo</span></div>
+          <div class="card between">
+            <div class="row" style="gap:12px"><img class="av" src="assets/carolina.jpg" style="width:46px;height:46px" alt=""><div><p class="s14 w5">Carolina Albuquerque</p><p class="s11 mut">Fundadora · Tecnologia</p><p class="row s10 mut" style="gap:3px;margin-top:2px"><i data-lucide="map-pin" class="ic" style="width:11px;height:11px"></i>São Paulo</p></div></div>
+            <span class="btn-o">Conectar</span>
+          </div>
+          <div class="card between">
+            <div class="row" style="gap:12px"><img class="av" src="assets/giulia.jpg" style="width:46px;height:46px" alt=""><div><p class="s14 w5">Giulia Ferrari</p><p class="s11 mut">CEO · Varejo</p><p class="row s10 mut" style="gap:3px;margin-top:2px"><i data-lucide="map-pin" class="ic" style="width:11px;height:11px"></i>Curitiba</p></div></div>
+            <span class="row s11 mut" style="gap:4px"><i data-lucide="check" class="ic" style="width:13px;height:13px"></i>Conectadas</span>
+          </div>
+          <div class="card between">
+            <div class="row" style="gap:12px"><div class="ini s13" style="width:46px;height:46px">FL</div><div><p class="s14 w5">Fernanda Lima</p><p class="s11 mut">Diretora · Saúde</p><p class="row s10 mut" style="gap:3px;margin-top:2px"><i data-lucide="map-pin" class="ic" style="width:11px;height:11px"></i>Belo Horizonte</p></div></div>
+            <span class="btn-o">Conectar</span>
+          </div>
+          <div class="card between">
+            <div class="row" style="gap:12px"><div class="ini s13" style="width:46px;height:46px">MC</div><div><p class="s14 w5">Marina Costa</p><p class="s11 mut">Sócia · Serviços</p><p class="row s10 mut" style="gap:3px;margin-top:2px"><i data-lucide="map-pin" class="ic" style="width:11px;height:11px"></i>Recife</p></div></div>
+            <span class="btn-o">Conectar</span>
           </div>
         </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div class="on"><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
 
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-brand-gold text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
-            M
-          </div>
-          <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs app-text-title leading-relaxed max-w-[85%] border border-brand-gold/30 space-y-2">
-            <span class="text-[10px] font-bold app-text-gold uppercase tracking-wider block">Análise do ${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
-            <p>${data.aiReply}</p>
+<!-- 05 · CONVERSAS -->
+<section class="slide" data-title="Conversas">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">03</span><span class="dash"></span>Conversas</div>
+      <h2 class="r title" style="--d:1">Uma conversa<br>pode <em>mudar tudo.</em></h2>
+      <p class="r lead" style="--d:2">Mensagens diretas e privadas, para que boas conexões virem parcerias.</p>
+      <div class="r keys" style="--d:3"><span>Privado</span><span>Direto</span><span>Seguro</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="row" style="gap:10px;padding:8px 16px 12px;border-bottom:1px solid var(--a-border)">
+          <i data-lucide="chevron-left" class="ic gold" style="width:22px;height:22px"></i>
+          <img class="av" src="assets/carolina.jpg" style="width:38px;height:38px" alt="">
+          <div><p class="s14 w5">Carolina Albuquerque</p><p class="row s11 mut" style="gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:#3FA66B"></span>online</p></div>
+        </div>
+        <div class="content" style="gap:10px;padding-top:16px">
+          <p class="s10 mut up" style="text-align:center">Hoje</p>
+          <div class="card s13" style="max-width:82%;border-radius:18px 18px 18px 6px;padding:11px 14px;line-height:1.45">Oi, Beatriz! Adorei sua fala no encontro de ontem.</div>
+          <div class="card s13" style="max-width:82%;border-radius:18px 18px 18px 6px;padding:11px 14px;line-height:1.45">Vamos marcar um café para conversar sobre a parceria?</div>
+          <div class="s13" style="align-self:flex-end;max-width:82%;background:var(--a-gold);color:#fff;border-radius:18px 18px 6px 18px;padding:11px 14px;line-height:1.45">Que alegria! Vamos sim. Segunda às 10h fica bom?</div>
+          <div class="card s13" style="max-width:82%;border-radius:18px 18px 18px 6px;padding:11px 14px;line-height:1.45">Perfeito. Já te enviei o convite.</div>
+          <div class="card row" style="gap:12px;border-color:rgba(175,130,45,.35)">
+            <div class="ibox"><i data-lucide="calendar" class="ic"></i></div>
+            <div><p class="s13 w5">Café com Carolina</p><p class="s11 mut">Seg, 30 nov · 10h00</p><p class="row s10 gold" style="gap:4px;margin-top:3px"><i data-lucide="circle-check" class="ic" style="width:12px;height:12px"></i>Adicionado à sua agenda</p></div>
           </div>
         </div>
-      `;
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    function handleSendAI() {
-      const input = document.getElementById('aiInteractiveInput');
-      const text = input.value.trim();
-      if (!text) return;
-
-      const chatBox = document.getElementById('aiChatBox');
-
-      const userBubble = document.createElement('div');
-      userBubble.className = 'flex items-start justify-end gap-3';
-      userBubble.innerHTML = `
-        <div class="bg-brand-gold text-white font-semibold p-3.5 rounded-2xl rounded-tr-none text-xs leading-relaxed max-w-[80%] shadow-md">
-          "${text}"
+        <div class="row" style="gap:8px;padding:10px 14px 30px">
+          <div class="pill" style="flex:1">Escreva uma mensagem</div>
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--a-gold);color:#fff;display:flex;align-items:center;justify-content:center"><i data-lucide="send" class="ic"></i></div>
         </div>
-      `;
-      chatBox.appendChild(userBubble);
-      input.value = '';
-      chatBox.scrollTop = chatBox.scrollHeight;
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
 
-      setTimeout(() => {
-        const aiBubble = document.createElement('div');
-        aiBubble.className = 'flex items-start gap-3';
-        aiBubble.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-brand-gold text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
-            M
-          </div>
-          <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs app-text-title leading-relaxed max-w-[85%] border border-brand-gold/30">
-            Excelente consulta. Baseado no banco de dados e diretrizes da rede Minerva, estruturei essa resposta alinhada com as melhores práticas executivas.
-          </div>
-        `;
-        chatBox.appendChild(aiBubble);
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }, 500);
-    }
+<!-- 06 · COMUNIDADES -->
+<section class="slide" data-title="Comunidades">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">04</span><span class="dash"></span>Comunidades</div>
+      <h2 class="r title" style="--d:1">Um lugar para<br><em>cada assunto.</em></h2>
+      <p class="r lead" style="--d:2">Grupos por área e interesse, para trocar com quem vive o mesmo que você.</p>
+      <div class="r keys" style="--d:3"><span>Por área</span><span>Por interesse</span><span>Do início à escala</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="content" style="padding-top:14px">
+          <div class="ph-head"><p class="ph-title">Comunidades</p><p class="s12 mut">Encontre o seu lugar</p><div class="ph-bar"></div></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="sprout" class="ic"></i></div><div><p class="s14 w5">Primeiros passos</p><p class="s11 mut">203 integrantes</p></div></div><span class="chip on">Participando</span></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="cpu" class="ic"></i></div><div><p class="s14 w5">Tecnologia & Inovação</p><p class="s11 mut">156 integrantes</p></div></div><span class="btn-o">Entrar</span></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="heart-pulse" class="ic"></i></div><div><p class="s14 w5">Saúde & Bem-estar</p><p class="s11 mut">98 integrantes</p></div></div><span class="btn-o">Entrar</span></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="store" class="ic"></i></div><div><p class="s14 w5">Varejo & Franquias</p><p class="s11 mut">124 integrantes</p></div></div><span class="btn-o">Entrar</span></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="landmark" class="ic"></i></div><div><p class="s14 w5">Finanças & Investimentos</p><p class="s11 mut">87 integrantes</p></div></div><span class="btn-o">Entrar</span></div>
+        </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div class="on"><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
 
-    setRobot('estrategista');
-    if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.6 } });
-  </script>
+<!-- 07 · AGENDA -->
+<section class="slide" data-title="Agenda">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">05</span><span class="dash"></span>Agenda</div>
+      <h2 class="r title" style="--d:1">Sua agenda,<br><em>sempre em dia.</em></h2>
+      <p class="r lead" style="--d:2">Conectada ao Google e à Apple: confirmou, já aparece no seu celular.</p>
+      <div class="r keys" style="--d:3"><span>Google Agenda</span><span>Apple Calendar</span><span>Lembretes</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="content" style="padding-top:14px">
+          <div class="ph-head"><p class="ph-title">Agenda</p><p class="s12 mut">Esta semana</p><div class="ph-bar"></div></div>
+          <div class="card row" style="gap:12px">
+            <div class="ibox"><i data-lucide="refresh-cw" class="ic"></i></div>
+            <div><p class="s13 w5">Sincronizada</p><p class="s11 mut">Google Agenda · Apple Calendar</p></div>
+            <i data-lucide="circle-check" class="ic gold" style="margin-left:auto;width:20px;height:20px"></i>
+          </div>
+          <div class="card" style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;padding:12px 8px;gap:2px">
+            <p class="s10 mut">S</p><p class="s10 mut">T</p><p class="s10 mut">Q</p><p class="s10 mut">Q</p><p class="s10 mut">S</p><p class="s10 mut">S</p><p class="s10 mut">D</p>
+            <p class="s13" style="margin:6px auto 0;width:30px;height:30px;line-height:30px;border-radius:50%;background:var(--a-gold);color:#fff">30</p>
+            <p class="s13" style="margin-top:6px;line-height:30px">1</p><p class="s13" style="margin-top:6px;line-height:30px">2</p>
+            <p class="s13" style="margin-top:6px;line-height:30px">3</p><p class="s13" style="margin-top:6px;line-height:30px">4</p>
+            <p class="s13 mut" style="margin-top:6px;line-height:30px">5</p><p class="s13 mut" style="margin-top:6px;line-height:30px">6</p>
+          </div>
+          <p class="s10 mut up" style="margin-top:4px">Segunda, 30 de novembro</p>
+          <div class="row" style="align-items:stretch;gap:12px"><p class="s12 mut" style="width:38px;padding-top:12px">10:00</p><div class="card" style="flex:1;border-left:3px solid var(--a-gold)"><p class="s13 w5">Café com Carolina</p><p class="s11 mut">Online · Google Meet</p></div></div>
+          <div class="row" style="align-items:stretch;gap:12px"><p class="s12 mut" style="width:38px;padding-top:12px">15:00</p><div class="card" style="flex:1;border-left:3px solid var(--a-gold)"><p class="s13 w5">Mentoria individual</p><p class="s11 mut">Com as fundadoras</p></div></div>
+          <div class="row" style="align-items:stretch;gap:12px"><p class="s12 mut" style="width:38px;padding-top:12px">19:30</p><div class="card" style="flex:1;border-left:3px solid var(--a-gold)"><p class="s13 w5">Encontro da comunidade</p><p class="s11 mut">Tecnologia & Inovação</p></div></div>
+        </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div class="on"><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · FEED -->
+<section class="slide" data-title="Feed">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">06</span><span class="dash"></span>Feed</div>
+      <h2 class="r title" style="--d:1">Conhecimento<br>que se <em>compartilha.</em></h2>
+      <p class="r lead" style="--d:2">Aprendizados reais de mulheres reais, sem ruído e sem competição.</p>
+      <div class="r keys" style="--d:3"><span>Bastidores</span><span>Aprendizados</span><span>Conquistas</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="appbar"><div class="lg"><img src="assets/minerva-logo-gold.png" alt="">MINERVA</div><i data-lucide="bell" class="ic mut" style="width:20px;height:20px"></i></div>
+        <div class="content">
+          <div class="card row" style="gap:10px;padding:10px 12px"><img class="av" src="assets/beatriz.jpg" style="width:32px;height:32px" alt=""><span class="s12 mut">Compartilhe um aprendizado…</span></div>
+          <div class="card" style="padding:16px">
+            <div class="row" style="gap:10px"><img class="av" src="assets/giulia.jpg" style="width:40px;height:40px" alt=""><div><p class="s13 w5">Giulia Ferrari</p><p class="s11 mut">CEO · Varejo · há 2 h</p></div></div>
+            <p class="s13" style="line-height:1.55;margin-top:12px">Aprendi do jeito difícil: delegar não é perder o controle, é ganhar tempo para pensar no futuro do negócio.</p>
+            <p class="s13" style="line-height:1.55;margin-top:8px">Deixei na Biblioteca o modelo que uso com o meu time.</p>
+            <div class="row" style="gap:10px;margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--a-goldsoft)"><i data-lucide="file-text" class="ic gold"></i><span class="s12 w5">Matriz de delegação.pdf</span></div>
+            <div class="between s12 mut" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--a-border)">
+              <div class="row" style="gap:18px"><span class="row" style="gap:5px"><i data-lucide="heart" class="ic"></i>184</span><span class="row" style="gap:5px"><i data-lucide="message-circle" class="ic"></i>42</span><i data-lucide="share-2" class="ic"></i></div>
+              <i data-lucide="bookmark" class="ic"></i>
+            </div>
+          </div>
+          <div class="card" style="padding:16px">
+            <div class="row" style="gap:10px"><img class="av" src="assets/carolina.jpg" style="width:40px;height:40px" alt=""><div><p class="s13 w5">Carolina Albuquerque</p><p class="s11 mut">Fundadora · Tecnologia · há 5 h</p></div></div>
+            <p class="s13" style="line-height:1.55;margin-top:12px">Hoje fechamos a nossa primeira parceria que nasceu aqui dentro. Obrigada, meninas!</p>
+          </div>
+        </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div class="on"><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · BIBLIOTECA -->
+<section class="slide" data-title="Biblioteca">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">07</span><span class="dash"></span>Biblioteca</div>
+      <h2 class="r title" style="--d:1">Aprender no<br><em>seu ritmo.</em></h2>
+      <p class="r lead" style="--d:2">Materiais prontos e aulas gravadas para usar no seu negócio quando quiser.</p>
+      <div class="r keys" style="--d:3"><span>Planilhas</span><span>Modelos</span><span>Aulas</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="content" style="padding-top:14px">
+          <div class="ph-head"><p class="ph-title">Biblioteca</p><p class="s12 mut">Materiais e aulas para você</p><div class="ph-bar"></div></div>
+          <div class="row" style="gap:6px;padding:4px;border-radius:999px;border:1px solid var(--a-border);background:var(--a-card)">
+            <span class="chip on" style="flex:1;text-align:center;border:none">Materiais</span><span class="s11 mut" style="flex:1;text-align:center">Aulas gravadas</span>
+          </div>
+          <div style="position:relative;height:150px;border-radius:18px;background:#1D1B18;overflow:hidden;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff">
+            <img src="assets/minerva-logo-gold.png" alt="" style="position:absolute;right:-20px;top:-16px;width:150px;opacity:.16">
+            <div style="position:absolute;right:16px;bottom:16px;width:42px;height:42px;border-radius:50%;background:#C5A059;display:flex;align-items:center;justify-content:center"><i data-lucide="play" class="ic" style="color:#1D1B18;fill:#1D1B18"></i></div>
+            <p class="s10 up" style="color:#C5A059">Aula · 42 min</p>
+            <p class="serif" style="font-size:22px;margin-top:4px">Precificar com confiança</p>
+          </div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="file-spreadsheet" class="ic"></i></div><div><p class="s13 w5">Fluxo de caixa</p><p class="s11 mut">Planilha</p></div></div><i data-lucide="download" class="ic gold"></i></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="file-text" class="ic"></i></div><div><p class="s13 w5">Proposta comercial</p><p class="s11 mut">Modelo pronto</p></div></div><i data-lucide="download" class="ic gold"></i></div>
+          <div class="card between"><div class="row" style="gap:12px"><div class="ibox"><i data-lucide="book-open" class="ic"></i></div><div><p class="s13 w5">Guia de posicionamento</p><p class="s11 mut">PDF</p></div></div><i data-lucide="download" class="ic gold"></i></div>
+        </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div class="on"><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · MINERVA AI -->
+<section class="slide" data-title="Minerva AI">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">08</span><span class="dash"></span>Minerva AI</div>
+      <h2 class="r title" style="--d:1">Uma assistente<br>que <em>te entende.</em></h2>
+      <p class="r lead" style="--d:2">Para planejar, escrever e entender números ao seu lado, a qualquer hora.</p>
+      <div class="r keys" style="--d:3"><span>Estrategista</span><span>Criador</span><span>Analista</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="content" style="padding-top:14px">
+          <div class="ph-head"><p class="ph-title row" style="gap:8px"><i data-lucide="sparkles" class="ic gold" style="width:22px;height:22px"></i>Minerva AI</p><p class="s12 mut">Sua assistente de negócios</p><div class="ph-bar"></div></div>
+          <div class="row" style="gap:6px"><span class="chip on">Estrategista</span><span class="chip">Criador</span><span class="chip">Analista</span></div>
+          <div class="s13" style="align-self:flex-end;max-width:84%;background:var(--a-gold);color:#fff;border-radius:18px 18px 6px 18px;padding:11px 14px;line-height:1.45;margin-top:4px">Quero lançar um serviço novo. Por onde eu começo?</div>
+          <div class="card s13" style="max-width:92%;border-radius:18px 18px 18px 6px;line-height:1.5">
+            <p class="s10 gold up w5" style="margin-bottom:6px">Estrategista</p>
+            <p>Vamos com calma. Três primeiros passos:</p>
+            <p style="margin-top:8px"><span class="gold w5">1.</span> Defina para quem é o serviço</p>
+            <p><span class="gold w5">2.</span> Teste o preço com três clientes</p>
+            <p><span class="gold w5">3.</span> Monte uma oferta simples de lançamento</p>
+            <p style="margin-top:8px">Quer que eu monte o plano com você?</p>
+          </div>
+        </div>
+        <div class="row" style="gap:8px;padding:10px 14px 8px">
+          <div class="pill" style="flex:1">Pergunte à Minerva AI<i data-lucide="mic" class="ic" style="margin-left:auto"></i></div>
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--a-gold);color:#fff;display:flex;align-items:center;justify-content:center"><i data-lucide="send" class="ic"></i></div>
+        </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div class="on"><i data-lucide="sparkles" class="ic"></i>IA</div><div><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · MENTORIAS -->
+<section class="slide" data-title="Mentorias">
+  <div class="feature" style="grid-template-columns:.9fr 1.1fr">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">09</span><span class="dash"></span>Mentorias</div>
+      <h2 class="r title" style="--d:1">Perto de quem<br><em>já viveu</em> isso.</h2>
+      <p class="r lead" style="--d:2">Encontros individuais com as fundadoras, marcados direto pelo app.</p>
+      <div class="r keys" style="--d:3"><span>Individual</span><span>No app</span><span>No seu ritmo</span></div>
+    </div>
+    <figure class="r" style="--d:2;justify-self:end">
+      <img src="assets/founders.jpg" alt="Fundadoras da Minerva" style="display:block;width:820px;height:600px;object-fit:cover;object-position:center 30%;border-radius:28px;box-shadow:0 50px 90px -50px rgba(40,25,5,.5)">
+      <figcaption style="margin-top:22px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">As fundadoras da Minerva</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 12 · BENEFÍCIOS -->
+<section class="slide" data-title="Benefícios">
+  <div class="feature">
+    <div>
+      <div class="r eyebrow" style="--d:0"><span class="n">10</span><span class="dash"></span>Benefícios</div>
+      <h2 class="r title" style="--d:1">Cuidado em<br><em>cada detalhe.</em></h2>
+      <p class="r lead" style="--d:2">Benefícios com parceiros selecionados e um marketplace entre as integrantes.</p>
+      <div class="r keys" style="--d:3"><span>Parceiros</span><span>Loja oficial</span><span>Marketplace</span></div>
+    </div>
+    <div class="visual r" style="--d:2">
+      <div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="status"><span>9:41</span><span><i data-lucide="signal" class="ic"></i><i data-lucide="wifi" class="ic"></i><i data-lucide="battery-full" class="ic"></i></span></div>
+        <div class="content" style="padding-top:14px">
+          <div class="ph-head"><p class="ph-title">Benefícios</p><p class="s12 mut">Pensados para o seu dia a dia</p><div class="ph-bar"></div></div>
+          <div class="card row" style="gap:12px"><div class="ibox"><i data-lucide="hotel" class="ic"></i></div><div><p class="s13 w5">Hotelaria parceira</p><p class="s11 mut">Condições especiais para integrantes</p></div></div>
+          <div class="card row" style="gap:12px"><div class="ibox"><i data-lucide="utensils" class="ic"></i></div><div><p class="s13 w5">Gastronomia</p><p class="s11 mut">Mesas reservadas e cortesias</p></div></div>
+          <div class="card row" style="gap:12px"><div class="ibox"><i data-lucide="briefcase" class="ic"></i></div><div><p class="s13 w5">Coworkings</p><p class="s11 mut">Salas para reuniões em várias cidades</p></div></div>
+          <div class="between" style="margin-top:6px;align-items:flex-end">
+            <div><p class="serif" style="font-size:21px">Marketplace</p><p class="s11 mut">Serviços entre integrantes</p></div>
+            <span class="row s12 gold" style="gap:2px">Ver todos<i data-lucide="chevron-right" class="ic" style="width:14px;height:14px"></i></span>
+          </div>
+          <div class="card between">
+            <div class="row" style="gap:12px"><div class="ini s12" style="width:40px;height:40px">MC</div><div><p class="s13 w5">Consultoria de marca</p><p class="s11 mut">por Marina Costa</p></div></div>
+            <span class="row s11 gold" style="gap:3px"><i data-lucide="star" class="ic" style="width:12px;height:12px;fill:currentColor"></i>5.0</span>
+          </div>
+        </div>
+        <div class="nav"><div><i data-lucide="house" class="ic"></i>Início</div><div><i data-lucide="message-square" class="ic"></i>Feed</div><div><i data-lucide="message-circle" class="ic"></i>Chat</div><div><i data-lucide="sparkles" class="ic"></i>IA</div><div class="on"><i data-lucide="menu" class="ic"></i>Menu</div></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · ENCERRAMENTO -->
+<section class="slide" data-title="Encerramento">
+  <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <div class="r eyebrow" style="--d:0">Próximo passo</div>
+    <h2 class="r title" style="--d:1;font-size:132px;margin:36px 0 30px">Estamos te <em>esperando.</em></h2>
+    <p class="r lead" style="--d:2;max-width:none">Aponte a câmera e dê o próximo passo para entrar na Minerva.</p>
+    <div class="r" style="--d:3;margin-top:60px;width:250px;height:250px;background:#fff;border-radius:24px;padding:22px;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(40,25,5,.35);display:flex;align-items:center;justify-content:center">
+      <div id="qr" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"></div>
+    </div>
+    <p class="r" style="--d:4;margin-top:30px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Obrigada pela presença</p>
+  </div>
+</section>
+
+<!-- Rodapé -->
+<div id="chrome">
+  <div class="brand"><img src="assets/minerva-logo-gold.png" alt="">MINERVA</div>
+  <div id="count">01 / 13</div>
+</div>
+<div id="progress"></div>
+
+</div></div>
+
+<!-- Roteiro (somente para você — tecla N) -->
+<div id="notes"><div class="tag" id="notesTag">Roteiro</div><div id="notesText"></div></div>
+<div id="hint"><b>← →</b> navegar &nbsp;·&nbsp; <b>N</b> roteiro &nbsp;·&nbsp; <b>P</b> modo apresentadora &nbsp;·&nbsp; <b>F</b> tela cheia &nbsp;·&nbsp; <b>T</b> tema</div>
+
+<script>
+/* =========================================================
+   CONFIGURAÇÃO
+   Coloque aqui o link de entrada (WhatsApp, formulário ou site).
+   O QR Code do último slide é gerado a partir dele.
+   ========================================================= */
+const ENTRY_LINK = '';
+
+/* Roteiro: "pre" = fala; "key" = frase-chave (faça uma pausa antes dela) */
+const NOTES = [
+  { pre: 'Oi, gente! Que alegria ver vocês aqui. Hoje eu não vim convencer ninguém, porque vocês já escolheram estar aqui.', key: 'Eu vim mostrar, por dentro, a casa que vocês estão escolhendo.' },
+  { pre: 'Vocês já conhecem a proposta da Minerva. Então hoje vamos passear juntas pelo app, tela por tela, com calma.', key: 'Imaginem que vocês já são integrantes e estão abrindo o app pela primeira vez.' },
+  { pre: 'Essa é a primeira tela que vocês vão ver todos os dias. Num olhar, vocês sabem seus encontros, suas conexões e o que está acontecendo na comunidade.', key: 'A ideia é que o app trabalhe por vocês, e não o contrário.' },
+  { pre: 'Aqui vocês encontram as outras integrantes. Dá para filtrar por setor, por cidade e pelo momento do negócio.', key: 'Aquela pessoa que você precisava conhecer pode estar a um toque de distância.' },
+  { pre: 'Quando a conexão acontece, a conversa continua aqui, de forma privada e direta. Reparem: marcou um café, ele já vai sozinho para a agenda.', key: 'É assim que uma conversa vira parceria.' },
+  { pre: 'Cada uma encontra o seu cantinho: tem grupo por área e tem um espaço só para quem está começando.', key: 'Aqui ninguém precisa ter todas as respostas para ser bem-vinda.' },
+  { pre: 'A agenda é conectada ao Google e à Apple. Confirmou um evento ou uma mentoria, ele já aparece no seu celular, com lembrete.', key: 'Vocês não vão perder nada do que importa.' },
+  { pre: 'O feed é onde a gente compartilha o que aprendeu: bastidores, conquistas e também os tropeços.', key: 'Aqui não tem disputa por curtida. É uma mulher ajudando a outra a crescer.' },
+  { pre: 'Aqui ficam os materiais e as aulas gravadas: planilhas, modelos prontos e conteúdos para usar no próprio negócio.', key: 'Tudo no ritmo de vocês, na hora que fizer sentido.' },
+  { pre: 'Essa é a Minerva AI, com três assistentes: o Estrategista, o Criador e o Analista. Ela ajuda a planejar, escrever e entender os números.', key: 'É como ter alguém para pensar junto com você, a qualquer hora.' },
+  { pre: 'E tem mentoria individual com as fundadoras, agendada direto pelo app, sobre o seu negócio e o seu momento.', key: 'Vocês não vão caminhar sozinhas.' },
+  { pre: 'Pensamos também no dia a dia: benefícios com parceiros selecionados, a loja oficial e um marketplace onde vocês contratam e oferecem serviços entre vocês.', key: 'Cada detalhe foi pensado para vocês se sentirem cuidadas.' },
+  { pre: 'É isso, gente. Obrigada pela atenção e pelo carinho. Quem quiser dar o próximo passo, é só apontar a câmera aqui.', key: 'A Minerva foi feita para vocês, e a gente vai adorar receber cada uma.' },
+];
+
+const stage = document.getElementById('stage');
+const slides = [...document.querySelectorAll('.slide')];
+const total = slides.length;
+let cur = 0;
+let presenter = null;
+const pad = n => String(n).padStart(2, '0');
+
+function fit() {
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  stage.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', fit); fit();
+
+function noteHTML(i) {
+  const n = NOTES[i]; if (!n) return '';
+  return `${n.pre} <span class="pause">pausa</span><span class="key">${n.key}</span>`;
+}
+
+function go(i) {
+  i = Math.max(0, Math.min(total - 1, i));
+  slides[cur].classList.remove('active');
+  cur = i;
+  slides[cur].classList.add('active');
+  document.body.classList.toggle('is-cover', cur === 0);
+  document.getElementById('count').textContent = `${pad(cur + 1)} / ${pad(total)}`;
+  document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%';
+  document.getElementById('notesTag').textContent = `Roteiro · ${pad(cur + 1)} · ${slides[cur].dataset.title}`;
+  document.getElementById('notesText').innerHTML = noteHTML(cur);
+  history.replaceState(null, '', '#' + (cur + 1));
+  renderPresenter();
+}
+const next = () => go(cur + 1), prev = () => go(cur - 1);
+
+function toggleNotes() { document.getElementById('notes').classList.toggle('show'); }
+function toggleTheme() { document.documentElement.classList.toggle('dark'); }
+function toggleFull() { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
+
+/* Modo apresentadora: janela separada com roteiro, próximo slide e cronômetro */
+let t0 = null;
+function openPresenter() {
+  presenter = window.open('', 'minerva-presenter', 'width=980,height=640');
+  if (!presenter) return;
+  t0 = t0 || Date.now();
+  presenter.document.write(`<!DOCTYPE html><html><head><title>Minerva · Modo apresentadora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>body{margin:0;background:#151413;color:#F2EEE7;font-family:Inter,sans-serif;padding:44px 56px;-webkit-font-smoothing:antialiased}
+  .top{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,238,231,.5)}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:46px;margin:22px 0 26px}
+  #t{font-size:26px;line-height:1.65;font-weight:300;max-width:860px}
+  .pause{display:inline-block;margin:0 10px 0 6px;padding:2px 12px;border-radius:999px;border:1px solid rgba(242,238,231,.4);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,238,231,.6);vertical-align:4px}
+  .key{font-weight:600;color:#E2C17F}
+  .next{margin-top:40px;padding-top:22px;border-top:1px solid rgba(242,238,231,.12);font-size:14px;color:rgba(242,238,231,.5)}
+  .next b{color:#F2EEE7;font-weight:500}</style></head>
+  <body><div class="top"><span id="c"></span><span id="clock"></span></div><h1 id="h"></h1><div id="t"></div><div class="next">Próximo: <b id="n"></b></div></body></html>`);
+  presenter.document.close();
+  presenter.document.addEventListener('keydown', handleKey);
+  presenter.setInterval(() => {
+    const s = Math.floor((Date.now() - t0) / 1000);
+    const el = presenter.document.getElementById('clock');
+    if (el) el.textContent = `${pad(Math.floor(s / 60))}:${pad(s % 60)}`;
+  }, 1000);
+  renderPresenter();
+}
+function renderPresenter() {
+  if (!presenter || presenter.closed) return;
+  const d = presenter.document;
+  if (!d.getElementById('h')) return;
+  d.getElementById('c').textContent = `Slide ${pad(cur + 1)} de ${pad(total)}`;
+  d.getElementById('h').textContent = slides[cur].dataset.title;
+  d.getElementById('t').innerHTML = noteHTML(cur);
+  d.getElementById('n').textContent = cur < total - 1 ? slides[cur + 1].dataset.title : 'Fim';
+}
+
+function handleKey(e) {
+  const k = e.key.toLowerCase();
+  if (['arrowright', 'pagedown', ' ', 'enter'].includes(k)) { e.preventDefault(); next(); }
+  else if (['arrowleft', 'pageup', 'backspace'].includes(k)) { e.preventDefault(); prev(); }
+  else if (k === 'home') go(0);
+  else if (k === 'end') go(total - 1);
+  else if (k === 'n') toggleNotes();
+  else if (k === 'p') openPresenter();
+  else if (k === 'f') toggleFull();
+  else if (k === 't') toggleTheme();
+}
+document.addEventListener('keydown', handleKey);
+document.getElementById('viewport').addEventListener('click', e => (e.clientX > window.innerWidth / 3 ? next() : prev()));
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = e.changedTouches[0].screenX - tx; if (d < -50) next(); if (d > 50) prev(); });
+
+/* QR Code */
+(function () {
+  const box = document.getElementById('qr');
+  if (ENTRY_LINK && window.qrcode) {
+    const q = qrcode(0, 'M'); q.addData(ENTRY_LINK); q.make();
+    box.innerHTML = q.createSvgTag({ cellSize: 6, margin: 0, scalable: true });
+    box.firstChild.style.width = '100%'; box.firstChild.style.height = '100%';
+  } else {
+    box.innerHTML = '<img src="assets/minerva-logo-gold.png" alt="" style="width:110px;opacity:.9">';
+  }
+})();
+
+if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
+setTimeout(() => document.getElementById('hint').style.opacity = 0, 7000);
+go(Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1));
+</script>
 </body>
 </html>
