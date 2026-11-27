@@ -576,7 +576,11 @@ window.addEventListener('resize', fit); fit();
 
 function noteHTML(i) {
   const n = NOTES[i]; if (!n) return '';
-  return `${n.pre} <span class="pause">pausa</span><span class="key">${n.key}</span>`;
+  return `<div style="display:flex;flex-direction:column;gap:10px;">
+    <div><span style="font-size:10px;text-transform:uppercase;letter-spacing:0.18em;opacity:0.6;display:block;margin-bottom:2px;">Contexto da fala:</span>${n.pre}</div>
+    <div style="display:flex;align-items:center;gap:10px;padding:4px 0;"><span class="pause" style="margin:0;">[ Respiro / Pausa de 2s ]</span><span style="font-size:11px;opacity:0.5;font-style:italic;">faça contato visual antes da frase final</span></div>
+    <div><span style="font-size:10px;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);display:block;margin-bottom:2px;">Frase de Impacto:</span><span class="key" style="font-size:1.05em;">"${n.key}"</span></div>
+  </div>`;
 }
 
 function go(i) {
