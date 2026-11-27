@@ -6,6 +6,7 @@
   <title>MINERVA — Apresentação Oficial (Versão Clara & Escura)</title>
   <link rel="icon" type="image/png" href="assets/logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,36 +40,27 @@
   <style>
     /* ================= TEMA CLARO (PADRÃO) ================= */
     html.theme-light body {
-      background-color: #F8F9FA;
-      background-image: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #F5F6F9 60%, #E8EBF0 100%);
-      background-attachment: fixed;
+      background-color: #F7F7F5;
       color: #1A1D20;
     }
 
     html.theme-light .glass {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: #FFFFFF;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      box-shadow: none;
       color: #1A1D20;
     }
 
     html.theme-light .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: #FFFFFF;
       border: 1px solid rgba(0, 0, 0, 0.09);
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+      border-radius: 0.875rem;
+      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
       color: #1A1D20;
       transition: all 0.3s ease;
     }
 
-    html.theme-light .glass-card:hover {
-      border-color: rgba(184, 134, 11, 0.45);
-      box-shadow: 0 12px 40px rgba(184, 134, 11, 0.12);
-    }
+
 
     html.theme-light .app-text-title { color: #111827; }
     html.theme-light .app-text-muted { color: #6B7280; }
@@ -79,34 +71,25 @@
     /* ================= TEMA ESCURO ================= */
     html.theme-dark body {
       background-color: #0a0a0a;
-      background-image: radial-gradient(circle at 50% 0%, #1f1f1f 0%, #0a0a0a 50%, #050505 100%);
-      background-attachment: fixed;
       color: #ffffff;
     }
 
     html.theme-dark .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: #141414;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: none;
       color: #ffffff;
     }
 
     html.theme-dark .glass-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: #141414;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1.25rem;
+      border-radius: 0.875rem;
       color: #ffffff;
       transition: all 0.3s ease;
     }
 
-    html.theme-dark .glass-card:hover {
-      border-color: rgba(197, 160, 89, 0.4);
-      box-shadow: 0 8px 40px rgba(224, 174, 67, 0.15);
-    }
+
 
     html.theme-dark .app-text-title { color: #ffffff; }
     html.theme-dark .app-text-muted { color: rgba(255, 255, 255, 0.6); }
@@ -129,55 +112,39 @@
     .slide {
       display: none;
       opacity: 0;
-      transform: scale(0.98);
-      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+      transition: opacity 0.25s ease-out;
     }
 
     .slide.active {
       display: flex;
       opacity: 1;
-      transform: scale(1);
     }
 
-    /* ROTEIRO DA PALESTRA (O QUE DIZER ACIMA DE CADA EXEMPLO) */
+    /* ROTEIRO DA PALESTRA (discreto) */
     .speaker-note {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      padding: 0.55rem 0.9rem;
-      border-radius: 0.85rem;
-      margin-bottom: 0.85rem;
-      font-size: 0.82rem;
-      line-height: 1.45;
-      transition: all 0.3s ease;
+      display: block;
+      padding: 0.35rem 0 0.35rem 0.85rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.5;
       width: 100%;
+      border-left: 2px solid #996515;
     }
-
-    html.theme-light .speaker-note {
-      background: #FFFDF8;
-      border: 1px solid rgba(184, 134, 11, 0.35);
-      box-shadow: 0 2px 10px rgba(184, 134, 11, 0.08);
-      color: #3b2807;
-    }
-
-    html.theme-dark .speaker-note {
-      background: rgba(197, 160, 89, 0.1);
-      border: 1px solid rgba(197, 160, 89, 0.28);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      color: #f7edd8;
-    }
-
+    html.theme-light .speaker-note { color: #4B5563; }
+    html.theme-dark .speaker-note { color: rgba(255,255,255,0.65); border-left-color: #C5A059; }
+    .speaker-note p { font-size: 0.8rem; }
     .speaker-tag {
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       display: block;
       margin-bottom: 0.15rem;
     }
-
     html.theme-light .speaker-tag { color: #996515; }
     html.theme-dark .speaker-tag { color: #C5A059; }
+
+    /* Ícones de linha */
+    .ico { width: 1em; height: 1em; display: inline-block; vertical-align: -0.14em; flex-shrink: 0; }
 
     .speaker-note.hidden-notes {
       display: none !important;
@@ -208,21 +175,21 @@
     <div class="flex items-center gap-3">
       
       <!-- BOTÃO DE TEMA CLARO / ESCURO -->
-      <button onclick="toggleTheme()" id="themeToggleBtn" class="px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm bg-brand-gold text-white border-brand-gold/40">
-        <span id="themeIcon">☀️</span> <span id="themeLabel">Tema Claro Ativo</span>
+      <button onclick="toggleTheme()" id="themeToggleBtn" class="px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm app-border-subtle app-text-title">
+        <span id="themeIcon"></span><span id="themeLabel">Tema Claro</span>
       </button>
 
       <!-- BOTÃO PARA ATIVAR / OCULTAR ROTEIRO DO ORADOR -->
       <button onclick="toggleSpeakerNotes()" id="speakerNotesToggleBtn" class="px-3 py-1 rounded-full text-xs font-semibold border transition-all flex items-center gap-1 hover:border-brand-gold glass">
-        <span>🎤</span> <span id="speakerNotesLabel">O que falar (Ativo)</span>
+        <span id="speakerNotesLabel">Roteiro: ligado</span>
       </button>
 
       <span class="hidden lg:inline app-text-muted text-[11px]">
-        <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">⬅️</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">➡️</kbd> Navegar • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">F</kbd> Tela Cheia • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">N</kbd> Roteiro
+        <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">→</kbd> Navegar • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">F</kbd> Tela Cheia • <kbd class="px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-brand-gold font-mono text-[10px]">N</kbd> Roteiro
       </span>
 
       <button onclick="toggleFullScreen()" class="px-3 py-1 rounded-full text-xs font-semibold border transition-all flex items-center gap-1 hover:border-brand-gold">
-        <span>⛶</span> <span class="hidden sm:inline">Tela Cheia</span>
+        <span>Tela Cheia</span>
       </button>
 
       <a href="index.html" class="app-text-muted hover:text-brand-gold text-xs transition-colors hidden sm:inline">
@@ -243,14 +210,13 @@
     <section class="slide active flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Capa Oficial">
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note max-w-xl mx-auto mb-4 text-left">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Vocês já conhecem a proposta da Minerva. Agora quero mostrar, tela por tela, como é o app por dentro — exatamente o que vocês vão usar no dia a dia a partir de agora."</p>
         </div>
       </div>
 
-      <div class="w-24 h-24 rounded-full border border-brand-gold/40 p-2 mb-4 shadow-xl flex items-center justify-center glass">
+      <div class="w-24 h-24 rounded-full border border-brand-gold/40 p-2 mb-4 shadow-sm flex items-center justify-center glass">
         <img src="assets/logo.png" alt="Minerva Logo" class="w-16 h-16 object-contain">
       </div>
       <div class="app-text-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">
@@ -263,7 +229,7 @@
         Conheça por dentro o ecossistema fechado de aceleração, mentoria e liderança executiva feminina.
       </p>
       <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full glass text-xs tracking-widest app-text-gold uppercase font-semibold">
-        <span>✦ Demonstração Completa de Todos os Módulos do App</span>
+        <span>Demonstração Completa de Todos os Módulos do App</span>
       </div>
     </section>
 
@@ -274,19 +240,17 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">01 / Por Dentro do App</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Dashboard do Usuário</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: / (Home)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Essa é a primeira tela ao abrir o app: o painel com seu nível na comunidade, suas conexões, mensagens e os próximos compromissos — já sincronizados com a sua agenda."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-7 shadow-2xl space-y-6">
+      <div class="glass-card p-5 sm:p-7 shadow-sm space-y-6">
         
         <div class="glass p-5 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-5">
@@ -298,7 +262,7 @@
               <p class="app-text-muted text-xs font-light">Bom dia, bem-vinda de volta</p>
               <h3 class="text-2xl font-serif app-text-title mt-0.5">Beatriz Vasconcelos</h3>
               <div class="flex items-center gap-2 mt-1.5 text-xs app-text-gold">
-                <span>✦ 1.450 pontos</span>
+                <span>1.450 pontos</span>
                 <span class="opacity-40">|</span>
                 <span>Nível 5 (Conselheira)</span>
               </div>
@@ -313,22 +277,22 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold">📈 Networking</span>
+            <span class="text-xs app-text-gold font-semibold"><i data-lucide="trending-up" class="ico"></i> Networking</span>
             <p class="text-3xl font-serif app-text-title mt-2">48</p>
             <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Conexões Ativas</p>
           </div>
           <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold">📅 Eventos</span>
+            <span class="text-xs app-text-gold font-semibold"><i data-lucide="calendar" class="ico"></i> Eventos</span>
             <p class="text-3xl font-serif app-text-title mt-2">04</p>
             <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Confirmados</p>
           </div>
           <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold">❤️ Curtidas</span>
+            <span class="text-xs app-text-gold font-semibold"><i data-lucide="heart" class="ico"></i> Curtidas</span>
             <p class="text-3xl font-serif app-text-title mt-2">382</p>
             <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Engajamento Total</p>
           </div>
           <div class="glass p-4 rounded-xl flex flex-col justify-between">
-            <span class="text-xs app-text-gold font-semibold">🏆 Mentorias</span>
+            <span class="text-xs app-text-gold font-semibold"><i data-lucide="award" class="ico"></i> Mentorias</span>
             <p class="text-3xl font-serif app-text-title mt-2">12h</p>
             <p class="text-[10px] app-text-muted uppercase tracking-wider mt-1">Sessões Concluídas</p>
           </div>
@@ -364,19 +328,17 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">02 / Trocas Diretas</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Mensagens & Conversas de Negócios</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /chat (Mensagens)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Aqui ficam as mensagens. Conversas diretas e privadas com outras integrantes — é por aqui que as conexões viram parcerias e negócios."</p>
         </div>
       </div>
 
-      <div class="glass-card p-0 shadow-2xl flex flex-col md:flex-row h-[420px] overflow-hidden">
+      <div class="glass-card p-0 shadow-sm flex flex-col md:flex-row h-[420px] overflow-hidden">
         
         <div class="w-full md:w-1/3 border-r app-border-subtle p-4 flex flex-col justify-between bg-black/[0.02] dark:bg-black/50">
           <div class="space-y-3">
@@ -388,7 +350,7 @@
             <div class="border app-border-subtle rounded-xl p-2.5 flex items-center justify-between glass">
               <div class="flex items-center gap-2.5">
                 <div class="w-7 h-7 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs">
-                  🔔
+                  <i data-lucide="bell" class="ico"></i>
                 </div>
                 <div>
                   <h5 class="app-text-title text-xs font-medium">Solicitações Novas</h5>
@@ -402,7 +364,7 @@
 
             <div class="relative">
               <input type="text" placeholder="Buscar conversas..." class="w-full border app-border-subtle rounded-full py-1.5 pl-8 pr-3 text-xs app-text-title placeholder:text-zinc-400 bg-white/50 dark:bg-white/5 focus:outline-none focus:border-brand-gold">
-              <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">🔍</span>
+              <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 text-xs"><i data-lucide="search" class="ico"></i></span>
             </div>
 
             <div class="space-y-1 pt-1">
@@ -438,7 +400,7 @@
 
               <div id="contact-fernanda" onclick="selectContact('fernanda')" class="contact-tab flex items-center gap-3 p-2.5 rounded-xl border border-transparent hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors">
                 <div class="relative">
-                  <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold to-zinc-600 text-white font-serif font-bold flex items-center justify-center text-xs border border-brand-gold">
+                  <div class="w-10 h-10 rounded-full bg-zinc-700 text-white font-serif font-bold flex items-center justify-center text-xs border border-brand-gold">
                     FL
                   </div>
                   <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
@@ -456,7 +418,7 @@
           </div>
 
           <div class="text-[10px] app-text-muted text-center pt-2 border-t app-border-subtle">
-            🔒 Mensagens criptografadas de ponta a ponta
+            <i data-lucide="lock" class="ico"></i> Mensagens criptografadas de ponta a ponta
           </div>
         </div>
 
@@ -468,7 +430,7 @@
               <div>
                 <h4 id="chatHeaderName" class="app-text-title text-xs font-bold">Carolina Albuquerque</h4>
                 <p class="text-emerald-600 dark:text-emerald-400 text-[10px] flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Online agora
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Online agora
                 </p>
               </div>
             </div>
@@ -500,25 +462,23 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">03 / Conversas em Grupo</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Comunidades & Grupos Temáticos</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /communities (Grupos Exclusivos)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Nas Comunidades vocês entram nas salas do seu setor — Tecnologia, Franquias, Varejo, Saúde, Governança — e trocam bastidores com quem vive os mesmos desafios."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4">
+      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-4">
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           
           <div class="glass p-5 rounded-2xl border border-brand-gold/40 space-y-3 bg-brand-gold/5">
             <div class="flex justify-between items-center">
-              <span class="text-2xl">⚡</span>
+              <span class="text-2xl app-text-gold"><i data-lucide="zap" class="ico"></i></span>
               <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">142 membros</span>
             </div>
             <div>
@@ -526,14 +486,14 @@
               <p class="text-xs app-text-muted mt-1">Discussões sobre novos modelos de negócios, captação, inteligência artificial e parcerias digitais.</p>
             </div>
             <div class="pt-3 border-t app-border-subtle flex items-center justify-between text-xs">
-              <span class="app-text-gold font-semibold">Mensagem fixada 📌</span>
+              <span class="app-text-gold font-semibold">Mensagem fixada <i data-lucide="pin" class="ico"></i></span>
               <span class="app-text-muted">Ativo agora</span>
             </div>
           </div>
 
           <div class="glass p-5 rounded-2xl space-y-3 hover:border-brand-gold/30 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-2xl">🏛️</span>
+              <span class="text-2xl app-text-gold"><i data-lucide="landmark" class="ico"></i></span>
               <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-mono font-bold">98 membros</span>
             </div>
             <div>
@@ -548,7 +508,7 @@
 
           <div class="glass p-5 rounded-2xl space-y-3 hover:border-brand-gold/30 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-2xl">💎</span>
+              <span class="text-2xl app-text-gold"><i data-lucide="gem" class="ico"></i></span>
               <span class="text-[10px] bg-black/5 dark:bg-white/10 app-text-muted px-2 py-0.5 rounded font-mono font-bold">156 membros</span>
             </div>
             <div>
@@ -565,7 +525,7 @@
 
         <div class="p-4 rounded-xl border app-border-subtle flex items-center justify-between glass">
           <div class="flex items-center gap-3">
-            <span class="text-brand-gold">🔒</span>
+            <span class="text-brand-gold"><i data-lucide="lock" class="ico"></i></span>
             <p class="text-xs app-text-muted">Ambiente 100% blindado contra autopromoção invasiva e spam. Só membros verificados pelo conselho.</p>
           </div>
           <span class="text-xs app-text-gold font-semibold">Moderação Ativa</span>
@@ -581,24 +541,22 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">04 / Diferencial de Produtividade</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Agenda Conectada & Sincronizada</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /calendar (Google Calendar & Apple)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"A agenda do app é conectada ao Google Agenda e ao Apple Calendar. Confirmou um evento, mentoria ou jantar? Ele já aparece direto no calendário do seu celular."</p>
         </div>
       </div>
 
-      <div class="glass-card p-6 sm:p-8 shadow-2xl space-y-6">
+      <div class="glass-card p-6 sm:p-8 shadow-sm space-y-6">
         
         <div class="p-5 rounded-2xl bg-brand-gold/10 border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center text-2xl font-bold">
-              🔄
+              <i data-lucide="refresh-cw" class="ico"></i>
             </div>
             <div>
               <div class="flex items-center gap-2">
@@ -612,11 +570,11 @@
           </div>
           <div class="flex items-center gap-2">
             <div class="px-3 py-1.5 rounded-lg border app-border-subtle text-xs font-semibold app-text-title flex items-center gap-1.5 glass">
-              <span>📅 Google Agenda</span>
+              <span><i data-lucide="calendar" class="ico"></i> Google Agenda</span>
               <span class="text-emerald-500 font-bold">✓</span>
             </div>
             <div class="px-3 py-1.5 rounded-lg border app-border-subtle text-xs font-semibold app-text-title flex items-center gap-1.5 glass">
-              <span>🍎 Apple Calendar</span>
+              <span><i data-lucide="smartphone" class="ico"></i> Apple Calendar</span>
               <span class="text-emerald-500 font-bold">✓</span>
             </div>
           </div>
@@ -632,7 +590,7 @@
             <h5 class="text-sm font-semibold app-text-title">Estratégia de Escala & Canais B2B</h5>
             <p class="text-xs app-text-muted">Com Carolina Albuquerque • 16:00 às 17:00</p>
             <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
-              <span>🔔 Lembrete 30 min antes no celular</span>
+              <span><i data-lucide="bell" class="ico"></i> Lembrete 30 min antes no celular</span>
             </div>
           </div>
 
@@ -644,7 +602,7 @@
             <h5 class="text-sm font-semibold app-text-title">Encontro Presencial Fasano</h5>
             <p class="text-xs app-text-muted">Com Fundadoras & Líderes • 19:30</p>
             <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
-              <span>📍 Endereço anexado ao calendário</span>
+              <span><i data-lucide="map-pin" class="ico"></i> Endereço anexado ao calendário</span>
             </div>
           </div>
 
@@ -656,7 +614,7 @@
             <h5 class="text-sm font-semibold app-text-title">Estratégias de Crescimento para Líderes</h5>
             <p class="text-xs app-text-muted">Ao vivo no app • 20:00</p>
             <div class="text-[10px] app-text-muted pt-2 border-t app-border-subtle flex items-center gap-1">
-              <span>🔗 Link de acesso adicionado ao convite</span>
+              <span><i data-lucide="link" class="ico"></i> Link de acesso adicionado ao convite</span>
             </div>
           </div>
 
@@ -672,24 +630,22 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">05 / Conexões Estratégicas</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Networking & Matchmaking C-Level</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /networking</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"No Networking vocês filtram integrantes por setor, faturamento e momento do negócio, e pedem conexão com um toque. É assim que vocês encontram as pessoas certas."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-5">
+      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-5">
         
         <div class="glass p-3 rounded-xl flex flex-col sm:flex-row gap-3">
           <div class="relative flex-1">
             <input type="text" value="Tecnologia, Saúde, Varejo & Finanças" readonly class="w-full border app-border-subtle rounded-full py-2 pl-9 pr-4 text-xs app-text-gold font-medium bg-black/5 dark:bg-black/30">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs">🔍</span>
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs"><i data-lucide="search" class="ico"></i></span>
           </div>
           <div class="flex gap-2">
             <span class="bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs px-3.5 py-1.5 rounded-full font-medium">
@@ -744,7 +700,7 @@
 
           <div class="glass p-5 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
-              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-gold to-zinc-600 text-white font-serif font-bold flex items-center justify-center text-sm border-2 border-brand-gold">
+              <div class="w-12 h-12 rounded-full bg-zinc-700 text-white font-serif font-bold flex items-center justify-center text-sm border-2 border-brand-gold">
                 FL
               </div>
               <div>
@@ -775,19 +731,17 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">06 / Conhecimento Privativo de Alto Impacto</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Feed da Comunidade — Sabedoria Real</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /feed (Sem Algoritmos • 100% Executivo)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"O Feed é onde as integrantes compartilham conquistas e aprendizados reais — como fecharam um contrato, como cresceram a margem. Conteúdo de bastidor, sem ruído."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4 max-h-[430px] overflow-y-auto">
+      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-4 max-h-[430px] overflow-y-auto">
         
         <!-- Post 1: Bastidores de Vendas B2B e Fechamento High-Ticket -->
         <div class="glass p-5 rounded-2xl space-y-3 border hover:border-brand-gold/40 transition-all">
@@ -800,7 +754,7 @@
               </div>
             </div>
             <span class="text-[10px] bg-brand-gold/15 text-brand-gold border border-brand-gold/30 px-3 py-1 rounded-full font-bold">
-              💡 Bastidores B2B • Fechamento High-Ticket
+              <i data-lucide="lightbulb" class="ico"></i> Bastidores B2B • Fechamento High-Ticket
             </span>
           </div>
           
@@ -815,14 +769,14 @@
               Em 3 semanas o contrato estava assinado. Ter o selo e a credibilidade de um ecossistema executivo qualificado abre portas comerciais que nenhuma publicidade fria consegue abrir.
             </p>
             <p class="text-[11px] p-2.5 rounded-lg bg-black/5 dark:bg-black/30 border app-border-subtle font-mono text-emerald-600 dark:text-emerald-400">
-              📁 Subi na nossa Biblioteca o roteiro de proposta comercial que usamos para fechar contratos de múltiplos 6 dígitos!
+              Subi na nossa Biblioteca o roteiro de proposta comercial que usamos para fechar contratos de múltiplos 6 dígitos!
             </p>
           </div>
 
           <div class="flex items-center gap-6 pt-3 border-t app-border-subtle text-xs app-text-muted">
-            <span class="text-red-500 font-semibold">❤️ 184 curtidas</span>
-            <span>💬 42 comentários de executivas</span>
-            <span class="app-text-gold font-semibold">🔖 92 parcerias geradas</span>
+            <span class="app-text-muted font-semibold"><i data-lucide="heart" class="ico"></i> 184 curtidas</span>
+            <span><i data-lucide="message-circle" class="ico"></i> 42 comentários de executivas</span>
+            <span class="app-text-gold font-semibold"><i data-lucide="handshake" class="ico"></i> 92 parcerias geradas</span>
           </div>
         </div>
 
@@ -837,7 +791,7 @@
               </div>
             </div>
             <span class="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full font-bold">
-              🚀 Gestão & Escala de Negócios
+              <i data-lucide="trending-up" class="ico"></i> Gestão & Escala de Negócios
             </span>
           </div>
 
@@ -854,9 +808,9 @@
           </div>
 
           <div class="flex items-center gap-6 pt-3 border-t app-border-subtle text-xs app-text-muted">
-            <span class="text-red-500 font-semibold">❤️ 210 curtidas</span>
-            <span>💬 56 discussões aplicadas</span>
-            <span class="app-text-gold font-semibold">📅 Sincronizado na Agenda</span>
+            <span class="app-text-muted font-semibold"><i data-lucide="heart" class="ico"></i> 210 curtidas</span>
+            <span><i data-lucide="message-circle" class="ico"></i> 56 discussões aplicadas</span>
+            <span class="app-text-gold font-semibold"><i data-lucide="calendar" class="ico"></i> Sincronizado na Agenda</span>
           </div>
         </div>
 
@@ -870,19 +824,17 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">07 / Ecossistema Comercial</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Marketplace & Loja Oficial Minerva</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /marketplace (Produtos & Serviços)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Na Loja vocês encontram os itens oficiais da marca, e no Marketplace podem contratar serviços e consultorias das próprias integrantes — ou oferecer os seus."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-5">
+      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-5">
         
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b app-border-subtle">
           <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto text-xs">
@@ -900,10 +852,10 @@
           
           <div class="glass p-4 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
-              <div class="h-32 rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-black p-3 flex flex-col justify-between border border-brand-gold/30 relative overflow-hidden">
+              <div class="h-32 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-3 flex flex-col justify-between border border-brand-gold/30 relative overflow-hidden">
                 <span class="text-[9px] bg-brand-gold text-white font-extrabold uppercase px-2 py-0.5 rounded w-max">Artigo Oficial</span>
                 <div class="text-center my-auto">
-                  <span class="text-3xl">📖</span>
+                  <span class="text-3xl app-text-gold"><i data-lucide="book-open" class="ico"></i></span>
                   <div class="text-xs font-serif app-text-gold mt-1 font-bold">Edição de Luxo 2026</div>
                 </div>
               </div>
@@ -923,7 +875,7 @@
 
           <div class="glass p-4 rounded-2xl flex flex-col justify-between border hover:border-brand-gold/40 transition-all">
             <div class="space-y-3">
-              <div class="h-32 rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-900 dark:to-black p-3 flex flex-col justify-between border app-border-subtle relative overflow-hidden">
+              <div class="h-32 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-3 flex flex-col justify-between border app-border-subtle relative overflow-hidden">
                 <span class="text-[9px] bg-black/10 dark:bg-white/10 app-text-title font-semibold uppercase px-2 py-0.5 rounded w-max border app-border-subtle">Consultoria</span>
                 <div class="flex items-center gap-2.5 my-auto">
                   <img src="assets/carolina.jpg" alt="Carolina" class="w-10 h-10 rounded-full object-cover border border-brand-gold">
@@ -949,10 +901,10 @@
 
           <div class="glass p-4 rounded-2xl flex flex-col justify-between border border-brand-gold/40 transition-all bg-brand-gold/5">
             <div class="space-y-3">
-              <div class="h-32 rounded-xl bg-gradient-to-br from-brand-gold/20 via-zinc-100 dark:via-black to-zinc-200 dark:to-black p-3 flex flex-col justify-between border border-brand-gold/40 relative overflow-hidden">
+              <div class="h-32 rounded-xl bg-zinc-50 dark:bg-zinc-900 p-3 flex flex-col justify-between border border-brand-gold/40 relative overflow-hidden">
                 <span class="text-[9px] bg-brand-gold text-white font-extrabold uppercase px-2 py-0.5 rounded w-max">Benefício Membro</span>
                 <div class="text-center my-auto">
-                  <span class="text-3xl">💎</span>
+                  <span class="text-3xl app-text-gold"><i data-lucide="gem" class="ico"></i></span>
                   <div class="text-xs font-serif app-text-gold mt-1 font-bold">Minerva Welcome Box</div>
                 </div>
               </div>
@@ -982,25 +934,23 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">08 / Vantagens Corporativas</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Clube de Benefícios Exclusivos</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /benefits (Hotéis • Finanças • Experiências)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Como integrantes, vocês têm acesso ao clube de benefícios: condições especiais em hotéis, restaurantes, coworkings e serviços parceiros."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-4">
+      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-4">
         
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">🏨</span>
+              <span class="text-xl app-text-gold"><i data-lucide="hotel" class="ico"></i></span>
               <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">25% OFF</span>
             </div>
             <h4 class="text-sm font-bold app-text-title">Hotel Fasano</h4>
@@ -1010,7 +960,7 @@
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">🍽️</span>
+              <span class="text-xl app-text-gold"><i data-lucide="utensils" class="ico"></i></span>
               <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">15% OFF</span>
             </div>
             <h4 class="text-sm font-bold app-text-title">Restaurante D.O.M.</h4>
@@ -1020,7 +970,7 @@
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">💳</span>
+              <span class="text-xl app-text-gold"><i data-lucide="credit-card" class="ico"></i></span>
               <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">CONDIÇÃO VIP</span>
             </div>
             <h4 class="text-sm font-bold app-text-title">Cartão Corporativo & Gestão</h4>
@@ -1030,7 +980,7 @@
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">💼</span>
+              <span class="text-xl app-text-gold"><i data-lucide="briefcase" class="ico"></i></span>
               <span class="text-xs bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-0.5 rounded-full font-bold">1 MÊS GRÁTIS</span>
             </div>
             <h4 class="text-sm font-bold app-text-title">WeWork Global</h4>
@@ -1040,7 +990,7 @@
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">🌴</span>
+              <span class="text-xl app-text-gold"><i data-lucide="tree-palm" class="ico"></i></span>
               <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">20% OFF</span>
             </div>
             <h4 class="text-sm font-bold app-text-title">Tamboré Retreat</h4>
@@ -1050,7 +1000,7 @@
 
           <div class="glass p-4 rounded-xl border space-y-2 hover:border-brand-gold/40 transition-all">
             <div class="flex justify-between items-center">
-              <span class="text-xl">🎟️</span>
+              <span class="text-xl app-text-gold"><i data-lucide="ticket" class="ico"></i></span>
               <span class="text-xs bg-brand-gold/15 text-brand-gold px-2.5 py-0.5 rounded-full font-bold">ENTRADA VIP</span>
             </div>
             <h4 class="text-sm font-bold app-text-title">Congresso Nacional</h4>
@@ -1070,26 +1020,24 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">09 / Acervo de Conhecimento</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Biblioteca & Aulas Gravadas</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /library & /aulas-gravadas</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Na Biblioteca ficam os materiais: planilhas, playbooks, modelos prontos e aulas gravadas. Tudo liberado para vocês usarem no próprio negócio."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl space-y-5">
+      <div class="glass-card p-5 sm:p-6 shadow-sm space-y-5">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           <div class="space-y-3">
             <div class="flex justify-between items-center pb-2 border-b app-border-subtle">
               <h4 class="text-base font-bold app-text-title flex items-center gap-2">
-                <span>📚</span> <span>Modelos & Documentos Exclusivos</span>
+                <span><i data-lucide="library" class="ico"></i></span> <span>Modelos & Documentos Exclusivos</span>
               </h4>
               <span class="text-[10px] app-text-gold font-mono font-bold">Downloads Ilimitados</span>
             </div>
@@ -1097,40 +1045,40 @@
             <div class="space-y-2">
               <div class="glass p-3 rounded-xl flex items-center justify-between border">
                 <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold">📄</span>
+                  <span class="text-xl text-brand-gold"><i data-lucide="file-text" class="ico"></i></span>
                   <div>
                     <h5 class="text-xs font-semibold app-text-title">Playbook de Precificação & Vendas B2B High-Ticket</h5>
                     <p class="text-[10px] app-text-muted">PDF + Roteiro Editável • 28 páginas</p>
                   </div>
                 </div>
                 <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
-                  Baixar ⬇
+                  Baixar <i data-lucide="download" class="ico"></i>
                 </button>
               </div>
 
               <div class="glass p-3 rounded-xl flex items-center justify-between border">
                 <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold">📊</span>
+                  <span class="text-xl text-brand-gold"><i data-lucide="chart-column" class="ico"></i></span>
                   <div>
                     <h5 class="text-xs font-semibold app-text-title">Planilha Financeira de Valuation, DRE & Margem</h5>
                     <p class="text-[10px] app-text-muted">Excel com fórmulas automáticas de projeção</p>
                   </div>
                 </div>
                 <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
-                  Baixar ⬇
+                  Baixar <i data-lucide="download" class="ico"></i>
                 </button>
               </div>
 
               <div class="glass p-3 rounded-xl flex items-center justify-between border">
                 <div class="flex items-center gap-3">
-                  <span class="text-xl text-brand-gold">👑</span>
+                  <span class="text-xl text-brand-gold"><i data-lucide="crown" class="ico"></i></span>
                   <div>
                     <h5 class="text-xs font-semibold app-text-title">Matriz de Delegação, OKRs & Rituais de Liderança</h5>
                     <p class="text-[10px] app-text-muted">Guia prático para estruturar gerentes e descentralizar</p>
                   </div>
                 </div>
                 <button class="border app-border-subtle hover:bg-brand-gold hover:text-white text-xs px-3 py-1 rounded-lg transition-colors font-semibold">
-                  Baixar ⬇
+                  Baixar <i data-lucide="download" class="ico"></i>
                 </button>
               </div>
             </div>
@@ -1139,7 +1087,7 @@
           <div class="space-y-3">
             <div class="flex justify-between items-center pb-2 border-b app-border-subtle">
               <h4 class="text-base font-bold app-text-title flex items-center gap-2">
-                <span>🎬</span> <span>Masterclasses em Vídeo (Academy)</span>
+                <span><i data-lucide="circle-play" class="ico"></i></span> <span>Masterclasses em Vídeo (Academy)</span>
               </h4>
               <span class="text-[10px] app-text-gold font-mono font-bold">60+ Horas Gravadas</span>
             </div>
@@ -1198,36 +1146,34 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">10 / Inteligência Própria</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Minerva AI — 3 Especialistas Integrados</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /minerva-ai (Estrategista • Criador • Analista)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Essa é a Minerva AI, com 3 agentes: o Estrategista para planos de negócio, o Criador para textos e o Analista para números e relatórios. Vou fazer uma pergunta aqui para vocês verem."</p>
         </div>
       </div>
 
-      <div class="glass-card p-5 sm:p-6 shadow-2xl flex flex-col justify-between h-[420px]">
+      <div class="glass-card p-5 sm:p-6 shadow-sm flex flex-col justify-between h-[420px]">
         
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 pb-3 border-b app-border-subtle">
           <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             <span class="text-sm font-bold app-text-gold">MINERVA AI</span>
             <span class="text-xs app-text-muted">• Copiloto Executivo</span>
           </div>
 
           <div class="flex items-center gap-2 border app-border-subtle p-1 rounded-xl text-xs glass">
             <button onclick="setRobot('estrategista')" id="robot-estrategista" class="robot-btn px-3 py-1 rounded-lg bg-brand-gold text-white font-bold flex items-center gap-1.5 transition-all">
-              <span>🧠</span> <span>Estrategista</span>
+              <span><i data-lucide="brain" class="ico"></i></span> <span>Estrategista</span>
             </button>
             <button onclick="setRobot('criador')" id="robot-criador" class="robot-btn px-3 py-1 rounded-lg app-text-muted hover:text-black flex items-center gap-1.5 transition-all">
-              <span>✍️</span> <span>Criador</span>
+              <span><i data-lucide="pen-line" class="ico"></i></span> <span>Criador</span>
             </button>
             <button onclick="setRobot('analista')" id="robot-analista" class="robot-btn px-3 py-1 rounded-lg app-text-muted hover:text-black flex items-center gap-1.5 transition-all">
-              <span>📊</span> <span>Analista</span>
+              <span><i data-lucide="chart-column" class="ico"></i></span> <span>Analista</span>
             </button>
           </div>
         </div>
@@ -1236,10 +1182,10 @@
 
         <div class="pt-3 border-t app-border-subtle flex items-center gap-2">
           <button class="w-9 h-9 rounded-xl border app-border-subtle hover:bg-brand-gold hover:text-white flex items-center justify-center text-sm transition-colors glass" title="Comando de Voz">
-            🎙️
+            <i data-lucide="mic" class="ico"></i>
           </button>
           <button class="w-9 h-9 rounded-xl border app-border-subtle hover:bg-brand-gold hover:text-white flex items-center justify-center text-sm transition-colors glass" title="Anexar Documento">
-            📎
+            <i data-lucide="paperclip" class="ico"></i>
           </button>
           <input id="aiInteractiveInput" type="text" placeholder="Pergunte ao Estrategista sobre seu plano de negócio..." class="flex-1 border app-border-subtle rounded-xl px-4 py-2 text-xs app-text-title placeholder:text-zinc-400 bg-white/70 dark:bg-white/5 focus:outline-none focus:border-brand-gold">
           <button onclick="handleSendAI()" class="bg-brand-gold hover:opacity-90 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all">
@@ -1257,21 +1203,19 @@
           <span class="app-text-gold text-xs uppercase tracking-widest font-bold">11 / Mentoria Executiva</span>
           <h2 class="font-serif text-3xl sm:text-4xl app-text-title">Mentorias Individuais 1-on-1</h2>
         </div>
-        <div class="text-xs app-text-muted font-mono hidden sm:block">Rota: /mentoring (Com as Sócias Fundadoras)</div>
       </div>
 
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Aqui vocês agendam mentorias individuais com as sócias fundadoras. Escolhe o horário, confirma, e a sessão já cai na sua agenda."</p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         
-        <div class="glass-card p-6 shadow-xl space-y-4">
+        <div class="glass-card p-6 shadow-sm space-y-4">
           <div class="h-44 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border app-border-subtle">
             <img src="assets/beatriz.jpg" alt="Beatriz" class="w-full h-full object-cover object-top">
           </div>
@@ -1285,7 +1229,7 @@
           </button>
         </div>
 
-        <div class="glass-card p-6 shadow-xl space-y-4">
+        <div class="glass-card p-6 shadow-sm space-y-4">
           <div class="h-44 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border app-border-subtle">
             <img src="assets/carolina.jpg" alt="Carolina" class="w-full h-full object-cover object-top">
           </div>
@@ -1299,7 +1243,7 @@
           </button>
         </div>
 
-        <div class="glass-card p-6 shadow-xl space-y-4">
+        <div class="glass-card p-6 shadow-sm space-y-4">
           <div class="h-44 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border app-border-subtle">
             <img src="assets/giulia.jpg" alt="Giulia" class="w-full h-full object-cover object-top">
           </div>
@@ -1320,15 +1264,14 @@
     <section class="slide flex-col items-center justify-center text-center max-w-4xl mx-auto w-full" data-title="Encerramento e Próximos Passos">
       <!-- GUIA DE FALA NA PALESTRA -->
       <div class="speaker-note max-w-xl mx-auto mb-4 text-left">
-        <span class="text-base shrink-0">🎤</span>
         <div>
-          <span class="speaker-tag">O que falar nesta tela</span>
+          <span class="speaker-tag">Roteiro</span>
           <p class="text-xs">"Esse é o app que vocês vão usar a partir de agora. Apontem a câmera para o QR Code para dar o próximo passo da sua entrada — qualquer dúvida, nossa equipe atende por ali."</p>
         </div>
       </div>
 
       <div class="inline-block text-xs font-bold uppercase tracking-[0.25em] app-text-gold mb-4 font-bold">
-        ✦ Seu Próximo Passo
+        Seu Próximo Passo
       </div>
       <h2 class="font-serif text-5xl sm:text-7xl font-normal app-text-title mb-6">
         Bem-vinda ao Círculo Minerva
@@ -1337,7 +1280,7 @@
         Aponte a câmera para finalizar sua entrada e começar a usar o app.
       </p>
 
-      <div class="p-7 rounded-3xl glass border border-brand-gold/40 shadow-xl flex flex-col sm:flex-row items-center gap-8 mb-6">
+      <div class="p-7 rounded-3xl glass border border-brand-gold/40 shadow-sm flex flex-col sm:flex-row items-center gap-8 mb-6">
         <div class="w-36 h-36 bg-white rounded-2xl p-2.5 flex items-center justify-center shadow-md">
           <svg class="w-full h-full text-black" viewBox="0 0 100 100" fill="currentColor">
             <rect x="0" y="0" width="30" height="30" fill="black"/>
@@ -1439,16 +1382,16 @@
         currentTheme = 'dark';
         html.classList.remove('theme-light');
         html.classList.add('theme-dark', 'dark');
-        themeIcon.textContent = '🌙';
-        themeLabel.textContent = 'Modo Escuro Ativo';
-        themeBtn.className = 'px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm bg-zinc-800 text-white border-zinc-700';
+        themeIcon.textContent = '';
+        themeLabel.textContent = 'Tema Escuro';
+        themeBtn.className = 'px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm app-border-subtle app-text-title';
       } else {
         currentTheme = 'light';
         html.classList.remove('theme-dark', 'dark');
         html.classList.add('theme-light');
-        themeIcon.textContent = '☀️';
-        themeLabel.textContent = 'Modo Claro Ativo';
-        themeBtn.className = 'px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm bg-brand-gold text-white border-brand-gold/40';
+        themeIcon.textContent = '';
+        themeLabel.textContent = 'Tema Claro';
+        themeBtn.className = 'px-3 py-1 rounded-full text-xs font-bold transition-all border flex items-center gap-1.5 shadow-sm app-border-subtle app-text-title';
       }
     }
 
@@ -1465,7 +1408,7 @@
         }
       });
       const label = document.getElementById('speakerNotesLabel');
-      if (label) label.textContent = speakerNotesVisible ? 'O que falar (Ativo)' : 'O que falar (Oculto)';
+      if (label) label.textContent = speakerNotesVisible ? 'Roteiro: ligado' : 'Roteiro: desligado';
     }
 
     // Teclado
@@ -1617,9 +1560,9 @@
       renderMessages();
 
       setTimeout(() => {
-        let reply = "Perfeito, Beatriz! Já está alinhado na nossa agenda compartilhada do app. 🚀";
-        if (activeContactKey === 'carolina') reply = "Excelente! Acabei de adicionar as notas na pauta do nosso comitê. Nos vemos no Fasano! 🥂";
-        else if (activeContactKey === 'giulia') reply = "Maravilhoso! Vou revisar o material e nos falamos no horário marcado. ✨";
+        let reply = "Perfeito, Beatriz! Já está alinhado na nossa agenda compartilhada do app.";
+        if (activeContactKey === 'carolina') reply = "Excelente! Acabei de adicionar as notas na pauta do nosso comitê. Nos vemos no Fasano!";
+        else if (activeContactKey === 'giulia') reply = "Maravilhoso! Vou revisar o material e nos falamos no horário marcado.";
 
         conversationsData[activeContactKey].messages.push({
           sender: 'them',
@@ -1668,7 +1611,7 @@
       chatBox.innerHTML = `
         <div class="flex items-start gap-3">
           <div class="w-8 h-8 rounded-full bg-brand-gold text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
-            ✦
+            M
           </div>
           <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs app-text-title leading-relaxed max-w-[85%] border border-brand-gold/30">
             ${data.intro}
@@ -1683,7 +1626,7 @@
 
         <div class="flex items-start gap-3">
           <div class="w-8 h-8 rounded-full bg-brand-gold text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
-            ✦
+            M
           </div>
           <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs app-text-title leading-relaxed max-w-[85%] border border-brand-gold/30 space-y-2">
             <span class="text-[10px] font-bold app-text-gold uppercase tracking-wider block">Análise do ${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
@@ -1717,7 +1660,7 @@
         aiBubble.className = 'flex items-start gap-3';
         aiBubble.innerHTML = `
           <div class="w-8 h-8 rounded-full bg-brand-gold text-white font-bold flex items-center justify-center text-xs flex-shrink-0">
-            ✦
+            M
           </div>
           <div class="glass p-3.5 rounded-2xl rounded-tl-none text-xs app-text-title leading-relaxed max-w-[85%] border border-brand-gold/30">
             Excelente consulta. Baseado no banco de dados e diretrizes da rede Minerva, estruturei essa resposta alinhada com as melhores práticas executivas.
@@ -1729,6 +1672,7 @@
     }
 
     setRobot('estrategista');
+    if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.6 } });
   </script>
 </body>
 </html>
